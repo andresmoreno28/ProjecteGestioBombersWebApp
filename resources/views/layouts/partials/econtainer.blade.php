@@ -44,21 +44,23 @@
                 <h6 class="dropdown-header">Gestio dels parcs</h6>
                 <a class="dropdown-item" href="{{action('UserController@create')}}">Afegir parcs</a>
                 <a class="dropdown-item" href="{{action('UserController@index')}}">Consultar parcs</a>
+                <h6 class="dropdown-header">Gestio de les regions</h6>
+                <a class="dropdown-item" href="{{action('RegionController@create')}}">Afegir regions</a>
+                <a class="dropdown-item" href="{{action('RegionController@index')}}">Consultar regions</a>
               </div>
             </div>
             <div class="btn-group dropright" role="group">
               <button type="button" class="btn btn-secondary btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <p class="underline-small text-left"><i class="fas fa-truck-moving"></i> Veichles</p>
+                <p class="underline-small text-left"><i class="fas fa-truck-moving"></i> Vehicles</p>              
               </button>
               <!-- Dropdown menu links -->
               <div class="dropdown-menu">
-                <h6 class="dropdown-header">Gestio de veichles</h6>
-                <a class="dropdown-item" href="#">Afegir veichles</a>
-                <a class="dropdown-item" href="#">Consultar veichles</a>
+                <h6 class="dropdown-header">Gestio de vehicles</h6>
+                <a class="dropdown-item" href="#">Afegir vehicles</a>
+                <a class="dropdown-item" href="#">Consultar vehicles</a>
               </div>
             </div>
           </div>
       </div>
     </div>
-
 </div>

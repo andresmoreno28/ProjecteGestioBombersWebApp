@@ -91,7 +91,7 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'enricesguay@gmail.com',
+            'to' => 'andresmoreno@iesmontsia.org',
         ],
 
         'slack' => [
@@ -116,7 +116,7 @@ return [
      */
     'monitorBackups' => [
         [
-            'name' => config('app.name'),
+            'name' => 'project',
             'disks' => ['local'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,

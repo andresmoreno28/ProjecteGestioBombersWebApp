@@ -52,11 +52,11 @@
                                   <td class="text-right">
                                       <a class="btn btn-xs btn-default"
                                          href="{{ url('backup/download/'.$backup['file_name']) }}">
-                                         <i class="fas fa-download"></i> Descaregar
+                                         <i class="fas fa-download"></i> Descarregar
                                        </a>
                                       <a class="btn btn-xs btn-danger" data-button-type="delete"
                                          href="{{ url('backup/delete/'.$backup['file_name']) }}"><i class="fas fa-times"></i>
-                                          Delete</a>
+                                          Eliminar</a>
                                   </td>
                               </tr>
                           @endforeach
