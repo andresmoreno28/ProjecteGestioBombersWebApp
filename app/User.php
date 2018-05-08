@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Container;
+use App\Region;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'codi_parc', 'password',
+        'name', 'codi_parc', 'password', 'region_id'
     ];
 
     /**
@@ -26,4 +28,37 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Eloquent: Relationships.
+     **************************************************************************/
+    /**
+     * Region.
+     * Get the region of the user.
+     */
+    /*public function region()
+    {
+        return $this->belongsTo(Region::class)->withDefault();
+    }*/
+    protected function region(){
+      return $this->belongsTo('App\Region','region_id','id','regions');
+    }
+
+    /**
+     * Containers.
+     * Get the containers of the user.
+     */
+    public function containers()
+    {
+        return $this->hasMany(Container::class);
+    }
+
+    /**
+     * Vehicles.
+     * Get the vehicles of the user.
+     */
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
 }
