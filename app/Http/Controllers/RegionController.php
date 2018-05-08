@@ -95,10 +95,10 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $regions = Region::all();
         $region = Region::findOrFail($id)->update($request->all());
         
-        return view('parcs/regions._form', ['region' => $region]);
+        return redirect()->action('RegionController@index');
     }
 
     /**
