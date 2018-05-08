@@ -17,13 +17,36 @@
         </nav>
       </div>
       <hr class="my-0 d-none d-sm-block">
+      <div class="row">
+        <div class="col-12 mt-3">
+          {{-- Warning --}}
+        @if (session('warning'))
+          <div class="alert alert-warning alert-dismissible fade show">
+            {{ session('warning') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+
+        {{-- Success --}}
+        @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+        </div>
+      </div>
      <!-- {!! QrCode::size(600)->generate(route('region.index')); !!} -->
 
      <!-- Taula amb llistat de regions -->
-     <hr class="my-0 d-none d-sm-block">
+     <!-- <hr class="my-0 d-none d-sm-block"> -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
-                <a id="create-new-backup-button" href="{{ route('bcreate') }}" class="btn btn-danger bg-dark">
+                <a id="create-new-backup-button" href="{{ route('region.create') }}" class="btn btn-danger bg-dark">
                   <p class="my-0 underline-small"><i class="fas fa-archive"></i> Crear nova regió</p>
                 </a>
             </div>
@@ -45,14 +68,15 @@
                               <tr>
                                   <td>{{ $region['codi'] }}</td>
                                   <td>{{ $region['nom'] }}</td>
-                                  
+
                                   <td class="text-right">
                                       <a class="btn btn-xs btn-default"
                                          href="{{ action('RegionController@edit',$region['id']) }}">
                                          <i class="fas fa-download"></i> Editar
                                        </a>
                                       <a class="btn btn-xs btn-danger" data-button-type="delete"
-                                         href="{{action('RegionController@destroy',$region['id']) }}"><i class="fas fa-times"></i>
+                                         href="{{ url('region/delete/'.$region['id']) }}" role="button">
+                                         <i class="fas fa-times"></i>
                                           Eliminar</a>
                                   </td>
                               </tr>

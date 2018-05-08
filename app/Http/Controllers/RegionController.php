@@ -45,19 +45,23 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
+        
         // Validar dades obtingudes del formulari.
-      $data = $request->validate([
-          'codi' => 'required',
+        $data = $request->validate([
+          'codi' => 'required|unique:regions',
           'nom'  => 'required|string|max:255',
-      ]);
+        ]);
 
-      // Crear regió (la validació ha sortit bé).
-      Region::create([
+        // Crear regió (la validació ha sortit bé).
+        Region::create([
         'codi' => $data['codi'],
         'nom'  => $data['nom'],
-      ]);
+        ]);
 
-      return redirect()->route('home');
+
+        $missatge = session()->flash('success', 'S\'ha afegit la regió: '.$data['nom'].'.');
+    
+        return redirect()->route('region.index');
     }
 
     /**
@@ -67,10 +71,10 @@ class RegionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /*public function show($id)
+    public function show($id)
     {
         //
-    }*/
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -109,6 +113,15 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        //S'agafa la regió mitjançant l'id
+        $region = Region::findOrFail($id);
+
+        //S'elimina
+        $region->delete();
+
+        //Es mostra un missatge d'èxit
+        $missatge=session()->flash('success', 'Regió eliminada!');
+          return back()->with($missatge);  
     }
 }
