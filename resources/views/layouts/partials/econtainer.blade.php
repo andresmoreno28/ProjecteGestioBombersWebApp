@@ -47,6 +47,9 @@
                 <h6 class="dropdown-header">Gestio de les regions</h6>
                 <a class="dropdown-item" href="{{action('RegionController@create')}}">Afegir regions</a>
                 <a class="dropdown-item" href="{{action('RegionController@index')}}">Consultar regions</a>
+                <h6 class="dropdown-header">Gestio de les poblacions</h6>
+                <a class="dropdown-item" href="{{action('LocationController@create')}}">Afegir poblacions</a>
+                <a class="dropdown-item" href="{{action('LocationController@index')}}">Consultar poblacions</a>
               </div>
             </div>
             <div class="btn-group dropright" role="group">
