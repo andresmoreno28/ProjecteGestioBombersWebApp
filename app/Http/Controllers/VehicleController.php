@@ -11,6 +11,7 @@ use App\Vehicle;
 use App\VehicleInsurer;
 use App\VehicleType;
 use App\VehicleOwner;
+use Illuminate\Validation\Rule;
 
 class VehicleController extends Controller
 {
@@ -53,8 +54,8 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
       // Validar dades obtingudes del formulari.
-
-      $data = $request->validate([
+      //dd($request['donat_de_baixa']);
+          $data = $request->validate([
           'matricula' => 'required|unique:vehicles',
           'marca_model' => 'required',
           'num_xasis' => 'required|unique:vehicles',
@@ -139,9 +140,19 @@ class VehicleController extends Controller
       $vehicle = Vehicle::findOrFail($id);
 
       $data = $request->validate([
-          'matricula' => 'required',
+          'matricula'         => [
+              'required',
+              // Ignorar referència del material que s'edita perquè la referència
+              // ha de ser única a la taula.
+              Rule::unique('vehicles')->ignore($vehicle->id)
+          ],
+          'num_xasis'         => [
+              'required',
+              // Ignorar referència del material que s'edita perquè la referència
+              // ha de ser única a la taula.
+              Rule::unique('vehicles')->ignore($vehicle->id)
+          ],
           'marca_model' => 'required',
-          'num_xasis' => 'required',
           'asseg_num_polissa' => 'required',
           'vehicle_insurer_id' => 'required',
           'vehicle_owner_id' => 'required',
