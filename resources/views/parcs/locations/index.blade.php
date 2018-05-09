@@ -11,7 +11,7 @@
         <nav aria-label="breadcrumb bg-transparent">
           <ol class="breadcrumb bg-transparent">
             <li class="breadcrumb-item" aria-current="page">Home</li>
-            <li class="breadcrumb-item" aria-current="page">Regions</li>
+            <li class="breadcrumb-item" aria-current="page">Poblacions</li>
             <li class="breadcrumb-item active" aria-current="page">Index</li>
           </ol>
         </nav>
@@ -40,20 +40,20 @@
         @endif
         </div>
       </div>
-     <!-- {!! QrCode::size(600)->generate(route('region.index')); !!} -->
+     <!-- {!! QrCode::size(600)->generate(route('location.index')); !!} -->
 
-     <!-- Taula amb llistat de regions -->
+     <!-- Taula amb llistat de poblacions -->
      <!-- <hr class="my-0 d-none d-sm-block"> -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
-                <a id="create-new-backup-button" href="{{ route('region.create') }}" class="btn btn-danger bg-dark">
-                  <p class="my-0 underline-small"><i class="fas fa-archive"></i> Crear nova regió</p>
+                <a id="create-new-backup-button" href="{{ route('location.create') }}" class="btn btn-danger bg-dark">
+                  <p class="my-0 underline-small"><i class="fas fa-archive"></i> Crear nova població</p>
                 </a>
             </div>
         </div>
             <div class="row">
               <div class="col-xs-12 col-12">
-                  @if (count($regions))
+                  @if (count($locations))
 
                       <table class="table table-striped table-bordered">
                           <thead>
@@ -64,18 +64,18 @@
                           </tr>
                           </thead>
                           <tbody>
-                          @foreach($regions as $region)
+                          @foreach($locations as $location)
                               <tr>
-                                  <td>{{ $region['codi'] }}</td>
-                                  <td>{{ $region['nom'] }}</td>
+                                  <td>{{ $location['codi'] }}</td>
+                                  <td>{{ $location['nom'] }}</td>
 
                                   <td class="text-right">
                                       <a class="btn btn-xs btn-default"
-                                         href="{{ action('RegionController@edit',$region['id']) }}">
+                                         href="{{ action('LocationController@edit',$location['id']) }}">
                                          <i class="fas fa-download"></i> Editar
                                        </a>
                                       <a class="btn btn-xs btn-danger" data-button-type="delete"
-                                         href="{{ url('region/delete/'.$region['id']) }}" role="button">
+                                         href="{{ url('location/delete/'.$location['id']) }}" role="button">
                                          <i class="fas fa-times"></i>
                                           Eliminar</a>
                                   </td>
@@ -85,15 +85,11 @@
                       </table>
                   @else
                       <div class="well">
-                          <h4>No hi han regions inserides</h4>
+                          <h4>No hi han poblacions inserides</h4>
                       </div>
                   @endif
               </div>
             </div>
-
-
-
-
     </div>
     <!--Fi Contenedor central-->
     <!--Contenedor dret-->

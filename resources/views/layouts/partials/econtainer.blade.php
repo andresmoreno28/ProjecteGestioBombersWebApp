@@ -47,6 +47,9 @@
                 <h6 class="dropdown-header">Gestio de les regions</h6>
                 <a class="dropdown-item" href="{{action('RegionController@create')}}">Afegir regions</a>
                 <a class="dropdown-item" href="{{action('RegionController@index')}}">Consultar regions</a>
+                <h6 class="dropdown-header">Gestio de les poblacions</h6>
+                <a class="dropdown-item" href="{{action('LocationController@create')}}">Afegir poblacions</a>
+                <a class="dropdown-item" href="{{action('LocationController@index')}}">Consultar poblacions</a>
               </div>
             </div>
             <div class="btn-group dropright" role="group">
@@ -60,7 +63,31 @@
                 <a class="dropdown-item" href="#">Consultar vehicles</a>
               </div>
             </div>
-          </div>
+            <!-- CONTENIDORS -->
+            <div class="btn-group  dropright" role="group">
+              <button type="button" class="btn btn-secondary btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <p class="underline-small text-left"><i class="fas fa-cube"></i> Contenidors</p>
+              </button>
+              <!-- Dropdown menu links -->
+              <div class="dropdown-menu">
+                <h6 class="dropdown-header">Gestió de contenidors</h6>
+                <a class="dropdown-item" href="{{action('ContainerController@create')}}">Afegir contenidor</a>
+                <a class="dropdown-item" href="{{action('ContainerController@index')}}">Consultar contenidors</a>
+              </div>
+            </div>
+            <!-- MATERIALS -->
+            <div class="btn-group  dropright" role="group">
+              <button type="button" class="btn btn-secondary btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <p class="underline-small text-left"><i class="fas fa-boxes"></i> Materials</p>
+              </button>
+              <!-- Dropdown menu links -->
+              <div class="dropdown-menu">
+                <h6 class="dropdown-header">Gestió de materials</h6>
+                <a class="dropdown-item" href="{{action('MaterialController@create')}}">Afegir materials</a>
+                <a class="dropdown-item" href="{{action('MaterialController@index')}}">Consultar materials</a>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
 </div>

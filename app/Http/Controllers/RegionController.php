@@ -22,7 +22,9 @@ class RegionController extends Controller
      */
     public function index()
     {
+        //Agafa totes les regions
         $regions = Region::get();
+        //Retorna a la pàgina d'index de regions amb l'objecte $regions
         return view('parcs/regions.index', ['regions' => $regions]);
     }
 
@@ -33,7 +35,9 @@ class RegionController extends Controller
      */
     public function create()
     {
-        $region = new region();     
+        //Crea un nou objecte
+        $region = new region();
+        //Retorna al formulari l'objecte per a guardar les dades en ell
         return view('parcs/regions._form')->with(['region'=>$region]);
     }
 
@@ -45,19 +49,23 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
+        
         // Validar dades obtingudes del formulari.
-      $data = $request->validate([
-          'codi' => 'required',
+        $data = $request->validate([
+          'codi' => 'required|unique:regions',
           'nom'  => 'required|string|max:255',
-      ]);
+        ]);
 
-      // Crear regió (la validació ha sortit bé).
-      Region::create([
+        // Crear regió (la validació ha sortit bé).
+        Region::create([
         'codi' => $data['codi'],
         'nom'  => $data['nom'],
-      ]);
+        ]);
 
-      return redirect()->route('home');
+
+        $missatge = session()->flash('success', 'S\'ha afegit la regió: '.$data['nom'].'.');
+    
+        return redirect()->route('region.index');
     }
 
     /**
@@ -67,10 +75,10 @@ class RegionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /*public function show($id)
+    public function show($id)
     {
         //
-    }*/
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -81,9 +89,9 @@ class RegionController extends Controller
     public function edit($id)
     {
         // Cerquem la regió.
-      $region= Region::findOrFail($id);
-
-      return view('parcs/regions._form', ['region' => $region]);
+        $region= Region::findOrFail($id);
+        // Retorna al formulari amb l'objecte $region
+        return view('parcs/regions._form', ['region' => $region]);
     }
 
     /**
@@ -95,9 +103,9 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $regions = Region::all();
+        //Realitza l'actualització de la regió indicada per l'id
         $region = Region::findOrFail($id)->update($request->all());
-        
+        //Retorna a l'index de regions
         return redirect()->action('RegionController@index');
     }
 
@@ -109,6 +117,14 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //S'agafa la regió mitjançant l'id
+        $region = Region::findOrFail($id);
+
+        //S'elimina
+        $region->delete();
+
+        //Es mostra un missatge d'èxit
+        $missatge=session()->flash('success', 'Regió eliminada!');
+          return back()->with($missatge);  
     }
 }
