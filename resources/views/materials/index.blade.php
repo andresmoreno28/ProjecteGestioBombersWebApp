@@ -29,6 +29,16 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
 
+        {{-- Success --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <!-- Taula de Materials -->
         <div class="row">
             <div class="col-xs-12 col-12">
@@ -52,12 +62,18 @@
                                 <td>{{ $material->quantitat }}</td>
                                 <td>{{ $material->es_del_parc }}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-default" href="#">
+                                    <!-- Editar -->
+                                    <a class="btn btn-xs btn-default" href="{{ action('MaterialController@edit', ['id' => $material->id]) }}">
                                         <i class="fas fa-pencil-alt"></i> Editar
                                     </a>
-                                    <a class="btn btn-xs btn-danger" data-button-type="delete" href="#">
-                                        <i class="fas fa-times"></i> Eliminar
-                                    </a>
+                                    <!-- Esborrar -->
+                                    <form action="{{ action('MaterialController@destroy', ['id' => $material->id]) }}" method="POST" class="form-delete">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-xs btn-danger">
+                                            <i class="fas fa-times"></i> Eliminar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -79,5 +95,48 @@
     </div><!-- /.col -->
 </div><!-- /.container -->
 
+<!-- ESBORRAR (modal) -->
+<div class="modal fade" id="materialEsborrarModal" tabindex="-1" role="dialog" aria-labelledby="modalEsborrar" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Esborrar material</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body scroll">
+                <p><strong>Està segur/ra d'esborrar el material?</strong><br>
+                Aquesta acció és irreversible.</p>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel·lar</button>
+                <button id="delete-btn" type="button" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@endsection
 
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function esborrarMaterial(id) {
+        // Obrir el modal que serà emprat per eborrar el material.
+        $('#materialEsborrarModal').modal();
+    }
+
+    $('table').on('click', '.form-delete', function(e) {
+        e.preventDefault();
+        var $form=$(this);
+        
+        $('#materialEsborrarModal').modal().on('click', '#delete-btn', function() {
+            $form.submit();
+        });
+    });
+</script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Material;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MaterialController extends Controller
 {
@@ -58,7 +59,7 @@ class MaterialController extends Controller
         ]);
 
         // Crear el material (la validació ha sortit bé).
-        $user = Material::create([
+        $material = Material::create([
             'referencia'         => $data['referencia'],
             'nom'                => $data['nom'],
             'quantitat_prevista' => $data['quantitat_prevista'],
@@ -78,7 +79,8 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        // $material = Material::findOrFail($id);
+        // return view('materials.show', compact('material'));
     }
 
     /**
@@ -89,7 +91,8 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        return view('materials.edit', compact('material'));
     }
 
     /**
@@ -101,7 +104,29 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtenir el material a actualitzar.
+        $material = Material::findOrFail($id);
+
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'referencia'         => [
+                'required',
+                'string',
+                // Ignorar referència del material que s'edita perquè la referència
+                // ha de ser única a la taula.
+                Rule::unique('materials')->ignore($material->id)
+            ],
+            'nom'                => 'required|string',
+            'quantitat_prevista' => 'required|integer',
+            'quantitat'          => 'integer',
+            'es_del_parc'        => 'required|boolean',
+        ]);
+
+        // Actualitzar el material (la validació ha sortit bé).
+        $material->update($data);
+
+        // Vista amb el llistat del material.
+        return redirect()->action('MaterialController@index');
     }
 
     /**
@@ -112,6 +137,13 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Obtenir el material a esborrar.
+        $material = Material::findOrFail($id);
+
+        // Esborrar el material.
+        $material->delete();
+
+        // Vista amb el llistat del material.
+        return back()->with('success', "S'ha esborrat \"$material->nom\" de forma satisfactoria.");
     }
 }

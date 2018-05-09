@@ -68,5 +68,8 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- Scripts per a les pàgines --}}
+    @yield('scripts')
 </body>
 </html>

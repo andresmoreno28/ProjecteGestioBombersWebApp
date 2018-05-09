@@ -62,7 +62,8 @@ class Vehicle extends Model
      */
     public function type()
     {
-        return $this->belongsTo(VehicleType::class)->withDefault();
+      return $this->belongsTo('App\VehicleType','vehicle_type_id','id','vehicle_types');
+
     }
 
     /**
@@ -71,7 +72,7 @@ class Vehicle extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(VehicleOwner::class)->withDefault();
+        return $this->belongsTo('App\VehicleOwner','vehicle_owner_id','id','vehicle_owners');
     }
 
     /**
@@ -80,7 +81,8 @@ class Vehicle extends Model
      */
     public function insurers()
     {
-        return $this->hasMany(VehicleInsurer::class);
+      return $this->belongsTo('App\VehicleInsurer','vehicle_insurer_id','id','vehicle_insurers');
+
     }
 
     /**
