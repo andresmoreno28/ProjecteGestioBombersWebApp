@@ -137,6 +137,13 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Obtenir el material a esborrar.
+        $material = Material::findOrFail($id);
+
+        // Esborrar el material.
+        $material->delete();
+
+        // Vista amb el llistat del material.
+        return back()->with('success', "S'ha esborrat \"$material->nom\" de forma satisfactoria.");
     }
 }
