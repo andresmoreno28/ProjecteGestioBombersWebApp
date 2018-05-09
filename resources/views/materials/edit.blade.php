@@ -15,11 +15,22 @@
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Materials</li>
                     <li class="breadcrumb-item" aria-current="page">Editar</li>
-                    <li class="breadcrumb-item active" aria-current="page">Nom Material a Editar...</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $material->nom }}</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
         <hr class="my-0 d-none d-sm-block">
+
+        {{-- Errors --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <!-- Formulari -->
         <div class="row mt-5">
@@ -27,8 +38,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Editar material</h5>
-                        <p class="text-danger"><small>Camps obligatoris.</small></p>
-                        <form action="{{ action('MaterialController@edit') }}" method="POST">
+                        <form action="{{ action('MaterialController@update', ['id' => $material->id]) }}" method="POST">
+                            @method('PATCH')
                             @include('materials.partials.form', [
                                 'submitButton' => 'Editar'
                             ])

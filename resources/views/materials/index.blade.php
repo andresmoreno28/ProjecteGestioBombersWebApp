@@ -52,7 +52,7 @@
                                 <td>{{ $material->quantitat }}</td>
                                 <td>{{ $material->es_del_parc }}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-default" href="#">
+                                    <a class="btn btn-xs btn-default" href="{{ action('MaterialController@edit', ['id' => $material->id]) }}">
                                         <i class="fas fa-pencil-alt"></i> Editar
                                     </a>
                                     <a class="btn btn-xs btn-danger" data-button-type="delete" href="#">
