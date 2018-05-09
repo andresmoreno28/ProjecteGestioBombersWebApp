@@ -98,8 +98,13 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+          'codi' => 'required|unique:locations',
+          'nom'  => 'required|string|max:255',
+        ]);
         //Realitza l'actualització de la població indicada per l'id
-        $location = Location::findOrFail($id)->update($request->all());
+        $location = Location::findOrFail($id)->update($data->all());
         //Retorna a l'index de poblacions
         return redirect()->action('LocationController@index');
     }

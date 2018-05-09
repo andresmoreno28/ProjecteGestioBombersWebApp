@@ -73,7 +73,7 @@
           @endif
             {{-- Name --}}
             <div class="form-group">
-              <label for="userName">Name</label>
+              <label for="userName">Nom del parc</label>
               <input type="text" name="name" value="{{ $user->name or old('name') }}" class="form-control" id="userName" aria-describedby="nameHelp" required>
               <small id="nameHelp" class="form-text text-muted">Nom del parc, aquest s'utilitzara per a fer login a l'alicació.</small>
             </div>
