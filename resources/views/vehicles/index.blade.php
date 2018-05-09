@@ -45,8 +45,8 @@
       <!-- Boto per crear usuaris-->
       <div class="row">
           <div class="col-xs-12 col-2 my-3 clearfix">
-              <a id="create-new-backup-button" href="{{action('UserController@create')}}" class="btn btn-danger bg-dark">
-                <p class="my-0 underline-small"><i class="fas fa-archive"></i> Nou parc</p>
+              <a id="create-new-backup-button" href="{{action('VehicleController@create')}}" class="btn btn-danger bg-dark">
+                <p class="my-0 underline-small"><i class="fas fa-archive"></i> Nou vehicle</p>
               </a>
           </div>
       </div>
@@ -59,32 +59,42 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Codi</th>
-                        <th>Regio</th>
-                        <th>Data modificació</th>
+                        <th>Codi vehicle</th>
+                        <th>Marca model</th>
+                        <th>Tipus de vehicle</th>
+                        <th>Matricula</th>
+                        <th>Asseguradora</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
+                    @foreach($vehicles as $vehicle)
                         <tr>
-                            <td>{{ $user['name'] }}</td>
-                            <td>{{   $user['codi_parc'] }}</td>
+                            <td>{{ $vehicle->matricula }}</td>
+                            <td>{{   $vehicle->marca_model }}</td>
                             <td>
-                              {{ $user->region['nom'] }}
+                              {{ $vehicle->type->nom }}
                             </td>
                             <td>
-                              @php(\Jenssegers\Date\Date::setLocale('ca'))
-                              {{  Date::now()->timespan(($user['updated_at'])->format('j F Y')) }}
+                              {{$vehicle->matricula}}
                             </td>
+                            <td>{{$vehicle->insurers->nom}}</td>
                             <td class="text-right ">
+
+                              <a class="btn btn-xs btn-default" target="_blank"
+                                 href="{{ action('VehicleController@qr', ['id'=>$vehicle->id]) }}">
+                                 <i class="fas fa-qrcode"></i>
+                               </a>
                               <a class="btn btn-xs btn-default"
-                                 href="{{ url('user/'.$user['id'].'/edit') }}">
+                                 href="{{ action('VehicleController@show', ['id'=>$vehicle->id]) }}">
+                                 <i class="far fa-eye"></i>
+                               </a>
+                              <a class="btn btn-xs btn-default"
+                                 href="{{ url('vehicle/'.$vehicle->id.'/edit') }}">
                                  <i class="fas fa-pencil-alt"></i> Editar
                                </a>
                                <a class="btn btn-xs btn-danger" data-button-type="delete"
-                                  href="{{ url('user/delete/'.$user['id']) }}"><i class="fas fa-times"></i>
+                                  href="{{ url('vehicle/delete/'.$vehicle->id) }}"><i class="fas fa-times"></i>
                                    Eliminar</a>
                             </td>
                         </tr>
@@ -93,13 +103,12 @@
                 </table>
             @else
                 <div class="well">
-                    <h4>No hi han parcs</h4>
+                    <h4>No hi han vehicles</h4>
                 </div>
             @endif
         </div>
       </div>
       <!--Fi taula Usuaris-->
-      {!! QrCode::size(300)->generate(route('user.index')); !!}
     </div>
     <!--Fi Contenedor central-->
     <!--Contenedor dret-->

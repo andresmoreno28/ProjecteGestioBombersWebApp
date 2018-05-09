@@ -81,14 +81,13 @@
                 <label for="vehicle_type_id">Tipus de vehicle</label>
 
                   <select name="vehicle_type_id"class="custom-select" id="inputGroupSelect02">
-
                     @if ($vehicle->exists)
                     @else
                       <option selected disabled>Selecciona una opció</option>
                     @endif
                     @forelse ($vTypes as $type)
                       @if ($vehicle->type['nom']==$type['nom'])
-                        <option value="{{$type['id'] or old($type['id'])}}" selected> {{$type['nom'] or old($type['nom'])}} </option>
+                        <option value="{{$type['id']}}" selected> {{$type['nom']}} </option>
                       @else
                         <option value="{{$type['id']}}">{{$type['nom']}}</option>
                       @endif
@@ -177,12 +176,15 @@
               <div class="form-group">
                 <label for="matricula_dataHelp">Data de matriculació</label>
                 @if ($vehicle->exists)
-                  @php ($matricula_data=date('Y-m-d',strtotime($vehicle['matricula_data'])))
+                  @if ($vehicle['matricula_data']==null)
+                    <input type="date" name="matricula_data" value="" class="form-control" id="matricula_data" aria-describedby="matricula_dataHelp" >
+                  @else
+                    @php ($matricula_data=date('Y-m-d',strtotime($vehicle['matricula_data'])))
+                    <input type="date" name="matricula_data" value="{{ $matricula_data or old('matricula_data') }}" class="form-control" id="matricula_data" aria-describedby="matricula_dataHelp" >
+                  @endif
                 @else
-
+                  <input type="date" name="matricula_data" value="" class="form-control" id="matricula_data" aria-describedby="matricula_dataHelp" >
                 @endif
-
-                <input type="date" name="matricula_data" value="{{ $matricula_data or old('matricula_data') }}" class="form-control" id="matricula_data" aria-describedby="matricula_dataHelp" >
                 <small id="matricula_dataHelp" class="form-text text-muted">Data en la que és va matricular el vehicle.</small>
               </div>
             </div>
@@ -193,7 +195,17 @@
                   <label for="matricula_terceraHelp">Tercera matricula</label>
                 </div>
                 <div class="col-12 my-2">
-                  <input type="checkbox" name="matricula_tercera" value="1">
+                  @if ($vehicle->exists)
+                    @if ($vehicle->matricula_tercera==1)
+                      <input type="checkbox" name="matricula_tercera" value="1" checked>
+                    @else
+                      <input type="checkbox" name="matricula_tercera" value="1" >
+                    @endif
+
+                  @else
+                    <input type="checkbox" name="matricula_tercera" value="1">
+                  @endif
+
                 </div>
                 <small id="matricula_terceraHelp" class="form-text text-muted">Tercera matricula que consta en el vehicle.</small>
               </div>
@@ -263,12 +275,16 @@
               <div class="form-group">
                 <label for="km_data">Data kilometratje del vehicle</label>
                 @if ($vehicle->exists)
-                  @php($km_data=date('Y-m-d',strtotime($vehicle['km_data'])))
+                  @if ($vehicle['km_data']==null)
+                    <input type="date" name="km_data" value="" class="form-control" id="km_data" aria-describedby="km_dataHelp" >
+                  @else
+                    @php ($km_data=date('Y-m-d',strtotime($vehicle['km_data'])))
+                    <input type="date" name="km_data" value="{{ $km_data or old('km_data') }}" class="form-control" id="km_data" aria-describedby="km_dataHelp">
+                  @endif
                 @else
-
+                  <input type="date" name="km_data" value="" class="form-control" id="km_data" aria-describedby="km_dataHelp">
                 @endif
 
-                <input type="date" name="km_data" value="{{ $km_data or old('km_data') }}" class="form-control" id="km_data" aria-describedby="km_dataHelp">
                 <small id="km_dataHelp" class="form-text text-muted">Data en la que es va enregistrar el kilometratje del vehicle.</small>
               </div>
             </div>
@@ -279,30 +295,34 @@
               <div class="form-group">
                 <label for="manteniment_data">Data manteniment</label>
                 @if ($vehicle->exists)
-                  @php($manteniment_data=date('Y-m-d',strtotime($vehicle['manteniment_data'])))
+                  @if ($vehicle['manteniment_data']==null)
+                    <input type="date" name="manteniment_data" value="" class="form-control" id="manteniment_data" aria-describedby="manteniment_dataHelp" >
+                  @else
+                    @php ($manteniment_data=date('Y-m-d',strtotime($vehicle['manteniment_data'])))
+                    <input type="date" name="manteniment_data" value="{{ $manteniment_data or old('manteniment_data') }}" class="form-control" id="manteniment_data" aria-describedby="manteniment_dataHelp">
+                  @endif
                 @else
-
+                  <input type="date" name="manteniment_data" value="" class="form-control" id="manteniment_data" aria-describedby="km_dataHelp">
                 @endif
 
-                <input type="date" name="manteniment_data" value="{{ $manteniment_data or old('manteniment_data') }}" class="form-control" id="manteniment_data" aria-describedby="manteniment_data">
                 <small id="manteniment_data" class="form-text text-muted">Data en la que s'ha realitzat l'ultim manteniment del vehicle.</small>
               </div>
             </div>
             <div class="col-4">
               {{-- Data proper maneteniment --}}
               <div class="form-group">
-                @if ($vehicle->exists)
-                  @php($proper_manteniment_data=date('Y-m-d',strtotime($vehicle['proper_manteniment_data'])))
-                  <label for="proper_maneteniment_data">Data proper maneteniment</label>
-                  <input type="date" name="proper_maneteniment_data" value="{{ $proper_manteniment_data or old('proper_maneteniment_data') }}" class="form-control" id="proper_maneteniment_data" aria-describedby="proper_maneteniment_data">
-                  <small id="proper_maneteniment_data" class="form-text text-muted">Data en la que s'ha de ralitzar el proper manteniment del vehicle.</small>
-                @else
-                  <label for="proper_maneteniment_data">Data proper maneteniment</label>
-                  <input type="date" name="proper_maneteniment_data" value="{{ $proper_maneteniment_data or old('proper_maneteniment_data') }}" class="form-control" id="proper_maneteniment_data" aria-describedby="proper_maneteniment_data">
-                  <small id="proper_maneteniment_data" class="form-text text-muted">Data en la que s'ha de ralitzar el proper manteniment del vehicle.</small>
-                @endif
-
-
+                <label for="proper_maneteniment_data">Data proper maneteniment</label>
+                  @if ($vehicle->exists)
+                    @if ($vehicle['proper_maneteniment_data']==null)
+                      <input type="date" name="proper_maneteniment_data" value="" class="form-control" id="proper_maneteniment_data" aria-describedby="proper_maneteniment_dataHelp" >
+                    @else
+                      @php ($proper_maneteniment_data=date('Y-m-d',strtotime($vehicle['proper_maneteniment_data'])))
+                      <input type="date" name="proper_maneteniment_data" value="{{ $proper_maneteniment_data or old('proper_maneteniment_data') }}" class="form-control" id="proper_maneteniment_data" aria-describedby="proper_maneteniment_dataHelp">
+                    @endif
+                  @else
+                    <input type="date" name="proper_maneteniment_data" value="" class="form-control" id="proper_maneteniment_data" aria-describedby="proper_maneteniment_dataHelp">
+                  @endif
+                <small id="proper_maneteniment_data" class="form-text text-muted">Data en la que s'ha de ralitzar el proper manteniment del vehicle.</small>
               </div>
             </div>
             <div class="col-4">
@@ -310,12 +330,15 @@
               <div class="form-group">
                 <label for="hores_bomba">Hores de la bomba</label>
                 @if ($vehicle->exists)
-                  @php($hores_bomba=date('H:m',strtotime($vehicle['hores_bomba'])))
+                  @if ($vehicle['hores_bomba']==null)
+                    <input type="integer" name="hores_bomba" value="" class="form-control" id="hores_bomba" aria-describedby="hores_bomba">
+                  @else
+                    @php ($hores_bomba=date('H:m',strtotime($vehicle['hores_bomba'])))
+                    <input type="integer" name="hores_bomba" value="{{ $hores_bomba or old('hores_bomba') }}" class="form-control" id="hores_bomba" aria-describedby="hores_bomba">
+                  @endif
                 @else
-
+                  <input type="integer" name="hores_bomba" value="" class="form-control" id="hores_bomba" aria-describedby="hores_bomba">
                 @endif
-
-                <input type="integer" name="hores_bomba" value="{{ $hores_bomba or old('hores_bomba') }}" class="form-control" id="hores_bomba" aria-describedby="hores_bomba">
                 <small id="hores_bomba" class="form-text text-muted">Quantitat d'hores que ha estat treballant la bomba.</small>
               </div>
             </div>
@@ -324,14 +347,17 @@
             <div class="col-6">
               {{-- ITV vigor --}}
               <div class="form-group">
-                @if ($vehicle->exists)
-                  @php($itv_vigor=date('Y-m-d',strtotime($vehicle['itv_vigor'])))
-                @else
-
-                @endif
-
                 <label for="itv_vigor">Data de la ITV</label>
-                <input type="date" name="itv_vigor" value="{{ $itv_vigor or old('itv_vigor') }}" class="form-control" id="itv_vigor" aria-describedby="itv_vigor">
+                @if ($vehicle->exists)
+                  @if ($vehicle['itv_vigor']==null)
+                    <input type="date" name="itv_vigor" value="" class="form-control" id="itv_vigor" aria-describedby="itv_vigor">
+                  @else
+                    @php ($itv_vigor=date('Y-m-d',strtotime($vehicle['itv_vigor'])))
+                    <input type="date" name="itv_vigor" value="{{ $itv_vigor or old('itv_vigor') }}" class="form-control" id="itv_vigor" aria-describedby="itv_vigor">
+                  @endif
+                @else
+                  <input type="date" name="itv_vigor" value="" class="form-control" id="itv_vigor" aria-describedby="itv_vigor">
+                @endif
                 <small id="itv_vigor" class="form-text text-muted">Data en la que s'ha passat la ITV.</small>
               </div>
             </div>
@@ -340,12 +366,15 @@
               <div class="form-group">
                 <label for="itv_propera">Data de la propera ITV</label>
                 @if ($vehicle->exists)
-                  @php($itv_propera=date('Y-m-d',strtotime($vehicle['itv_propera'])))
+                  @if ($vehicle['itv_propera']==null)
+                    <input type="date" name="itv_propera" value="" class="form-control" id="itv_propera" aria-describedby="itv_propera">
+                  @else
+                    @php ($itv_propera=date('Y-m-d',strtotime($vehicle['itv_propera'])))
+                    <input type="date" name="itv_propera" value="{{ $itv_propera or old('itv_propera') }}" class="form-control" id="itv_propera" aria-describedby="itv_propera">
+                  @endif
                 @else
-
+                  <input type="date" name="itv_propera" value="" class="form-control" id="itv_propera" aria-describedby="itv_propera">
                 @endif
-
-                <input type="date" name="itv_propera" value="{{ $itv_propera or old('itv_propera') }}" class="form-control" id="itv_propera" aria-describedby="itv_propera">
                 <small id="itv_propera" class="form-text text-muted">Data en la que s'ha de passar la propera ITV.</small>
               </div>
             </div>
@@ -356,12 +385,15 @@
               <div class="form-group">
                 <label for="baixa_prevista">Data prevista de baixa</label>
                 @if ($vehicle->exists)
-                  @php($baixa_prevista=date('Y-m-d',strtotime($vehicle['baixa_prevista'])))
+                  @if ($vehicle['baixa_prevista']==null)
+                    <input type="date" name="baixa_prevista" value="" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
+                  @else
+                    @php ($baixa_prevista=date('Y-m-d',strtotime($vehicle['baixa_prevista'])))
+                    <input type="date" name="baixa_prevista" value="{{ $baixa_prevista or old('baixa_prevista') }}" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
+                  @endif
                 @else
-
+                  <input type="date" name="baixa_prevista" value="" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
                 @endif
-
-                <input type="date" name="baixa_prevista" value="{{$baixa_prevista or old('baixa_prevista') }}" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
                 <small id="baixa_prevista" class="form-text text-muted">Data en la que esta previst donar de baixa el vehicle.</small>
               </div>
             </div>
@@ -371,7 +403,17 @@
                 <label for="donat_de_baixa">Esta donat de baixa</label>
               </div>
               <div class="col-12 my-2">
-                <input type="checkbox" name="donat_de_baixa" value="1">
+                @if ($vehicle->exists)
+                  @if ($vehicle->donat_de_baixa==1)
+                    <input type="checkbox" name="donat_de_baixa" value="1" checked>
+                  @else
+                    <input type="checkbox" name="donat_de_baixa" value="1">
+                  @endif
+
+                @else
+                  <input type="checkbox" name="donat_de_baixa" value="1">
+                @endif
+
               </div>
               <small id="donat_de_baixa" class="form-text text-muted mt-3">Indica si el vehicle esta donat de baixa.</small>
             </div>

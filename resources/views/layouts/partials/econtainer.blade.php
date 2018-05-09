@@ -60,7 +60,7 @@
               <div class="dropdown-menu">
                 <h6 class="dropdown-header">Gestio de vehicles</h6>
                 <a class="dropdown-item" href="{{action('VehicleController@create')}}">Afegir vehicles</a>
-                <a class="dropdown-item" href="#">Consultar vehicles</a>
+                <a class="dropdown-item" href="{{action('VehicleController@index')}}">Consultar vehicles</a>
               </div>
             </div>
             <!-- CONTENIDORS -->
