@@ -123,6 +123,9 @@
                     @if ($vehicle->exists)
                     @else
                       <option selected disabled>Selecciona una opció</option>
+                      <option value="no">No</option>
+                      <option value="textil">Textil</option>
+                      <option value="metalica">Metalica</option>
                     @endif
                     @if ($vehicle['roda_cadenes']=='no')
                       <option selected value="no">No</option>

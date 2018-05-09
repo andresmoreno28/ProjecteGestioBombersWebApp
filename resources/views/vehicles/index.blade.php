@@ -54,7 +54,7 @@
       <!--Taula Usuaris-->
       <div class="row">
         <div class="col-xs-12 col-12">
-            @if (count($users))
+            @if (count($vehicles))
 
                 <table class="table table-striped table-bordered">
                     <thead>
