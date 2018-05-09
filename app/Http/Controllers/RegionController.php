@@ -103,8 +103,14 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+          'codi' => 'required|unique:regions',
+          'nom'  => 'required|string|max:255',
+        ]);
+
         //Realitza l'actualització de la regió indicada per l'id
-        $region = Region::findOrFail($id)->update($request->all());
+        $region = Region::findOrFail($id)->update($data->all());
         //Retorna a l'index de regions
         return redirect()->action('RegionController@index');
     }
