@@ -25,7 +25,7 @@ class BackupController extends Controller
            if (substr($f, -4) == '.zip' && $disk->exists($f)) {
 
                $backups[] = [
-                   'file_path' => $f, 
+                   'file_path' => $f,
                    'file_name' => str_replace('copia-seguretat' . '/', '', $f),
                    'file_size' => $disk->size($f),
                    'last_modified' => $disk->lastModified($f),
