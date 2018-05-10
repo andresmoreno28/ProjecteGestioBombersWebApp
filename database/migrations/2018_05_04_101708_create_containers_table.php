@@ -23,8 +23,6 @@ class CreateContainersTable extends Migration
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->unsignedInteger('container_name_id');
             $table->foreign('container_name_id')->references('id')->on('container_names')->onDelete('cascade');
-            $table->unsignedInteger('material_id');
-            $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
         });
     }
 
