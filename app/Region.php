@@ -16,7 +16,7 @@ class Region extends Model
      * @var array
      */
 
-    protected $fillable = ['nom','codi'];
+    protected $fillable = ['codi', 'nom'];
 
     /**
      * Eloquent: Relationships.

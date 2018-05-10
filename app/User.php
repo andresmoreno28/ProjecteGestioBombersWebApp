@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Container;
+use App\Location;
 use App\Region;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,6 +43,14 @@ class User extends Authenticatable
     }*/
     protected function region(){
       return $this->belongsTo('App\Region','region_id','id','regions');
+    }
+
+    /**
+     * Get the location associated with the user.
+     */
+    public function location()
+    {
+        return $this->hasOne(Location::class);
     }
 
     /**

@@ -25,10 +25,10 @@ class Material extends Model
      **************************************************************************/
     /**
      * Container.
-     * Get the container of the material.
+     * The containers that belong to the material.
      */
-    public function container()
+    public function containers()
     {
-        return $this->belongsTo(Container::class)->withDefault();
+        return $this->belongsToMany(Container::class);
     }
 }
