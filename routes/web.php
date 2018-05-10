@@ -38,7 +38,7 @@ Route::get('vehicle/material/{id}', 'VehicleController@material');
 Route::get('backup', 'BackupController@index')->name('backup');
 Route::get('backup/create', 'BackupController@create')->name('bcreate');
 Route::get('backup/download/{file_name}', 'BackupController@download');
-Route::get('backup/delete/{file_name}', 'BackupController@delete');
+Route::get('backup/delete/{file_name}', 'BackupController@delete')->name('dbackup');
 // Dompdf route
 /*Route::get('pdf', function() {
 	$pdf = PDF::loadView('vehicles/report');

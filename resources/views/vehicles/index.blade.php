@@ -56,9 +56,10 @@
         <div class="col-xs-12 col-12">
             @if (count($vehicles))
 
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
+              <table class="table table-striped table-bordered">
+                  <caption><small>Llista de vehicles.</small></caption>
+                  <thead class="thead-dark">
+                      <tr style="border-bottom:3px solid #dc3545;">
                         <th>Codi vehicle</th>
                         <th>Marca model</th>
                         <th>Tipus de vehicle</th>
@@ -93,9 +94,17 @@
                                  href="{{ url('vehicle/'.$vehicle->id.'/edit') }}">
                                  <i class="fas fa-pencil-alt"></i> Editar
                                </a>
-                               <a class="btn btn-xs btn-danger" data-button-type="delete"
-                                  href="{{ url('vehicle/delete/'.$vehicle->id) }}"><i class="fas fa-times"></i>
-                                   Eliminar</a>
+                               <!-- Esborrar -->
+                               <div class="d-inline-block">
+                                   <form action="{{ action('VehicleController@destroy', ['id' => $vehicle->id]) }}" method="DELETE" class="form-delete">
+                                       @method('DELETE')
+                                       @csrf
+                                       <input type="hidden" name="nom" value="{{ $vehicle->matricula }}">
+                                       <button type="submit" class="btn btn-xs btn-danger">
+                                           <i class="fas fa-times"></i> Eliminar
+                                       </button>
+                                   </form>
+                               </div>
                             </td>
                         </tr>
                     @endforeach
@@ -121,5 +130,70 @@
   <!--Fi Contenedor dret-->
 </div>
 
+<!-- ESBORRAR (modal) -->
+<div class="modal fade" id="materialEsborrarModal" tabindex="-1" role="dialog" aria-labelledby="modalEsborrar" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Esborrar vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body scroll">
+                <!-- Avís -->
+                <p><strong>Està segur/ra d'esborrar el vehicle?</strong><br>
+                Aquesta acció és irreversible.</p>
+                <!-- Info del material -->
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Informació</h6>
+                        <dl class="row">
+                            <dt class="col-sm-4">Codi vehicle:</dt>
+                            <dd id="modalEsborrarNom" class="col-sm-8"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel·lar</button>
+                <button id="delete-btn" type="button" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@endsection
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+    $('table').on('click', '.form-delete', function(e) {
+        // Evitar que continuï endavant el "submit" per fer que finalitzi, o no,
+        // a través del modal.
+        e.preventDefault();
+
+        // Guardar el submit per permetre que continuï o no.
+        var form = $(this);
+
+        // Tractar dades del formulari per obtenir les dades dels inputs.
+        var formData     = $(this).serializeArray();
+        var formDataJson = JSON.stringify(formData);
+        var formObject   = JSON.parse(formDataJson);
+
+        // Guardar les dades del formulari (per emplenar el modal).
+        // Els índex [0] van segons l'ordre dels <imputs></imputs>.
+        var Nom = formObject[2].value;
+
+        $('#modalEsborrarNom').text(Nom);
+
+        // Obrir el modal que serà emprat per eborrar el material (si es fa clic
+        // al botó amb id="delete-btn").
+        $('#materialEsborrarModal').modal().on('click', '#delete-btn', function() {
+            form.submit();
+        });
+    });
+</script>
 @endsection

@@ -34,8 +34,13 @@
 <div class="form-group">
     <label for="matPar">És del parc?</label>
     <select name="es_del_parc" class="form-control" id="matPar" aria-describedby="matParHelp">
-        <option value="1" {{ ($material->es_del_parc or old('es_del_parc')) == 1 ? 'selected' : '' }}>Sí</option>
-        <option value="0" {{ ($material->es_del_parc or old('es_del_parc')) == 0 ? 'selected' : '' }}>No</option>
+        @if(isset($material))
+            <option value="1" {{ ($material->es_del_parc or old('es_del_parc')) == 1 ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ ($material->es_del_parc or old('es_del_parc')) == 0 ? 'selected' : '' }}>No</option>
+        @else
+            <option value="1" selected>Sí</option>
+            <option value="0">No</option>
+        @endif
     </select>
     <small id="matParHelp" class="form-text text-muted">El material pertany al parc?</small>
 </div>

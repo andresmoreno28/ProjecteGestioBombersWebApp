@@ -64,7 +64,7 @@ class MaterialController extends Controller
             'nom'                => $data['nom'],
             'quantitat_prevista' => $data['quantitat_prevista'],
             'quantitat'          => $data['quantitat'],
-            'es_del_parc'        => $data['es_del_parc']
+            'es_del_parc'        => $data['es_del_parc'],
         ]);
 
         // Vista amb el llistat del material.
