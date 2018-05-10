@@ -30,6 +30,10 @@ Route::get('region/delete/{id}', 'RegionController@destroy');
 Route::resource('region', 'RegionController');
 Route::resource('vehicle', 'VehicleController');
 Route::get('user/delete/{id}', 'UserController@destroy');
+Route::get('vehicle/delete/{id}', 'VehicleController@destroy');
+Route::get('vehicle/qr/{id}', 'VehicleController@qr');
+Route::get('vehicle/material/{id}', 'VehicleController@material');
+
 // Backup routes
 Route::get('backup', 'BackupController@index')->name('backup');
 Route::get('backup/create', 'BackupController@create')->name('bcreate');

@@ -18,6 +18,9 @@ class CreateLocationsTable extends Migration
             $table->unsignedInteger('codi')->unique();
             $table->string('nom');
             $table->timestamps();
+            // Foreign Keys.
+            $table->unsignedInteger('region_id');
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
         });
     }
 

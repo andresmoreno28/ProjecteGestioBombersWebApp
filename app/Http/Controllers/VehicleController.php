@@ -11,6 +11,7 @@ use App\Vehicle;
 use App\VehicleInsurer;
 use App\VehicleType;
 use App\VehicleOwner;
+use Illuminate\Validation\Rule;
 
 class VehicleController extends Controller
 {
@@ -25,7 +26,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-      $vehicles = Vehicle::all();
+      $vehicles = Vehicle::where('donat_de_baixa', 0)->get();
 
       return view('vehicles.index', ['vehicles' => $vehicles]);
     }
@@ -53,8 +54,8 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
       // Validar dades obtingudes del formulari.
-
-      $data = $request->validate([
+      //dd($request['donat_de_baixa']);
+          $data = $request->validate([
           'matricula' => 'required|unique:vehicles',
           'marca_model' => 'required',
           'num_xasis' => 'required|unique:vehicles',
@@ -67,6 +68,12 @@ class VehicleController extends Controller
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
+      if ($request['donat_de_baixa']==null){
+        $request['donat_de_baixa']=0;
+      }
+      if ($request['matricula_tercera']==null){
+        $request['matricula_tercera']=0;
+      }
       Vehicle::create([
         'matricula' => $data['matricula'],
         'marca_model' => $data['marca_model'],
@@ -97,7 +104,7 @@ class VehicleController extends Controller
       ]);
 
       $missatge=session()->flash('success', 'S\'ha creat el nou vehicle '.$data['matricula'].'.');
-      return redirect()->action('UserController@index')->with($missatge);
+      return redirect()->action('VehicleController@index')->with($missatge);
     }
 
     /**
@@ -139,9 +146,19 @@ class VehicleController extends Controller
       $vehicle = Vehicle::findOrFail($id);
 
       $data = $request->validate([
-          'matricula' => 'required',
+          'matricula'         => [
+              'required',
+              // Ignorar referència del material que s'edita perquè la referència
+              // ha de ser única a la taula.
+              Rule::unique('vehicles')->ignore($vehicle->id)
+          ],
+          'num_xasis'         => [
+              'required',
+              // Ignorar referència del material que s'edita perquè la referència
+              // ha de ser única a la taula.
+              Rule::unique('vehicles')->ignore($vehicle->id)
+          ],
           'marca_model' => 'required',
-          'num_xasis' => 'required',
           'asseg_num_polissa' => 'required',
           'vehicle_insurer_id' => 'required',
           'vehicle_owner_id' => 'required',
@@ -151,6 +168,12 @@ class VehicleController extends Controller
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
+      if ($request['donat_de_baixa']==null){
+        $request['donat_de_baixa']=0;
+      }
+      if ($request['matricula_tercera']==null){
+        $request['matricula_tercera']=0;
+      }
       $vehicle->update([
         'matricula' => $data['matricula'],
         'marca_model' => $data['marca_model'],
@@ -181,7 +204,7 @@ class VehicleController extends Controller
       ]);
 
       $missatge=session()->flash('success', 'S\'ha actualitzat el vehicle '.$data['matricula'].'.');
-      return redirect()->action('UserController@index')->with($missatge);
+      return redirect()->action('VehicleController@index')->with($missatge);
     }
 
     /**
@@ -192,6 +215,24 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        //
+      // Obtenir el vehicle.
+      $vehicle = Vehicle::findOrFail($id);
+
+      // Eliminar l'usuari.
+      $vehicle->delete();
+
+      // Vista on es llisten els usuaris.
+      $missatge=session()->flash('success', 'Vehicle eliminat');
+      return back()->with($missatge);
+    }
+    public function qr($id)
+    {
+      $vehicle = Vehicle::findOrFail($id);
+      return view('vehicles.qr', ['vehicle' => $vehicle]);
+    }
+    public function material($id)
+    {
+      $vehicle = Vehicle::findOrFail($id);
+      return view('vehicles.material', ['vehicle' => $vehicle]);
     }
 }

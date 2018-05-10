@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFireStationDataToUsersTable extends Migration
+class AddFksToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,8 @@ class AddFireStationDataToUsersTable extends Migration
             // Foreign Keys.
             $table->unsignedInteger('region_id')->nullable();
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('set null');
+            $table->unsignedInteger('location_id')->nullable();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }
 

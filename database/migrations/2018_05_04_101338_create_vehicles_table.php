@@ -45,6 +45,8 @@ class CreateVehiclesTable extends Migration
             $table->foreign('vehicle_owner_id')->references('id')->on('vehicle_owners')->onDelete('set null');
             $table->unsignedInteger('vehicle_insurer_id')->nullable();
             $table->foreign('vehicle_insurer_id')->references('id')->on('vehicle_insurers')->onDelete('set null');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
