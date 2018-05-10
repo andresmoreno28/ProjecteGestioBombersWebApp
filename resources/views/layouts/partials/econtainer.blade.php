@@ -41,13 +41,15 @@
             </button>
               <!-- Dropdown menu links -->
               <div class="dropdown-menu">
-                <h6 class="dropdown-header">Gestio dels parcs</h6>
+                <h6 class="dropdown-header">Gestió dels parcs</h6>
                 <a class="dropdown-item" href="{{action('UserController@create')}}">Afegir parcs</a>
                 <a class="dropdown-item" href="{{action('UserController@index')}}">Consultar parcs</a>
-                <h6 class="dropdown-header">Gestio de les regions</h6>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Gestió de les regions</h6>
                 <a class="dropdown-item" href="{{action('RegionController@create')}}">Afegir regions</a>
                 <a class="dropdown-item" href="{{action('RegionController@index')}}">Consultar regions</a>
-                <h6 class="dropdown-header">Gestio de les poblacions</h6>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Gestió de les poblacions</h6>
                 <a class="dropdown-item" href="{{action('LocationController@create')}}">Afegir poblacions</a>
                 <a class="dropdown-item" href="{{action('LocationController@index')}}">Consultar poblacions</a>
               </div>
@@ -58,7 +60,7 @@
               </button>
               <!-- Dropdown menu links -->
               <div class="dropdown-menu">
-                <h6 class="dropdown-header">Gestio de vehicles</h6>
+                <h6 class="dropdown-header">Gestió de vehicles</h6>
                 <a class="dropdown-item" href="{{action('VehicleController@create')}}">Afegir vehicles</a>
                 <a class="dropdown-item" href="{{action('VehicleController@index')}}">Consultar vehicles</a>
               </div>
@@ -73,6 +75,10 @@
                 <h6 class="dropdown-header">Gestió de contenidors</h6>
                 <a class="dropdown-item" href="{{action('ContainerController@create')}}">Afegir contenidor</a>
                 <a class="dropdown-item" href="{{action('ContainerController@index')}}">Consultar contenidors</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Tipus de contenidors</h6>
+                <a class="dropdown-item" href="{{action('ContainerNameController@create')}}">Afegir tipus</a>
+                <a class="dropdown-item" href="{{action('ContainerNameController@index')}}">Consultar tipus</a>
               </div>
             </div>
             <!-- MATERIALS -->

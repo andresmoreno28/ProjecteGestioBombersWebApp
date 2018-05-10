@@ -17,6 +17,8 @@ class CreateContainersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             // Foreign Keys.
+            $table->unsignedInteger('container_parent_id')->nullable();
+            $table->foreign('container_parent_id')->references('id')->on('containers')->onDelete('set null');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('vehicle_id');
