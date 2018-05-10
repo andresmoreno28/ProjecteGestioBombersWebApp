@@ -29,10 +29,10 @@ class Container extends Model
     /**
      * Parent Container.
      * Get the parent container of the container.
-     * 
+     *
      * The method name "parent()" is translated to 'parent_id', for this reason
      * we passed 'container_parent_id' in the second parameter.
-     * 
+     *
      * If the FK had been called 'parent_id', the second parameter would not have
      * been necessary.
      */
@@ -76,6 +76,9 @@ class Container extends Model
     {
         return $this->belongsTo(ContainerName::class);
     }
+    protected function nom(){
+      return $this->belongsTo('App\ContainerName','container_name_id','id','containers');
+    }
 
     /**
      * Materials.
@@ -84,5 +87,9 @@ class Container extends Model
     public function materials()
     {
         return $this->belongsToMany(Material::class);
+    }
+    public function material()
+    {
+        return $this->hasMany(ContainersMaterials::class, 'material_id');
     }
 }

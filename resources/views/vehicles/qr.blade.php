@@ -6,7 +6,8 @@
   </head>
   <body>
     @php
-      $x=$vehicle->createTextImage("43:98:32");
+    $codi=$vehicle->codi();
+      $x=$vehicle->createTextImage($codi);
       $ruta="\img\x.png";
       QrCode::size(300);
     @endphp

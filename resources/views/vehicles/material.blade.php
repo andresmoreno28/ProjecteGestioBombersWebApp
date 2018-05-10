@@ -8,9 +8,10 @@
     Materials
 
     @forelse ($vehicle->containers as $container)
-      <h3>{{$container->name}}</h3>
-      @forelse ($container->materials as $material)
-        <p>{{$material['nom']}}</p>
+      <h3>{{$container->nom['nom']}}</h3>
+
+      @forelse ($container->material as $material)
+        <p>{{$material->material['nom']}}</p>
       @empty
 
       @endforelse
