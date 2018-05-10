@@ -32,6 +32,7 @@ Route::get('vehicle/delete/{id}', 'VehicleController@destroy');
 Route::get('vehicle/qr/{id}', 'VehicleController@qr');
 Route::get('vehicle/material/{id}', 'VehicleController@material');
 
+// Gestió del material
 Route::resource('material', 'MaterialController');
 
 // Gestió de Contenidors

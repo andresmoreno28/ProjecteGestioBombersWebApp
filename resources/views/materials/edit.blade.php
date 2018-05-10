@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item" aria-current="page">Materials</li>
                     <li class="breadcrumb-item" aria-current="page">Editar</li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $material->nom }}. [ <small><abbr title="Referència">{{ $material->referencia }}</abbr></small> ]
+                        {{ $material->nom }}
                     </li>
                 </ol>
             </nav>
