@@ -46,19 +46,19 @@ class Container extends Model
 
     /**
      * Name.
-     * Get the name associated with the container.
+     * Get the name of the container.
      */
     public function name()
     {
-        return $this->hasOne(ContainerName::class);
+        return $this->belongsTo(ContainerName::class);
     }
 
     /**
      * Materials.
-     * Get the materials of the container.
+     * The materials that belong to the container.
      */
     public function materials()
     {
-        return $this->hasMany(Material::class);
+        return $this->belongsToMany(Material::class);
     }
 }

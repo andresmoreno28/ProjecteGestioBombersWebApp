@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Region;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
@@ -12,7 +13,7 @@ class Location extends Model
      *
      * @var array
      */
-    protected $fillable = ['codi', 'nom'];
+    protected $fillable = ['codi', 'nom', 'region_id'];
 
     /**
      * Eloquent: Relationships.
@@ -24,5 +25,13 @@ class Location extends Model
     public function region()
     {
         return $this->belongsTo(Region::class)->withDefault();
+    }
+
+   /**
+     * Get the user that owns the location.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

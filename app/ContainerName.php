@@ -16,10 +16,10 @@ class ContainerName extends Model
 
     /**
      * Container.
-     * Get the container that owns the name.
+     * Get the containers of the name.
      */
-    public function container()
+    public function containers()
     {
-        return $this->belongsTo(Container::class);
+        return $this->hasMany(Container::class);
     }
 }
