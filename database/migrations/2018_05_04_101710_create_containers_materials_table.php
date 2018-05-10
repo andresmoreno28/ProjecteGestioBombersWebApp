@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContainersTable extends Migration
+class CreateContainersMaterialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateContainersTable extends Migration
      */
     public function up()
     {
-        Schema::create('containers', function (Blueprint $table) {
+        Schema::create('containers_materials', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             // Foreign Keys.
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('vehicle_id');
-            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
-            $table->unsignedInteger('container_name_id');
-            $table->foreign('container_name_id')->references('id')->on('container_names')->onDelete('cascade');
+            $table->unsignedInteger('container_id');
+            $table->foreign('container_id')->references('id')->on('containers')->onDelete('cascade');
             $table->unsignedInteger('material_id');
             $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
         });
@@ -35,6 +31,6 @@ class CreateContainersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('containers');
+        Schema::dropIfExists('containers_materials');
     }
 }

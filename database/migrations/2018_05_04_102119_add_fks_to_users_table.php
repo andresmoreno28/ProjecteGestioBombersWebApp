@@ -18,6 +18,8 @@ class AddFireStationDataToUsersTable extends Migration
             // Foreign Keys.
             $table->unsignedInteger('region_id')->nullable();
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('set null');
+            $table->unsignedInteger('location_id')->nullable();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }
 
