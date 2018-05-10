@@ -13,8 +13,8 @@
             <nav aria-label="breadcrumb bg-transparent">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
-                    <li class="breadcrumb-item" aria-current="page">Materials</li>
-                    <li class="breadcrumb-item active" aria-current="page">Consultar</li>
+                    <li class="breadcrumb-item" aria-current="page">Contenidors</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tipus</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
@@ -23,8 +23,8 @@
         <!-- Botó Afegir -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
-                <a href="{{ action('MaterialController@create') }}" class="btn btn-danger bg-dark">
-                  <p class="my-0 underline-small"><i class="fas fa-archive"></i> Afegir material</p>
+                <a href="{{ action('ContainerNameController@create') }}" class="btn btn-danger bg-dark">
+                  <p class="my-0 underline-small"><i class="fas fa-archive"></i> Afegir un tipus</p>
                 </a>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -39,41 +39,32 @@
             </div>
         @endif
 
-        <!-- Taula de Materials -->
+        <!-- Taula de Tipus -->
         <div class="row">
             <div class="col-xs-12 col-12">
                 <table class="table table-striped table-bordered">
-                    <caption><small>Llista de materials.</small></caption>
+                    <caption><small>Llista de tipus.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
-                            <th>Referència</th>
                             <th>Nom</th>
-                            <th>Quantitat <abbr title="Prevista">P.</abbr></th>
-                            <th>Quantitat <abbr title="Real">R.</abbr></th>
-                            <th>És del parc</th>
                             <th>Acció</th>
                         </tr>
                     </thead>
-                    @forelse ($materials as $material)
+                    @forelse ($types as $type)
                         <tbody>
                             <tr>
-                                <td>{{ $material->referencia }}</td>
-                                <td>{{ $material->nom }}</td>
-                                <td>{{ $material->quantitat_prevista }}</td>
-                                <td>{{ $material->quantitat }}</td>
-                                <td>{{ $material->es_del_parc }}</td>
+                                <td>{{ $type->nom }}</td>
                                 <td class="text-right">
                                     <!-- Editar -->
-                                    <a class="btn btn-xs btn-default" href="{{ action('MaterialController@edit', ['id' => $material->id]) }}">
+                                    <a class="btn btn-xs btn-default" href="{{ action('ContainerNameController@edit', ['id' => $type->id]) }}">
                                         <i class="fas fa-pencil-alt"></i> Editar
                                     </a>
                                     <!-- Esborrar -->
                                     <div class="d-inline-block">
-                                        <form action="{{ action('MaterialController@destroy', ['id' => $material->id]) }}" method="POST" class="form-delete">
+                                        <form action="{{ action('ContainerNameController@destroy', ['id' => $type->id]) }}" method="POST" class="form-delete">
                                             @method('DELETE')
                                             @csrf
-                                            <input type="hidden" name="nom" value="{{ $material->referencia }}">
-                                            <input type="hidden" name="nom" value="{{ $material->nom }}">
+                                            <input type="hidden" name="nom" value="{{ $type->nom }}">
                                             <button type="submit" class="btn btn-xs btn-danger">
                                                 <i class="fas fa-times"></i> Eliminar
                                             </button>
@@ -84,7 +75,7 @@
                         </tbody>
                     @empty
                         <tr>
-                            <td colspan="6">Encara no hi ha material. <a href="{{ action('MaterialController@create') }}">Afegir material</a>.</td>
+                            <td colspan="6">Encara no hi ha tipus de contenidors. <a href="{{ action('ContainerNameController@create') }}">Afegir tipus</a>.</td>
                         </tr>
                     @endforelse
                 </table>
@@ -101,12 +92,12 @@
 </div><!-- /.container -->
 
 <!-- ESBORRAR (modal) -->
-<div class="modal fade" id="materialEsborrarModal" tabindex="-1" role="dialog" aria-labelledby="modalEsborrar" aria-hidden="true">
+<div class="modal fade" id="tipusEsborrarModal" tabindex="-1" role="dialog" aria-labelledby="modalEsborrar" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <!-- Header -->
             <div class="modal-header">
-                <h5 class="modal-title">Esborrar material</h5>
+                <h5 class="modal-title">Esborrar tipus</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -114,17 +105,15 @@
             <!-- Body -->
             <div class="modal-body scroll">
                 <!-- Avís -->
-                <p><strong>Està segur/ra d'esborrar el material?</strong><br>
+                <p><strong>Està segur/ra d'esborrar el tipus de contenidor?</strong><br>
                 Aquesta acció és irreversible.</p>
-                <!-- Info del material -->
+                <!-- Info del tipus -->
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Informació</h6>
                         <dl class="row">
                             <dt class="col-sm-3">Nom</dt>
                             <dd id="modalEsborrarNom" class="col-sm-9"></dd>
-                            <dt class="col-sm-3">Referència</dt>
-                            <dd id="modalEsborrarReferencia" class="col-sm-9"></dd>
                         </dl>
                     </div>
                 </div>
@@ -158,15 +147,13 @@
 
         // Guardar les dades del formulari (per emplenar el modal).
         // Els índex [0] van segons l'ordre dels <imputs></imputs>.
-        var Referencia = formObject[2].value;
-        var Nom        = formObject[3].value;
+        var Nom = formObject[2].value;
         
         $('#modalEsborrarNom').text(Nom);
-        $('#modalEsborrarReferencia').text(Referencia);
 
-        // Obrir el modal que serà emprat per eborrar el material (si es fa clic
+        // Obrir el modal que serà emprat per eborrar el tipus de contenidor (si es fa clic
         // al botó amb id="delete-btn").
-        $('#materialEsborrarModal').modal().on('click', '#delete-btn', function() {
+        $('#tipusEsborrarModal').modal().on('click', '#delete-btn', function() {
             form.submit();
         });
     });

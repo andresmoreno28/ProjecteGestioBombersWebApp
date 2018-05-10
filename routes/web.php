@@ -22,10 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('user', 'UserController');
-Route::resource('container', 'ContainerController');
 Route::get('location/delete/{id}', 'LocationController@destroy');
 Route::resource('location', 'LocationController');
-Route::resource('material', 'MaterialController');
 Route::get('region/delete/{id}', 'RegionController@destroy');
 Route::resource('region', 'RegionController');
 Route::resource('vehicle', 'VehicleController');
@@ -33,6 +31,14 @@ Route::get('user/delete/{id}', 'UserController@destroy');
 Route::get('vehicle/delete/{id}', 'VehicleController@destroy');
 Route::get('vehicle/qr/{id}', 'VehicleController@qr');
 Route::get('vehicle/material/{id}', 'VehicleController@material');
+
+Route::resource('material', 'MaterialController');
+
+// Gestió de Contenidors
+Route::group(['prefix'=>'container'], function () {
+    Route::resource('/', 'ContainerController');
+    Route::resource('types', 'ContainerNameController');
+});
 
 // Backup routes
 Route::get('backup', 'BackupController@index')->name('backup');

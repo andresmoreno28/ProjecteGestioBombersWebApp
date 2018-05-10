@@ -77,8 +77,8 @@
                 <a class="dropdown-item" href="{{action('ContainerController@index')}}">Consultar contenidors</a>
                 <div class="dropdown-divider"></div>
                 <h6 class="dropdown-header">Tipus de contenidors</h6>
-                <a class="dropdown-item" href="{{action('ContainerController@create')}}">Afegir tipus</a>
-                <a class="dropdown-item" href="{{action('ContainerController@index')}}">Consultar tipus</a>
+                <a class="dropdown-item" href="{{action('ContainerNameController@create')}}">Afegir tipus</a>
+                <a class="dropdown-item" href="{{action('ContainerNameController@index')}}">Consultar tipus</a>
               </div>
             </div>
             <!-- MATERIALS -->
