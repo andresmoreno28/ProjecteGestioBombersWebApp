@@ -32,10 +32,6 @@ class PDFController extends Controller
         $contenedors = Container::all();
         $materials = Material::all();
 
-        return view('informes.report')->with('regions',$regions)
-                                      ->with('parcs',$parcs)
-                                      ->with('vehicles',$vehicles)
-                                      ->with('contenedors',$contenedors)
-                                      ->with('materials',$materials);
+        return view('informes.report', ['regions' => $regions,'parcs' => $parcs, 'vehicles' => $vehicles,'contenedors' => $contenedors, 'materials' => $materials]);
     }
 }

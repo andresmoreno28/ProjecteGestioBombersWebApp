@@ -45,4 +45,4 @@ Route::get('backup/delete/{file_name}', 'BackupController@delete');
 	return $pdf->download('informe.pdf');
 })->name('pdf');*/
 
-Route::get('/informes', 'PDFController@index')->name('report');
+Route::get('/informes', 'PDFController@crearPDF')->name('report');

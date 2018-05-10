@@ -33,7 +33,7 @@
 <body>
 	<header class="container-fluid">
 		<img src="img/logo.jpg" height="90" width="165">
-		<div>INVENTARI
+
 	</header>
 
 	<div class="container-fluid">Eoooo</div>
