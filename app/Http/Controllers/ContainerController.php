@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Container;
-use App\ContainerName;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContainerController extends Controller
 {
     /**
      * Create a new controller instance.
      * Only authenticated users will be able to interact with the methods of the
-     * MaterialController.
+     * ContainerController.
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        //
+        return view('contenidors.create');
     }
 
     /**
@@ -49,7 +49,21 @@ class ContainerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'container_parent_id' => 'required|integer',
+            'container_name_id'   => 'required|integer',
+            'user_id'             => 'required|integer',
+            'vehicle_id'          => 'required|integer'
+        ]);
+
+        // Crear el tipus (la validació ha sortit bé).
+        $container = Container::create([
+            'nom' => $data['nom']
+        ]);
+
+        // Vista amb el llistat del material.
+        return redirect()->action('ContainerController@index');
     }
 
     /**
@@ -60,7 +74,8 @@ class ContainerController extends Controller
      */
     public function show($id)
     {
-        //
+        // $container = Container::findOrFail($id);
+        // return view('contenidors.show', compact('container'));
     }
 
     /**
@@ -71,7 +86,8 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $container = Container::findOrFail($id);
+        return view('contenidors.edit', compact('container'));
     }
 
     /**
@@ -83,7 +99,19 @@ class ContainerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtenir el tipus de contenidor a actualitzar.
+        $container = Container::findOrFail($id);
+
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'nom' => 'required|string'
+        ]);
+
+        // Actualitzar el tipus (la validació ha sortit bé).
+        $container->update($data);
+
+        // Vista amb el llistat del material.
+        return redirect()->action('ContainerController@index');
     }
 
     /**
@@ -94,6 +122,13 @@ class ContainerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Obtenir el tipus de contenidor a esborrar.
+        $container = Container::findOrFail($id);
+
+        // Esborrar el 
+        $container->delete();
+
+        // Vista amb el llistat de 
+        return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
     }
 }
