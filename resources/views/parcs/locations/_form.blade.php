@@ -60,6 +60,19 @@
               <input type="integer" name="codi" value="{{ $location->codi or old('codi') }}" class="form-control" id="codiPoblacio" aria-describedby="emailHelp" required>
               <small id="codiPoblacio" class="form-text text-muted">Codi de la població.</small>
             </div>
+            {{-- Regio --}}
+            <div class="form-group">
+              <label for="userRegion">Regió</label>
+                <select name="region_id"class="custom-select" id="inputGroupSelect01">
+                  <option selected disabled>Selecciona una regió</option>
+                  @forelse ($regions as $regio)
+                    <option value="{{$regio['id']}}">{{$regio['nom']}}</option>
+                  @empty
+
+                  @endforelse
+                </select>
+              <small id="regiolHelp" class="form-text text-muted">Regió on es troba el nou parc.</small>
+            </div>
             {{-- Crear --}}
             <button type="submit" class="btn btn-primary">Guardar</button>
           </form>

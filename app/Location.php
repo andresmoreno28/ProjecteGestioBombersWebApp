@@ -12,7 +12,7 @@ class Location extends Model
      *
      * @var array
      */
-    protected $fillable = ['codi', 'nom'];
+    protected $fillable = ['codi', 'nom', 'region_id'];
 
     /**
      * Eloquent: Relationships.

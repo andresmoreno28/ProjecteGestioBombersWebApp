@@ -109,8 +109,10 @@ class RegionController extends Controller
           'nom'  => 'required|string|max:255',
         ]);
 
+
         //Realitza l'actualització de la regió indicada per l'id
-        $region = Region::findOrFail($id)->update($data->all());
+        $region = Region::findOrFail($id)->update($data);
+
         //Retorna a l'index de regions
         return redirect()->action('RegionController@index');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use App\Region;
 use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
@@ -32,10 +33,12 @@ class LocationController extends Controller
      */
     public function create()
     {
+        $regions = Region::get();
         //Crea un nou objecte
         $location = new location();
         //Retorna al formulari l'objecte per a guardar les dades en ell
-        return view('parcs/locations._form')->with(['location'=>$location]);
+        return view('parcs/locations._form', ['location'=>$location, 'regions' =>$regions]);
+                                            
     }
 
     /**
@@ -50,12 +53,14 @@ class LocationController extends Controller
         $data = $request->validate([
           'codi' => 'required|unique:locations',
           'nom'  => 'required|string|max:255',
+          'region_id' => 'required',
         ]);
 
         // Crear població (la validació ha sortit bé).
         Location::create([
         'codi' => $data['codi'],
         'nom'  => $data['nom'],
+        'region_id'  => $data['region_id'],
         ]);
 
         // Crea missatge d'èxit
@@ -84,9 +89,10 @@ class LocationController extends Controller
     public function edit($id)
     {
         // Cerquem la població.
+        $regions = Region::get();
         $location = Location::findOrFail($id);
         // Retorna al formulari amb l'objecte $location
-        return view('parcs/locations._form', ['location' => $location]);
+        return view('parcs/locations._form', ['regions' => $regions, 'location' => $location]);
     }
 
     /**
@@ -102,6 +108,7 @@ class LocationController extends Controller
         $data = $request->validate([
           'codi' => 'required|unique:locations',
           'nom'  => 'required|string|max:255',
+          'region_id' => 'required',
         ]);
         //Realitza l'actualització de la població indicada per l'id
         $location = Location::findOrFail($id)->update($data->all());
