@@ -16,6 +16,7 @@ class Container extends Model
      * @var array
      */
     protected $fillable = [
+        'es_dun_vehicle',
         'container_parent_id',
         'user_id',
         'vehicle_id',
