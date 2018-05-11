@@ -17,6 +17,7 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
+        'codi',
         'matricula',
         'matricula_data',
         'matricula_tercera',
