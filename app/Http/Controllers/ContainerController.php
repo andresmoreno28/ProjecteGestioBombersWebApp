@@ -38,37 +38,33 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        return view('contenidors.create');
+        // Cridem el mètode store() per crear, de forma automàtica, un
+        // contenidor.
+        return $this->store();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        // Validar dades obtingudes del formulari.
-        $data = $request->validate([
-            'es_dun_vehicle'      => 'required|boolean',
-            'container_parent_id' => 'required|integer',
-            'container_name_id'   => 'required|integer',
-            'user_id'             => 'required|integer',
-            'vehicle_id'          => 'required|integer'
-        ]);
-
-        // Crear el tipus (la validació ha sortit bé).
-        $container = Container::create([
-            'es_dun_vehicle'      => $data['es_dun_vehicle'],
-            'container_parent_id' => $data['container_parent_id'],
-            'container_name_id'   => $data['container_name_id'],
-            'user_id'             => $data['user_id'],
-            'vehicle_id'          => $data['vehicle_id']
-        ]);
+        // No hi ha validació perquè per poder afegir dades al contenidor, aquest
+        // ha d'existir. Quan s'inicia la creació d'un contenidor aquest no existeix
+        // fins que sigui confirmada l'acció de crear (botó de crear del formulari).
+        // Així doncs, quan es duu a terme l'acció de crear un contenidor, aquest es
+        // crea de forma automàtica (buit) i, tot seguit, passa a ser editat. A ulls
+        // de l'usuari/ria s'estarà creant i així es podran assignar els seus ítems.
         
-        // Vista amb el llistat del material.
-        // return redirect()->action('ContainerController@index');
+        // Crear el contenidor (automàticament).
+        $container = Container::create();
+
+        // Obtenir la ID del contenidor creat.
+        $id = $container->id;
+        
+        // Enviem la ID al mètode edit($id) i prosseguim segon aquest.
+        return $this->edit($id);
     }
 
     /**
@@ -104,15 +100,19 @@ class ContainerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Obtenir el tipus de contenidor a actualitzar.
+        // Obtenir el contenidor a actualitzar.
         $container = Container::findOrFail($id);
 
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
-            'nom' => 'required|string'
+            'es_dun_vehicle'      => 'required|boolean',
+            'container_parent_id' => 'required|integer',
+            'container_name_id'   => 'required|integer',
+            'user_id'             => 'required|integer',
+            'vehicle_id'          => 'required|integer'
         ]);
 
-        // Actualitzar el tipus (la validació ha sortit bé).
+        // Actualitzar el contenidor (la validació ha sortit bé).
         $container->update($data);
 
         // Vista amb el llistat del material.
@@ -127,13 +127,13 @@ class ContainerController extends Controller
      */
     public function destroy($id)
     {
-        // Obtenir el tipus de contenidor a esborrar.
+        // Obtenir el contenidor a esborrar.
         $container = Container::findOrFail($id);
 
-        // Esborrar el 
+        // Esborrar el contenidor.
         $container->delete();
 
-        // Vista amb el llistat de 
+        // Vista amb el llistat de contenidors.
         return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
     }
 }
