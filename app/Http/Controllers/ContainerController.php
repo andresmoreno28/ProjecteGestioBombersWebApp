@@ -51,6 +51,7 @@ class ContainerController extends Controller
     {
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
+            'es_dun_vehicle'      => 'required|boolean',
             'container_parent_id' => 'required|integer',
             'container_name_id'   => 'required|integer',
             'user_id'             => 'required|integer',
@@ -59,11 +60,15 @@ class ContainerController extends Controller
 
         // Crear el tipus (la validació ha sortit bé).
         $container = Container::create([
-            'nom' => $data['nom']
+            'es_dun_vehicle'      => $data['es_dun_vehicle'],
+            'container_parent_id' => $data['container_parent_id'],
+            'container_name_id'   => $data['container_name_id'],
+            'user_id'             => $data['user_id'],
+            'vehicle_id'          => $data['vehicle_id']
         ]);
-
+        
         // Vista amb el llistat del material.
-        return redirect()->action('ContainerController@index');
+        // return redirect()->action('ContainerController@index');
     }
 
     /**
