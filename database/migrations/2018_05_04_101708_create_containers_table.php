@@ -15,6 +15,7 @@ class CreateContainersTable extends Migration
     {
         Schema::create('containers', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('es_dun_vehicle')->default(true);
             $table->timestamps();
             // Foreign Keys.
             $table->unsignedInteger('container_parent_id')->nullable();
