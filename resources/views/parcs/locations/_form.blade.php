@@ -66,7 +66,7 @@
                 <select name="region_id"class="custom-select" id="inputGroupSelect01">
                   <option selected disabled>Selecciona una regió</option>
                   @forelse ($regions as $regio)
-                    <option value="{{$regio['id']}}">{{$regio['nom']}}</option>
+                    <option selected value="{{$regio['id']}}">{{$regio['nom']}}</option>
                   @empty
 
                   @endforelse

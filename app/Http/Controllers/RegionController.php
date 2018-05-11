@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Region;
 use App\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -103,15 +104,19 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $region = Region::findOrFail($id);
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
-          'codi' => 'required|unique:regions',
+          'codi' => [
+                'required',
+                Rule::unique('regions')->ignore($region->id)
+            ],
           'nom'  => 'required|string|max:255',
         ]);
 
 
         //Realitza l'actualització de la regió indicada per l'id
-        $region = Region::findOrFail($id)->update($data);
+        $region->update($data);
 
         //Retorna a l'index de regions
         return redirect()->action('RegionController@index');

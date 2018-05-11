@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Region;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
@@ -105,13 +106,18 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         // Validar dades obtingudes del formulari.
+        $location = Location::findOrFail($id);
+
         $data = $request->validate([
-          'codi' => 'required|unique:locations',
+          'codi' => [
+                'required',
+                Rule::unique('locations')->ignore($location->id)
+            ],
           'nom'  => 'required|string|max:255',
           'region_id' => 'required',
         ]);
         //Realitza l'actualització de la població indicada per l'id
-        $location = Location::findOrFail($id)->update($data->all());
+        $location->update($data);
         //Retorna a l'index de poblacions
         return redirect()->action('LocationController@index');
     }

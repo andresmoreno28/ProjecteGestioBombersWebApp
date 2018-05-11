@@ -29,7 +29,49 @@
 		</div>
 	</div>
 	<div class="row">
-		<div id="eo" lass="container-fluid">Eoooo</div>
+		<div id="eo" lass="container-fluid"> 
+
+		@foreach ($contenidors as $contenidor)
+			<div id="contorn_contenidors" class="row"> 
+				{{ $contenidor->nom->nom }}
+			</div>
+
+				 <div class="table-responsive">
+				  <table class="table">
+				    <thead>
+				        <tr>
+				          <th>MATERIAL</th>
+				          <th class="celles_a_centrar">PREVIST</th>
+				          <th class="celles_a_centrar">REAL</th>
+				          <th class="celles_a_centrar">REFERENCIA</th>
+				          <th class="celles_a_centrar">MATERIAL PARC</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr>
+				        	@dd($contenidor->contenidor->material($materials))
+				        	@foreach ($contenidor->material as $material)
+					          <td>{{ $material->nom }} </td>
+					          <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
+					          <td class="celles_a_centrar">{{$material->quantitat}}</td>
+					          <td class="celles_a_centrar">*</td>
+					          <td class="celles_a_centrar">
+					          	
+					          	
+			                    	<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
+			                 	
+
+			                    <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+
+			                  	
+					          </td>
+					        @endforeach  
+				        </tr>
+				      </tbody>
+				  </table>
+				</div> 
+		@endforeach
+		</div>
 	</div>
 
 </body>

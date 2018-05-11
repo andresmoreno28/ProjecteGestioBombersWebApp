@@ -31,9 +31,11 @@ class PDFController extends Controller
         //Agafem la regió a través de la seva relació amb l'usuari
         $region = $user->region;      
         
-        $contenedors = Container::all();
+        $contenidors = Container::all();
+       // $nomContenidor = Container::find(1)->nom;
+        //dd($nomContenidor);
         $materials = Material::all();
 
-        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenedors' => $contenedors, 'materials' => $materials]);
+        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors, 'materials' => $materials]);
     }
 }
