@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::all();
+      $users = User::paginate(9);
 
       return view('parcs.index', ['users' => $users]);
     }
@@ -122,8 +122,8 @@ class UserController extends Controller
       $user->update($data);
       // Vista on es llisten els usuaris.
       // Vista on es llisten els usuaris.
-
-        return redirect()->action('UserController@index');
+      $missatge=session()->flash('success', 'S\'ha modificar el parc '.$data['name'].'.');
+        return redirect()->action('UserController@index')->with($missatge);
     }
 
     /**

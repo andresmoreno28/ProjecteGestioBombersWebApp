@@ -65,7 +65,7 @@
               </ul>
             </div>
           @endif
-
+          <p class="text-danger"><small>Camps obligatoris <strong> * </strong>.</small></p>
           @if ($user->exists)
             {{Form::open(['route' => ['user.update',$user->id], 'method' => 'PUT'])}}
           @else
@@ -73,44 +73,54 @@
           @endif
             {{-- Name --}}
             <div class="form-group">
-              <label for="userName">Nom del parc</label>
+              <label for="userName">Nom del parc <span class="text-danger"><strong>*</strong></span></label>
               <input type="text" name="name" value="{{ $user->name or old('name') }}" class="form-control" id="userName" aria-describedby="nameHelp" required>
               <small id="nameHelp" class="form-text text-muted">Nom del parc, aquest s'utilitzara per a fer login a l'alicació.</small>
             </div>
             {{-- Email --}}
             <div class="form-group">
-              <label for="userEmail">Codi del parc</label>
+              <label for="codi_parc">Codi del parc <span class="text-danger"><strong>*</strong></span></label>
               <input type="integer" name="codi_parc" value="{{ $user->codi_parc or old('codi_parc') }}" class="form-control" id="userEmail" aria-describedby="emailHelp" required>
               <small id="emailHelp" class="form-text text-muted">Codi del nou parc.</small>
             </div>
             {{-- Regio --}}
             <div class="form-group">
-              <label for="userRegion">Regió</label>
-                <select name="region_id"class="custom-select" id="inputGroupSelect01">
-                  <option selected disabled>Selecciona una regió</option>
-                  @forelse ($regions as $regio)
-                    <option value="{{$regio['id']}}">{{$regio['nom']}}</option>
-                  @empty
+              <label for="userRegion">Regió <span class="text-danger"><strong>*</strong></span></label>
+              <select name="region_id"class="custom-select" id="inputGroupSelect01">
+              @if ($user->exists)
+              @else
+                <option selected disabled>Selecciona una opció</option>
+              @endif
+              @forelse ($regions as $regio)
+                @if ($user->region['id']==$regio['id'])
+                  <option value="{{$regio['id']}}" selected> {{$regio['nom']}} </option>
+                @else
+                  <option value="{{$regio['id']}}">{{$regio['nom']}}</option>
+                @endif
+              @empty
 
-                  @endforelse
+              @endforelse
+
                 </select>
               <small id="regiolHelp" class="form-text text-muted">Regió on es troba el nou parc.</small>
             </div>
             {{-- Password --}}
             <div class="form-group">
-              <label for="userPassword">Contrasenya</label>
               @if ($user->exists)
+                <label for="userRegion">Contrasenya</label>
                 <input type="password" name="password" class="form-control" id="userPassword" aria-describedby="passwordHelp">
               @else
+                <label for="userRegion">Contrasenya <span class="text-danger"><strong>*</strong></span></label>
                 <input type="password" name="password" class="form-control" id="userPassword" aria-describedby="passwordHelp" required>
               @endif
               <small id="passwordHelp" class="form-text text-muted">La contrasenya ha de contindre al menys 6 caracters.</small>
             </div>
             <div class="form-group">
-              <label for="userPasswordConf">Repeteix la contrasenya</label>
               @if ($user->exists)
+                <label for="userPasswordConf">Repeteix la contrasenya</label>
                 <input type="password" name="password_confirmation" class="form-control" id="userPasswordConf" aria-describedby="passwordConfHelp">
               @else
+                <label for="userPasswordConf">Repeteix la contrasenya <span class="text-danger"><strong>*</strong></span></label>
                 <input type="password" name="password_confirmation" class="form-control" id="userPasswordConf" aria-describedby="passwordConfHelp" required>
               @endif
               <small id="passwordConfHelp" class="form-text text-muted">Torna a entrar la contrasenya sense errors.</small>

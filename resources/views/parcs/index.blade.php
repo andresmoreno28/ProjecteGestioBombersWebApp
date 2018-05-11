@@ -99,7 +99,12 @@
         </div>
       </div>
       <!--Fi taula Usuaris-->
-      {!! QrCode::size(300)->generate(route('user.index')); !!}
+      <div class="row">
+        <div class="mx-auto">
+          {{ $users->links() }}
+        </div>
+      </div>
+
     </div>
     <!--Fi Contenedor central-->
     <!--Contenedor dret-->
