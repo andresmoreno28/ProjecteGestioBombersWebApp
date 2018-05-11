@@ -3,40 +3,34 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
-	<link rel="stylesheet" href="">
-	<style type="text/css" media="screen">
-
-		body {
-			margin: 0 auto;
-			width: 90%;
-		}
-
-		header {
-			height: 100px;
-			border: 1px solid red;
-			position: fixed;
-			top: 0px;
-			left: 0px;
-			right: 0px;
-			margin: 30px;
-		}
-
-		div {
-			margin-top: 130px;
-			border:2px solid green;
-
-		}
-
-	</style>
+	<!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/report.css') }}">
 </head>
 <body>
-	<header class="container-fluid">
-		<img src="img/logo.jpg" height="90" width="165">
+	<div class="row">
+		<div id="header" class="container-fluid">
+			<img src="img/logo.jpg" height="90" width="165">
+			<div id="inventari" class="container-fluid">INVENTARI</div>
+			<div id="regio_parc_vehicle" class="container-fluid">{{$region->codi}}.{{$user->codi_parc}}.{{$vehicle->id}}</div>
 
-	</header>
+			@php 
+				$ldate = new DateTime('today');
+				$ldate = date('d-m-Y')
+			@endphp
 
-	<div class="container-fluid">Eoooo</div>
+			<div id="data" class="container-fluid"> {{ $ldate }}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="eo" lass="container-fluid">Eoooo</div>
+	</div>
 
 </body>
 </html>

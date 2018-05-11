@@ -1,0 +1,50 @@
+body {
+	margin: 0 auto;
+	width: 90%;
+}
+
+#header {
+	height: 100px;
+	border: 1px solid red;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	margin: 30px;
+}
+
+#eo {
+	margin-top: 130px;
+	border:2px solid green;
+	width: 100%;
+}
+
+#inventari {
+	width: 11.1%;
+	border: 2px solid black;
+	margin-top: -60px;
+	margin-left: 450px;
+	font-size: 22px;
+	position: absolute;
+	text-align: center;
+}
+
+#regio_parc_vehicle {
+	width: 11.1%;
+	border: 2px solid black;
+	margin-top: -60px;
+	margin-left: 600px;
+	font-size: 22px;
+	position: absolute;
+	text-align: center;
+}
+
+#data {
+	width: 11.1%;
+	border: 2px solid black;
+	margin-top: -60px;
+	margin-left: 750px;
+	font-size: 22px;
+	position: absolute;
+	text-align: center;
+}

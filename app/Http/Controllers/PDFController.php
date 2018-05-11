@@ -22,16 +22,18 @@ class PDFController extends Controller
         
     }
 
-    public function crearPDF($id)
+    public function crearPDF()
     {
-        //Agafem totes les dades necessàries
-        $vehicle = Vehicle::findOrFail($id);
-        $parcs = $parcs->$vehicle;
-        $regions = Region::all();      
+        //Agafem el vehicle mitjançant el seu "id"
+        $vehicle = Vehicle::findOrFail(1);
+        //Agafem l'usuari a través de la seva relació amb el vehicle
+        $user = $vehicle->user;
+        //Agafem la regió a través de la seva relació amb l'usuari
+        $region = $user->region;      
         
         $contenedors = Container::all();
         $materials = Material::all();
 
-        return view('informes.report', ['regions' => $regions,'parcs' => $parcs, 'vehicles' => $vehicles,'contenedors' => $contenedors, 'materials' => $materials]);
+        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenedors' => $contenedors, 'materials' => $materials]);
     }
 }
