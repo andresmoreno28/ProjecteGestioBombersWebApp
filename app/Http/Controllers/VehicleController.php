@@ -12,7 +12,7 @@ use App\VehicleInsurer;
 use App\VehicleType;
 use App\VehicleOwner;
 use Illuminate\Validation\Rule;
-
+use App\qrImage;
 class VehicleController extends Controller
 {
   public function __construct()
@@ -228,6 +228,11 @@ class VehicleController extends Controller
     public function qr($id)
     {
       $vehicle = Vehicle::findOrFail($id);
+      //$img = new qrImage;
+      //create image from text
+      $text = 'Welcome to CodexWorld.\nThe World of Programming.';
+      //$img->createImage($text);
+      
       return view('vehicles.qr', ['vehicle' => $vehicle]);
     }
     public function material($id)

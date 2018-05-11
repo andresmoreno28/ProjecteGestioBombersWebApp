@@ -13,10 +13,11 @@
             <nav aria-label="breadcrumb bg-transparent">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
-                    <li class="breadcrumb-item" aria-current="page">Materials</li>
+                    <li class="breadcrumb-item" aria-current="page">Contenidors</li>
+                    <li class="breadcrumb-item" aria-current="page">Tipus</li>
                     <li class="breadcrumb-item" aria-current="page">Editar</li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $material->nom }}
+                        {{ $type->nom }}
                     </li>
                 </ol>
             </nav>
@@ -39,10 +40,10 @@
             <div class="col-xs-12 col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Editar material</h5>
-                        <form action="{{ action('MaterialController@update', ['id' => $material->id]) }}" method="POST">
+                        <h5 class="card-title">Editar el tipus de contenidor</h5>
+                        <form action="{{ action('ContainerNameController@update', ['id' => $type->id]) }}" method="POST">
                             @method('PATCH')
-                            @include('materials.partials.form', [
+                            @include('contenidors.tipus.partials.form', [
                                 'submitButton' => 'Editar'
                             ])
                         </form>

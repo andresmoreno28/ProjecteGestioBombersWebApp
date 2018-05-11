@@ -16,23 +16,47 @@ class Container extends Model
      * @var array
      */
     protected $fillable = [
-        'pare_id',
-        'fire_station_id', // user_id
+        'es_dun_vehicle',
+        'container_parent_id',
+        'user_id',
         'vehicle_id',
-        'container_name_id',
-        'material_id'
+        'container_name_id'
     ];
 
     /**
      * Eloquent: Relationships.
      **************************************************************************/
     /**
+     * Parent Container.
+     * Get the parent container of the container.
+     *
+     * The method name "parent()" is translated to 'parent_id', for this reason
+     * we passed 'container_parent_id' in the second parameter.
+     *
+     * If the FK had been called 'parent_id', the second parameter would not have
+     * been necessary.
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Container::class, 'container_parent_id');
+    }
+
+    /**
+     * Containers.
+     * Get the containers of the container (parent).
+     */
+    public function containers()
+    {
+        return $this->hasMany(Container::class, 'container_parent_id');
+    }
+
+    /**
      * User.
      * Get the user of the container.
      */
     public function user()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -41,7 +65,7 @@ class Container extends Model
      */
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class)->withDefault();
+        return $this->belongsTo(Vehicle::class);
     }
 
     /**
@@ -52,6 +76,9 @@ class Container extends Model
     {
         return $this->belongsTo(ContainerName::class);
     }
+    protected function nom(){
+      return $this->belongsTo('App\ContainerName','container_name_id','id','containers');
+    }
 
     /**
      * Materials.
@@ -60,5 +87,9 @@ class Container extends Model
     public function materials()
     {
         return $this->belongsToMany(Material::class);
+    }
+    public function material()
+    {
+        return $this->hasMany(ContainersMaterials::class, 'material_id');
     }
 }

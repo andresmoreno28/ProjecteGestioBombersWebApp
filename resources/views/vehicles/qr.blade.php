@@ -5,6 +5,12 @@
     <title></title>
   </head>
   <body>
-    {!! QrCode::size(300)->generate(url('vehicle/material/'.$vehicle['id'])); !!}
+    @php
+    $codi=$vehicle->codi();
+      $x=$vehicle->createTextImage($codi);
+      $ruta="\img\x.png";
+      QrCode::size(300);
+    @endphp
+    <img src="data:image/png;base64,{!! base64_encode(QrCode::encoding('UTF-8')->errorCorrection('H')->format('png')->size(900)->merge(asset('img/x.png'), .3, true)->generate(url('vehicle/material/'.$vehicle['id'])))!!} ">
   </body>
 </html>

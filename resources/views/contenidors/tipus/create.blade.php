@@ -13,11 +13,9 @@
             <nav aria-label="breadcrumb bg-transparent">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
-                    <li class="breadcrumb-item" aria-current="page">Materials</li>
-                    <li class="breadcrumb-item" aria-current="page">Editar</li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ $material->nom }}
-                    </li>
+                    <li class="breadcrumb-item" aria-current="page">Contenidors</li>
+                    <li class="breadcrumb-item" aria-current="page">Tipus</li>
+                    <li class="breadcrumb-item active" aria-current="page">Afegir</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
@@ -39,11 +37,10 @@
             <div class="col-xs-12 col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Editar material</h5>
-                        <form action="{{ action('MaterialController@update', ['id' => $material->id]) }}" method="POST">
-                            @method('PATCH')
-                            @include('materials.partials.form', [
-                                'submitButton' => 'Editar'
+                        <h5 class="card-title">Afegir un tipus de contenidor</h5>
+                        <form action="{{ action('ContainerNameController@store') }}" method="POST">
+                            @include('contenidors.tipus.partials.form', [
+                                'submitButton' => 'Afegir'
                             ])
                         </form>
                     </div>

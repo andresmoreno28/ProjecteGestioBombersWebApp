@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Container;
+use App\ContainerName;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class ContainerController extends Controller
+class ContainerNameController extends Controller
 {
     /**
      * Create a new controller instance.
      * Only authenticated users will be able to interact with the methods of the
-     * ContainerController.
+     * ContainerNameController.
      *
      * @return void
      */
@@ -27,8 +27,8 @@ class ContainerController extends Controller
      */
     public function index()
     {
-        $containers = Container::all();
-        return view('contenidors.index', compact('containers'));
+        $types = ContainerName::all();
+        return view('contenidors.tipus.index', compact('types'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        return view('contenidors.create');
+        return view('contenidors.tipus.create');
     }
 
     /**
@@ -51,24 +51,16 @@ class ContainerController extends Controller
     {
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
-            'es_dun_vehicle'      => 'required|boolean',
-            'container_parent_id' => 'required|integer',
-            'container_name_id'   => 'required|integer',
-            'user_id'             => 'required|integer',
-            'vehicle_id'          => 'required|integer'
+            'nom' => 'required|string'
         ]);
 
         // Crear el tipus (la validació ha sortit bé).
-        $container = Container::create([
-            'es_dun_vehicle'      => $data['es_dun_vehicle'],
-            'container_parent_id' => $data['container_parent_id'],
-            'container_name_id'   => $data['container_name_id'],
-            'user_id'             => $data['user_id'],
-            'vehicle_id'          => $data['vehicle_id']
+        $type = ContainerName::create([
+            'nom' => $data['nom']
         ]);
-        
+
         // Vista amb el llistat del material.
-        // return redirect()->action('ContainerController@index');
+        return redirect()->action('ContainerNameController@index');
     }
 
     /**
@@ -79,8 +71,8 @@ class ContainerController extends Controller
      */
     public function show($id)
     {
-        // $container = Container::findOrFail($id);
-        // return view('contenidors.show', compact('container'));
+        // $type = ContainerName::findOrFail($id);
+        // return view('contenidors.tipus.show', compact('type'));
     }
 
     /**
@@ -91,8 +83,8 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
-        $container = Container::findOrFail($id);
-        return view('contenidors.edit', compact('container'));
+        $type = ContainerName::findOrFail($id);
+        return view('contenidors.tipus.edit', compact('type'));
     }
 
     /**
@@ -105,7 +97,7 @@ class ContainerController extends Controller
     public function update(Request $request, $id)
     {
         // Obtenir el tipus de contenidor a actualitzar.
-        $container = Container::findOrFail($id);
+        $type = ContainerName::findOrFail($id);
 
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
@@ -113,10 +105,10 @@ class ContainerController extends Controller
         ]);
 
         // Actualitzar el tipus (la validació ha sortit bé).
-        $container->update($data);
+        $type->update($data);
 
         // Vista amb el llistat del material.
-        return redirect()->action('ContainerController@index');
+        return redirect()->action('ContainerNameController@index');
     }
 
     /**
@@ -128,12 +120,12 @@ class ContainerController extends Controller
     public function destroy($id)
     {
         // Obtenir el tipus de contenidor a esborrar.
-        $container = Container::findOrFail($id);
+        $type = ContainerName::findOrFail($id);
 
-        // Esborrar el 
-        $container->delete();
+        // Esborrar el tipus.
+        $type->delete();
 
-        // Vista amb el llistat de 
-        return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
+        // Vista amb el llistat de tipus.
+        return back()->with('success', "S'ha esborrat \"$type->nom\" de forma satisfactoria.");
     }
 }
