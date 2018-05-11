@@ -20,11 +20,11 @@ class CreateContainersTable extends Migration
             // Foreign Keys.
             $table->unsignedInteger('container_parent_id')->nullable();
             $table->foreign('container_parent_id')->references('id')->on('containers')->onDelete('set null');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('vehicle_id');
+            $table->unsignedInteger('vehicle_id')->nullable();
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
-            $table->unsignedInteger('container_name_id');
+            $table->unsignedInteger('container_name_id')->nullable();
             $table->foreign('container_name_id')->references('id')->on('container_names')->onDelete('cascade');
         });
     }
