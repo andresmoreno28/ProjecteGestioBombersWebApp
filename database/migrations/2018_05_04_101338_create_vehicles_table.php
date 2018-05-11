@@ -15,6 +15,7 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codi')->unique();
             $table->string('matricula')->unique();
             $table->dateTime('matricula_data')->nullable();
             $table->boolean('matricula_tercera')->default(false)->nullable();
