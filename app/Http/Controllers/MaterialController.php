@@ -50,21 +50,23 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         // Validar dades obtingudes del formulari.
+        // Les dades comentades no s'afegeixen en la creació del material sinó
+        // quan s'emplenen les dades dels vehicles.
         $data = $request->validate([
-            'referencia'         => 'required|string|unique:materials',
-            'nom'                => 'required|string',
-            'quantitat_prevista' => 'required|integer',
-            'quantitat'          => 'integer',
-            'es_del_parc'        => 'required|boolean',
+            'referencia' => 'required|string|unique:materials',
+            'nom'        => 'required|string',
+            //'quantitat_prevista' => 'required|integer',
+            //'quantitat'          => 'integer',
+            //'es_del_parc'        => 'required|boolean',
         ]);
 
         // Crear el material (la validació ha sortit bé).
         $material = Material::create([
-            'referencia'         => $data['referencia'],
-            'nom'                => $data['nom'],
-            'quantitat_prevista' => $data['quantitat_prevista'],
-            'quantitat'          => $data['quantitat'],
-            'es_del_parc'        => $data['es_del_parc'],
+            'referencia' => $data['referencia'],
+            'nom'        => $data['nom'],
+            //'quantitat_prevista' => $data['quantitat_prevista'],
+            //'quantitat'          => $data['quantitat'],
+            //'es_del_parc'        => $data['es_del_parc'],
         ]);
 
         // Vista amb el llistat del material.
@@ -108,18 +110,20 @@ class MaterialController extends Controller
         $material = Material::findOrFail($id);
 
         // Validar dades obtingudes del formulari.
+        // Les dades comentades no s'afegeixen en la creació del material sinó
+        // quan s'emplenen les dades dels vehicles.
         $data = $request->validate([
-            'referencia'         => [
+            'referencia' => [
                 'required',
                 'string',
                 // Ignorar referència del material que s'edita perquè la referència
                 // ha de ser única a la taula.
                 Rule::unique('materials')->ignore($material->id)
             ],
-            'nom'                => 'required|string',
-            'quantitat_prevista' => 'required|integer',
-            'quantitat'          => 'integer',
-            'es_del_parc'        => 'required|boolean',
+            'nom'        => 'required|string',
+            //'quantitat_prevista' => 'required|integer',
+            //'quantitat'          => 'integer',
+            //'es_del_parc'        => 'required|boolean',
         ]);
 
         // Actualitzar el material (la validació ha sortit bé).
