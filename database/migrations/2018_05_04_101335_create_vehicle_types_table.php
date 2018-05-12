@@ -17,6 +17,7 @@ class CreateVehicleTypesTable extends Migration
             $table->increments('id');
             $table->string('codi')->unique();
             $table->string('nom');
+            $table->string('descripcio');
             $table->timestamps();
         });
     }
