@@ -2,6 +2,7 @@
 use App\User;
 use App\Region;
 use App\VehicleType;
+use App\ContainerName;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -262,6 +263,69 @@ class DatabaseSeeder extends Seeder
         'codi'       => 'UPC',
         'descripcio' => 'Unitats de Personal i Càrrega',
         'nom'        => '90-99'
+      ]);
+
+      /* CONTENIDORS / NOMS
+      ----------------------------------------------------------------------- */
+      ContainerName::create([
+        'nom' => 'Banc eines (BE)'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa atac vivenda'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa blava'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa collarets'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa eines elèctriques'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa eines vehicle'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa EPI antitall'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa groga'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa negra'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa verda'
+      ]);
+      ContainerName::create([
+        'nom' => 'Bossa vermella'
+      ]);
+      ContainerName::create([
+        'nom' => 'Caixa eines'
+      ]);
+      ContainerName::create([
+        'nom' => 'Caixa càmera tèrmica'
+      ]);
+      ContainerName::create([
+        'nom' => 'Carro taller'
+      ]);
+      ContainerName::create([
+        'nom' => 'ERA'
+      ]);
+      ContainerName::create([
+        'nom' => 'Farmaciola'
+      ]);
+      ContainerName::create([
+        'nom' => 'Kit apícola'
+      ]);
+      ContainerName::create([
+        'nom' => 'Motxilla rescat'
+      ]);
+      ContainerName::create([
+        'nom' => 'Motxilla sanitaria'
+      ]);
+      ContainerName::create([
+        'nom' => 'Motxilles'
       ]);
     }
 }
