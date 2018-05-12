@@ -14,10 +14,7 @@
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Contenidors</li>
-                    <li class="breadcrumb-item" aria-current="page">Editar</li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{-- $container->nom --}}
-                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
@@ -39,8 +36,8 @@
             <div class="col-xs-12 col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Editar el tipus de contenidor</h5>
-                        <form action="{{-- action('ContainerController@update', ['id' => $container->id]) --}}" method="POST">
+                        <h5 class="card-title">Editar Contenidor</h5>
+                        <form action="{{ action('ContainerController@update', ['id' => $container->id]) }}" method="POST">
                             @method('PATCH')
                             @include('contenidors.partials.form', [
                                 'submitButton' => 'Editar'

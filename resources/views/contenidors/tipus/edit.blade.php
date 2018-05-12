@@ -15,10 +15,7 @@
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Contenidors</li>
                     <li class="breadcrumb-item" aria-current="page">Tipus</li>
-                    <li class="breadcrumb-item" aria-current="page">Editar</li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ $type->nom }}
-                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
                 </ol>
             </nav>
         </div><!-- /.row -->

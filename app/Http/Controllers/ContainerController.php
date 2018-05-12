@@ -27,8 +27,29 @@ class ContainerController extends Controller
      */
     public function index()
     {
-        $containers = Container::all();
-        return view('contenidors.index', compact('containers'));
+        $containersN = Container::where('container_parent_id', '=', null)
+            ->where('user_id', '=', null)
+            ->where('vehicle_id', '=', null)
+            ->where('container_name_id', '=', null)
+            ->get();
+        $containersU = Container::where('es_dun_vehicle', '=', 0)
+            ->where('container_parent_id', '!=', null)
+            ->where('user_id', '!=', null)
+            ->where('vehicle_id', '!=', null)
+            ->where('container_name_id', '!=', null)
+            ->get();
+        $containersV = Container::where('es_dun_vehicle', '=', 1)
+            ->where('container_parent_id', '!=', null)
+            ->where('user_id', '!=', null)
+            ->where('vehicle_id', '!=', null)
+            ->where('container_name_id', '!=', null)
+            ->get();
+
+        return view('contenidors.index', compact(
+            'containersN',
+            'containersU',
+            'containersV'
+        ));
     }
 
     /**
@@ -38,9 +59,11 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        // Cridem el mètode store() per crear, de forma automàtica, un
-        // contenidor.
-        return $this->store();
+        // Crear el contenidor (automàticament).
+        $container = Container::create();
+
+        // Vista amb el llistat de contenidors.
+        return redirect()->action('ContainerController@index');
     }
 
     /**
@@ -48,23 +71,9 @@ class ContainerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        // No hi ha validació perquè per poder afegir dades al contenidor, aquest
-        // ha d'existir. Quan s'inicia la creació d'un contenidor aquest no existeix
-        // fins que sigui confirmada l'acció de crear (botó de crear del formulari).
-        // Així doncs, quan es duu a terme l'acció de crear un contenidor, aquest es
-        // crea de forma automàtica (buit) i, tot seguit, passa a ser editat. A ulls
-        // de l'usuari/ria s'estarà creant i així es podran assignar els seus ítems.
-        
-        // Crear el contenidor (automàticament).
-        $container = Container::create();
-
-        // Obtenir la ID del contenidor creat.
-        $id = $container->id;
-        
-        // Enviem la ID al mètode edit($id) i prosseguim segon aquest.
-        return $this->edit($id);
+        // 
     }
 
     /**

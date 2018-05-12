@@ -59,7 +59,7 @@ class ContainerNameController extends Controller
             'nom' => $data['nom']
         ]);
 
-        // Vista amb el llistat del material.
+        // Vista amb el llistat dels tipus de contenidors.
         return redirect()->action('ContainerNameController@index');
     }
 

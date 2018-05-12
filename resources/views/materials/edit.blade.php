@@ -14,10 +14,7 @@
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Materials</li>
-                    <li class="breadcrumb-item" aria-current="page">Editar</li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ $material->nom }}
-                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
