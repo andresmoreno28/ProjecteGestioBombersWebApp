@@ -4,8 +4,8 @@
 
 <!-- Referència -->
 <div class="form-group">
-    <label for="matRef">Referència <span class="text-danger"><strong>*</strong></span></label>
-    <input type="text" name="referencia" value="{{$material->referencia or old('referencia') }}" class="form-control" id="matRef" aria-describedby="matRefHelp" required>
+    <label for="matRef">Referència</label>
+    <input type="text" name="referencia" value="{{$material->referencia or old('referencia') }}" class="form-control" id="matRef" aria-describedby="matRefHelp">
     <small id="matRefHelp" class="form-text text-muted">Referència del material (ha de ser única).</small>
 </div>
 

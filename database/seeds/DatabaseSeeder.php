@@ -3,6 +3,7 @@ use App\User;
 use App\Region;
 use App\VehicleType;
 use App\ContainerName;
+use App\Material;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -327,5 +328,8 @@ class DatabaseSeeder extends Seeder
       ContainerName::create([
         'nom' => 'Motxilles'
       ]);
+
+      /* MATERIALS
+      ----------------------------------------------------------------------- */
     }
 }
