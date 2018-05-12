@@ -3,6 +3,7 @@ use App\User;
 use App\Region;
 use App\VehicleType;
 use App\VehicleInsurer;
+use App\VehicleOwner;
 use App\ContainerName;
 use App\Material;
 use Illuminate\Database\Seeder;
@@ -280,6 +281,41 @@ class DatabaseSeeder extends Seeder
       VehicleInsurer::create([
         'nom'     => 'FIATC-seguros',
         'telefon' => null
+      ]);
+
+      /* VEHICLES / PROPIETARI
+      ----------------------------------------------------------------------- */
+      VehicleOwner::create([
+        'nom'           => 'ALPHABET ESPAÑA',
+        'telefon'       => '902374837'
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'ARVAL SERVICE LEASE, S.A.',
+        'telefon'       => '901121965'
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'BANESTO RENTING, S.A.',
+        'telefon'       => null
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'BANSALEASE, S.A.',
+        'telefon'       => null
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'CAIXARENTING, S.A.',
+        'telefon'       => null
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'CESSIÓ AJ.ASCÓ',
+        'telefon'       => null
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'GENERALITAT DE CATALUNYA',
+        'telefon'       => null
+      ]);
+      VehicleOwner::create([
+        'nom'           => 'ING CAR LEASE',
+        'telefon'       => '902374837'
       ]);
 
       /* CONTENIDORS / NOMS

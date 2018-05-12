@@ -12,7 +12,7 @@ class VehicleOwner extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom', 'telefon', 'final_renting'];
+    protected $fillable = ['nom', 'telefon'];
 
     /**
      * Eloquent: Relationships.

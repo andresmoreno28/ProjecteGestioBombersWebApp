@@ -42,7 +42,8 @@ class Vehicle extends Model
         'roda_cadenes',
         'vehicle_type_id',
         'vehicle_owner_id',
-        'vehicle_insurer_id'
+        'vehicle_insurer_id',
+        'final_renting'
     ];
 
     /**

@@ -395,7 +395,7 @@
                 @else
                   <input type="date" name="baixa_prevista" value="" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
                 @endif
-                <small id="baixa_prevista" class="form-text text-muted">Data en la que esta previst donar de baixa el vehicle.</small>
+                <small id="baixa_prevista" class="form-text text-muted">Data en la que està previst donar de baixa el vehicle.</small>
               </div>
             </div>
             <div class="col-4">
@@ -495,6 +495,23 @@
                 <label for="asseg_num_polissa">Numero polisa del vehicle <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="asseg_num_polissa" value="{{ $vehicle->asseg_num_polissa or old('asseg_num_polissa') }}" class="form-control" id="asseg_num_polissa" aria-describedby="asseg_num_polissa">
                 <small id="asseg_num_polissa" class="form-text text-muted">Numero de polisa del vehicle.</small>
+              </div>
+            </div>
+            <div class="col-4">
+              {{-- Final renting --}}
+              <div class="form-group">
+                <label for="final_renting">Final renting</label>
+                @if ($vehicle->exists)
+                  @if ($vehicle['final_renting']==null)
+                    <input type="date" name="final_renting" value="" class="form-control" id="final_renting" aria-describedby="final_renting">
+                  @else
+                    @php ($final_renting=date('Y-m-d',strtotime($vehicle['final_renting'])))
+                    <input type="date" name="final_renting" value="{{ $final_renting or old('final_renting') }}" class="form-control" id="final_renting" aria-describedby="final_renting">
+                  @endif
+                @else
+                  <input type="date" name="final_renting" value="" class="form-control" id="final_renting" aria-describedby="final_renting">
+                @endif
+                <small id="final_renting" class="form-text text-muted">Data en la que finalitza el renting.</small>
               </div>
             </div>
           </div>

@@ -55,16 +55,16 @@ class VehicleController extends Controller
     {
       // Validar dades obtingudes del formulari.
       //dd($request['donat_de_baixa']);
-          $data = $request->validate([
-          'matricula' => 'required|unique:vehicles',
-          'marca_model' => 'required',
-          'num_xasis' => 'required|unique:vehicles',
-          'asseg_num_polissa' => 'required',
-          'vehicle_insurer_id' => 'required',
-          'vehicle_owner_id' => 'required',
-          'vehicle_type_id' => 'required',
-          'asseg_tipus' => 'required',
-          'roda_cadenes' => 'required',
+      $data = $request->validate([
+        'matricula'          => 'required|unique:vehicles',
+        'marca_model'        => 'required',
+        'num_xasis'          => 'required|unique:vehicles',
+        'asseg_num_polissa'  => 'required',
+        'vehicle_insurer_id' => 'required',
+        'vehicle_owner_id'   => 'required',
+        'vehicle_type_id'    => 'required',
+        'asseg_tipus'        => 'required',
+        'roda_cadenes'       => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -75,32 +75,32 @@ class VehicleController extends Controller
         $request['matricula_tercera']=0;
       }
       Vehicle::create([
-        'matricula' => $data['matricula'],
-        'marca_model' => $data['marca_model'],
-        'roda_cadenes' => $data['roda_cadenes'],
-        'num_xasis' => $data['num_xasis'],
-        'donat_de_baixa' => $request['donat_de_baixa'],
-        'asseg_num_polissa' => $data['asseg_num_polissa'],
-        'vehicle_insurer_id' => $data['vehicle_insurer_id'],
-        'asseg_tipus' => $data['asseg_tipus'],
-        'vehicle_owner_id' => $data['vehicle_owner_id'],
-        'vehicle_type_id' => $data['vehicle_type_id'],
-        'places' => $request['places'],
-        'matricula_data' => $request['matricula_data'],
-        'matricula_tercera' => $request['matricula_tercera'],
-        'motor_potencia' => $request['motor_potencia'],
-        'roda_dimensio' => $request['roda_dimensio'],
-        'eslora' => $request['eslora'],
-        'km' => $request['km'],
-        'proper_manteniment_km' => $request['proper_maneteniment_km'],
-        'km_data' => $request['km_data'],
-        'manteniment_data' => $request['manteniment_data'],
+        'matricula'               => $data['matricula'],
+        'marca_model'             => $data['marca_model'],
+        'roda_cadenes'            => $data['roda_cadenes'],
+        'num_xasis'               => $data['num_xasis'],
+        'donat_de_baixa'          => $request['donat_de_baixa'],
+        'asseg_num_polissa'       => $data['asseg_num_polissa'],
+        'vehicle_insurer_id'      => $data['vehicle_insurer_id'],
+        'asseg_tipus'             => $data['asseg_tipus'],
+        'vehicle_owner_id'        => $data['vehicle_owner_id'],
+        'vehicle_type_id'         => $data['vehicle_type_id'],
+        'places'                  => $request['places'],
+        'matricula_data'          => $request['matricula_data'],
+        'matricula_tercera'       => $request['matricula_tercera'],
+        'motor_potencia'          => $request['motor_potencia'],
+        'roda_dimensio'           => $request['roda_dimensio'],
+        'eslora'                  => $request['eslora'],
+        'km'                      => $request['km'],
+        'proper_manteniment_km'   => $request['proper_maneteniment_km'],
+        'km_data'                 => $request['km_data'],
+        'manteniment_data'        => $request['manteniment_data'],
         'proper_manteniment_data' => $request['manteniment_data'],
-        'hores_bomba' => $request['hores_bomba'],
-        'itv_vigor' => $request['itv_vigor'],
-        'itv_propera' => $request['itv_propera'],
-        'baixa_prevista' => $request['baixa_prevista']
-
+        'hores_bomba'             => $request['hores_bomba'],
+        'itv_vigor'               => $request['itv_vigor'],
+        'itv_propera'             => $request['itv_propera'],
+        'baixa_prevista'          => $request['baixa_prevista'],
+        'final_renting'           => $request['final_renting']
       ]);
 
       $missatge=session()->flash('success', 'S\'ha creat el nou vehicle '.$data['matricula'].'.');
@@ -146,25 +146,25 @@ class VehicleController extends Controller
       $vehicle = Vehicle::findOrFail($id);
 
       $data = $request->validate([
-          'matricula'         => [
+          'matricula'          => [
               'required',
               // Ignorar referència del material que s'edita perquè la referència
               // ha de ser única a la taula.
               Rule::unique('vehicles')->ignore($vehicle->id)
           ],
-          'num_xasis'         => [
+          'num_xasis'          => [
               'required',
               // Ignorar referència del material que s'edita perquè la referència
               // ha de ser única a la taula.
               Rule::unique('vehicles')->ignore($vehicle->id)
           ],
-          'marca_model' => 'required',
-          'asseg_num_polissa' => 'required',
+          'marca_model'        => 'required',
+          'asseg_num_polissa'  => 'required',
           'vehicle_insurer_id' => 'required',
-          'vehicle_owner_id' => 'required',
-          'vehicle_type_id' => 'required',
-          'asseg_tipus' => 'required',
-          'roda_cadenes' => 'required',
+          'vehicle_owner_id'   => 'required',
+          'vehicle_type_id'    => 'required',
+          'asseg_tipus'        => 'required',
+          'roda_cadenes'       => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -175,32 +175,32 @@ class VehicleController extends Controller
         $request['matricula_tercera']=0;
       }
       $vehicle->update([
-        'matricula' => $data['matricula'],
-        'marca_model' => $data['marca_model'],
-        'roda_cadenes' => $data['roda_cadenes'],
-        'num_xasis' => $data['num_xasis'],
-        'donat_de_baixa' => $request['donat_de_baixa'],
-        'asseg_num_polissa' => $data['asseg_num_polissa'],
-        'vehicle_insurer_id' => $data['vehicle_insurer_id'],
-        'asseg_tipus' => $data['asseg_tipus'],
-        'vehicle_owner_id' => $data['vehicle_owner_id'],
-        'vehicle_type_id' => $data['vehicle_type_id'],
-        'places' => $request['places'],
-        'matricula_data' => $request['matricula_data'],
-        'matricula_tercera' => $request['matricula_tercera'],
-        'motor_potencia' => $request['motor_potencia'],
-        'roda_dimensio' => $request['roda_dimensio'],
-        'eslora' => $request['eslora'],
-        'km' => $request['km'],
-        'proper_manteniment_km' => $request['proper_maneteniment_km'],
-        'km_data' => $request['km_data'],
-        'manteniment_data' => $request['manteniment_data'],
+        'matricula'               => $data['matricula'],
+        'marca_model'             => $data['marca_model'],
+        'roda_cadenes'            => $data['roda_cadenes'],
+        'num_xasis'               => $data['num_xasis'],
+        'donat_de_baixa'          => $request['donat_de_baixa'],
+        'asseg_num_polissa'       => $data['asseg_num_polissa'],
+        'vehicle_insurer_id'      => $data['vehicle_insurer_id'],
+        'asseg_tipus'             => $data['asseg_tipus'],
+        'vehicle_owner_id'        => $data['vehicle_owner_id'],
+        'vehicle_type_id'         => $data['vehicle_type_id'],
+        'places'                  => $request['places'],
+        'matricula_data'          => $request['matricula_data'],
+        'matricula_tercera'       => $request['matricula_tercera'],
+        'motor_potencia'          => $request['motor_potencia'],
+        'roda_dimensio'           => $request['roda_dimensio'],
+        'eslora'                  => $request['eslora'],
+        'km'                      => $request['km'],
+        'proper_manteniment_km'   => $request['proper_maneteniment_km'],
+        'km_data'                 => $request['km_data'],
+        'manteniment_data'        => $request['manteniment_data'],
         'proper_manteniment_data' => $request['manteniment_data'],
-        'hores_bomba' => $request['hores_bomba'],
-        'itv_vigor' => $request['itv_vigor'],
-        'itv_propera' => $request['itv_propera'],
-        'baixa_prevista' => $request['baixa_prevista']
-
+        'hores_bomba'             => $request['hores_bomba'],
+        'itv_vigor'               => $request['itv_vigor'],
+        'itv_propera'             => $request['itv_propera'],
+        'baixa_prevista'          => $request['baixa_prevista'],
+        'final_renting'           => $request['final_renting']
       ]);
 
       $missatge=session()->flash('success', 'S\'ha actualitzat el vehicle '.$data['matricula'].'.');
