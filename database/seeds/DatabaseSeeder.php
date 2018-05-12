@@ -2,6 +2,7 @@
 use App\User;
 use App\Region;
 use App\VehicleType;
+use App\VehicleInsurer;
 use App\ContainerName;
 use App\Material;
 use Illuminate\Database\Seeder;
@@ -264,6 +265,21 @@ class DatabaseSeeder extends Seeder
         'codi'       => 'UPC',
         'descripcio' => 'Unitats de Personal i Càrrega',
         'nom'        => '90-99'
+      ]);
+
+      /* VEHICLES / ASSEGURADORA
+      ----------------------------------------------------------------------- */
+      VehicleInsurer::create([
+        'nom'     => 'ZURICH',
+        'telefon' => '902110666'
+      ]);
+      VehicleInsurer::create([
+        'nom'     => 'AXA',
+        'telefon' => '902374837'
+      ]);
+      VehicleInsurer::create([
+        'nom'     => 'FIATC-seguros',
+        'telefon' => null
       ]);
 
       /* CONTENIDORS / NOMS
