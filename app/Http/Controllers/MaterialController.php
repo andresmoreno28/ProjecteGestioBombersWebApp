@@ -53,7 +53,7 @@ class MaterialController extends Controller
         // Les dades comentades no s'afegeixen en la creació del material sinó
         // quan s'emplenen les dades dels vehicles.
         $data = $request->validate([
-            'referencia' => 'string|unique:materials',
+            'referencia' => 'nullable|string|unique:materials',
             'nom'        => 'required|string',
             //'quantitat_prevista' => 'required|integer',
             //'quantitat'          => 'integer',
@@ -114,6 +114,7 @@ class MaterialController extends Controller
         // quan s'emplenen les dades dels vehicles.
         $data = $request->validate([
             'referencia' => [
+                'nullable',
                 'string',
                 // Ignorar referència del material que s'edita perquè la referència
                 // ha de ser única a la taula.
