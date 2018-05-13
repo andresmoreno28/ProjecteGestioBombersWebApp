@@ -38,5 +38,8 @@ class PDFController extends Controller
         $contenidors = $vehicle->containers;
        
         return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors]);
+
+        $pdf = PDF::loadView('informes/report');
+        return $pdf->download('informe.pdf');
     }
 }

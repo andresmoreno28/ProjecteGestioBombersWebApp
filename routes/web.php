@@ -51,10 +51,10 @@ Route::get('backup/create', 'BackupController@create')->name('bcreate');
 Route::get('backup/download/{file_name}', 'BackupController@download');
 Route::get('backup/delete/{file_name}', 'BackupController@delete')->name('dbackup');
 // Dompdf route
-/*Route::get('pdf', function() {
+Route::get('pdf', function() {
 	$pdf = PDF::loadView('informes/report');
 	return $pdf->download('informe.pdf');
-})->name('pdf');*/
+})->name('pdf');
 
 Route::get('informes', 'PDFController@crearPDF')->name('report');
 
