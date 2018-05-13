@@ -86,8 +86,8 @@
                                  href="{{ action('VehicleController@qr', ['id'=>$vehicle->id]) }}">
                                  <i class="fas fa-qrcode"></i>
                                </a>
-                              <a class="btn btn-xs btn-default" id="show" name="{{$vehicle->id}}"
-                                 ><!--href="{{ action('VehicleController@show', ['id'=>$vehicle->id]) }}"-->
+                              <a class="btn btn-xs btn-default see" id="show" name="{{$vehicle->id}}"
+                                 >
                                  <i class="far fa-eye"></i>
                                </a>
                               <a class="btn btn-xs btn-default"
@@ -318,7 +318,7 @@
             form.submit();
         });
     });
-    $("#show").click(function(e){
+    $('table').on('click', '.see', function(e) {
       e.preventDefault();
       var x= $(this).attr('name');
       $.ajax({
