@@ -48,12 +48,20 @@ class ContainerController extends Controller
             ->where('vehicle_id', '!=', null)
             ->get();
 
+        // Comptar contenidors per mostrar el total en les pestanyes.
+        $containersNC = $containersN->count();
+        $containersUC = $containersU->count();
+        $containersVC = $containersV->count();
+
         // Vista amb el llistat de contenidors. A la qual li passem arrays amb
         // dades de contenidors per assignar, de vehicles i d'usuaris.
         return view('contenidors.index', compact(
             'containersN',
             'containersU',
-            'containersV'
+            'containersV',
+            'containersNC',
+            'containersUC',
+            'containersVC'
         ));
     }
 
@@ -111,7 +119,15 @@ class ContainerController extends Controller
         if ($request['es_dun_vehicle'] == 1) {
             $request['user_id'] = null;
         } else {
-            $request['es_dun_vehicle'] = null;
+            $request['vehicle_id'] = null;
+        }
+
+        // Controlar els valors de la ubicació.
+        if ($request['user_id'] == "cap") {
+            $request['user_id'] = null;
+        }
+        if ($request['vehicle_id'] == "cap") {
+            $request['vehicle_id'] = null;
         }
 
         // Validar dades obtingudes del formulari.

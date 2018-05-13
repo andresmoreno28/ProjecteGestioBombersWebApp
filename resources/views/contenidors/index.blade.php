@@ -55,81 +55,50 @@
                 <!-- Navegació (apartats) -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="no-assignats-tab" data-toggle="tab" href="#no-assignats" role="tab" aria-controls="no-assignats" aria-selected="true">No assignats</a>
+                      <a class="nav-link active" id="vehicles-tab" data-toggle="tab" href="#vehicles" role="tab" aria-controls="vehicles" aria-selected="true">
+                          Vehicles <small>({{ $containersVC }})</small>
+                      </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="vehicles-tab" data-toggle="tab" href="#vehicles" role="tab" aria-controls="vehicles" aria-selected="true">Vehicles</a>
+                      <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">
+                          Parcs <small>({{ $containersUC }})</small>
+                      </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Parcs</a>
+                        <a class="nav-link" id="no-assignats-tab" data-toggle="tab" href="#no-assignats" role="tab" aria-controls="no-assignats" aria-selected="true">
+                            No assignats <small>({{ $containersNC }})</small>
+                        </a>
                     </li>
-                  </ul>
-                  <!-- Apartats -->
-                  <div class="tab-content" id="myTabContent">
-                    <!-- NO ASSIGNATS -->
-                    <div class="tab-pane fade show active" id="no-assignats" role="tabpanel" aria-labelledby="no-assignats-tab">
-                        <div class="container-fluid mt-2">
-                            <div class="row">
-                                <div class="col-xs-12 col-12">
-                                    <table class="table table-bordered table-striped">
-                                        <caption><small>Llista de contenidors no assignats (buits).</small></caption>
-                                        <thead class="thead-dark">
-                                            <tr style="border-bottom:3px solid #dc3545;">
-                                                <th scope="col">Nom</th>
-                                                <th scope="col">Ubicat (a)</th>
-                                                <th scope="col">Contingut (en)</th>
-                                                <th scope="col">Materials</th>
-                                                <th scope="col">Acció</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($containersN as $containerN)
-                                                <tr>
-                                                    <td>...</td>
-                                                    <td>...</td>
-                                                    <td>...</td>
-                                                    <td>...</td>
-                                                    <td class="text-right">
-                                                        <!-- Editar -->
-                                                        <a class="btn btn-xs btn-default" href="{{ action('ContainerController@edit', ['id' => $containerN->id]) }}">
-                                                            <i class="fas fa-pencil-alt"></i> Editar
-                                                        </a>
-                                                        <!-- Esborrar -->
-                                                        <div class="d-inline-block">
-                                                            <form action="{{ action('ContainerController@destroy', ['id' => $containerN->id]) }}" method="POST" class="form-delete">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <input type="hidden" name="nom" value="{{-- $containerN->referencia --}}">
-                                                                <input type="hidden" name="nom" value="{{-- $containerN->nom --}}">
-                                                                <button type="submit" class="btn btn-xs btn-danger">
-                                                                    <i class="fas fa-times"></i> Eliminar
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="6">No hi ha contenidors sense assignar.</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.col -->
-                            </div><!-- /.row -->
-                        </div><!-- container-fluid -->
-                    </div>
-
+                </ul>
+                <!-- Apartats -->
+                <div class="tab-content" id="myTabContent">
                     <!-- VEHICLES -->
-                    <div class="tab-pane fade" id="vehicles" role="tabpanel" aria-labelledby="vehicles-tab">
-
-                    </div>
+                    <div class="tab-pane fade show active" id="vehicles" role="tabpanel" aria-labelledby="vehicles-tab">
+                        @include('contenidors.partials.tcontainers', [
+                            'containers'  => $containersV,
+                            'tBuida'      => 'No hi ha contenidors associats a vehicles.',
+                            'tInfo'       => 'Llista de contenidors associats a vehicles.'
+                        ])
+                    </div><!-- /.tab-pane -->
 
                     <!-- PARCS -->
                     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
-                        
-                    </div>
-                  </div>
+                        @include('contenidors.partials.tcontainers', [
+                            'containers'  => $containersU,
+                            'tBuida'      => 'No hi ha contenidors associats a parcs.',
+                            'tInfo'       => 'Llista de contenidors associats a parcs.'
+                        ])
+                    </div><!-- /.tab-pane -->
+
+                    <!-- NO ASSIGNATS -->
+                    <div class="tab-pane fade" id="no-assignats" role="tabpanel" aria-labelledby="no-assignats-tab">
+                        @include('contenidors.partials.tcontainers', [
+                            'containers'  => $containersN,
+                            'tBuida'      => 'No hi ha contenidors sense assignar.',
+                            'tInfo'       => 'Llista de contenidors no assignats (buits).'
+                        ])
+                    </div><!-- /.tab-pane -->
+                  </div><!-- /.tab-content -->
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.col -->
