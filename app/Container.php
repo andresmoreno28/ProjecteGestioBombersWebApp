@@ -72,10 +72,11 @@ class Container extends Model
      * Name.
      * Get the name of the container.
      */
-    public function name()
+    public function container_name()
     {
         return $this->belongsTo(ContainerName::class);
     }
+    // Una altra manera d'obtenir-lo.
     protected function nom(){
       return $this->belongsTo('App\ContainerName','container_name_id','id','containers');
     }

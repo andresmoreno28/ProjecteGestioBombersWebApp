@@ -102,27 +102,29 @@ class ContainerController extends Controller
      */
     public function store(Request $request)
     {
-        // Validar dades obtingudes del formulari.
-        $data = $request->validate([
-            'container_parent_id' => 'nullable|integer',
-            'container_name_id'   => 'required|integer',
-            'es_dun_vehicle'      => 'required|boolean',
-            'vehicle_id'          => 'nullable|integer',
-            'user_id'             => 'nullable|integer'
-        ]);
-
-        // Controlar les dades de la ubicació del contenidor.
-        // Tindrem en compte el "radio button" seleccionat per assegurar-nos de
-        // que no sigui possible passar dades d'ubicació d'un vehicle i d'un
-        // usuari (parc) al mateix temps.
-        if ($data['es_dun_vehicle'] == 1) {
-            $data['user_id'] = null;
-        } else {
-            $data['es_dun_vehicle'] = null;
+        // Controlar si és un contenidor pare.
+        if ($request['container_parent_id'] == "cap") {
+            $request['container_parent_id'] = null;
         }
 
+        // Controlar la ubicació del contenidor ("radio button").
+        if ($request['es_dun_vehicle'] == 1) {
+            $request['user_id'] = null;
+        } else {
+            $request['es_dun_vehicle'] = null;
+        }
+
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'container_parent_id' => 'nullable',
+            'container_name_id'   => 'required',
+            'es_dun_vehicle'      => 'required|boolean',
+            'vehicle_id'          => 'nullable',
+            'user_id'             => 'nullable'
+        ]);
+
         // Crear el contenidor (la validació ha sortit bé).
-        $type = ContainerName::create([
+        $type = Container::create([
             'container_parent_id' => $data['container_parent_id'],
             'container_name_id'   => $data['container_name_id'],
             'es_dun_vehicle'      => $data['es_dun_vehicle'],
@@ -131,7 +133,7 @@ class ContainerController extends Controller
         ]);
 
         // Vista amb el llistat de contenidors.
-        return redirect()->action('ContainerNameController@index');
+        return redirect()->action('ContainerController@index');
     }
 
     /**

@@ -13,7 +13,7 @@ class CreateContainerMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create('containers_materials', function (Blueprint $table) {
+        Schema::create('container_material', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             // Foreign Keys.
