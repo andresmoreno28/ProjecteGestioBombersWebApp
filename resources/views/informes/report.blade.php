@@ -61,7 +61,7 @@
 					          <td>{{ $material->nom }} </td>
 					          <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
 					          <td class="celles_a_centrar">{{$material->quantitat}}</td>
-					          <td class="celles_a_centrar">*</td>
+					          <td class="celles_a_centrar">{{$material->referencia}}</td>
 					          <td class="celles_a_centrar">				    
 					          	@if ($material->es_del_parc == 0)
 		                    		<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">

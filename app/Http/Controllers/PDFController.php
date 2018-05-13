@@ -9,7 +9,6 @@ use App\User;
 use App\Vehicle;
 use App\Container;
 use App\Material;
-use Illuminate\Support\Collection as Collection;
 
 class PDFController extends Controller
 {
@@ -23,10 +22,6 @@ class PDFController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-    }
 
     public function crearPDF()
     {
@@ -42,24 +37,6 @@ class PDFController extends Controller
 
         $contenidors = $vehicle->containers;
        
-       /* $c = 0;
-        foreach ($contenidors as $contenidor) 
-        {
-            $materialsFromContainers[$c] = $contenidor->materials;
-            
-            foreach ($containerMaterial as $material)
-            {
-              dd($material->all()[0]);
-            }
-            $c++;
-        }*/
-
-        //dd($materialsFromContainers);
-       //$nomContenidor = Container::find(1)->nom;
-
-        
-
-        
         return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors]);
     }
 }
