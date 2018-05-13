@@ -9,6 +9,7 @@ use App\User;
 use App\Vehicle;
 use App\Container;
 use App\Material;
+use Illuminate\Support\Collection as Collection;
 
 class PDFController extends Controller
 {
@@ -40,12 +41,25 @@ class PDFController extends Controller
         $region = $user->region;      
 
         $contenidors = $vehicle->containers;
-        
+       
+       /* $c = 0;
+        foreach ($contenidors as $contenidor) 
+        {
+            $materialsFromContainers[$c] = $contenidor->materials;
+            
+            foreach ($containerMaterial as $material)
+            {
+              dd($material->all()[0]);
+            }
+            $c++;
+        }*/
+
+        //dd($materialsFromContainers);
        //$nomContenidor = Container::find(1)->nom;
 
-        $materials = Material::all();
+        
 
         
-        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors, 'materials' => $materials]);
+        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors]);
     }
 }

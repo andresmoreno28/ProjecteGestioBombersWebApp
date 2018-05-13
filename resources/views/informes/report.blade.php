@@ -48,21 +48,30 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
+				      	@php 
 				        	
-				        	@foreach ($contenidor->material as $material)
-				        	@dd($contenidor->material->nom)
+				        		$materialsFromContainers = $contenidor->materials;
+				        	
+			        		@endphp
+
+				        	@foreach ($materialsFromContainers as $material)
+				        <tr>
+
+
 					          <td>{{ $material->nom }} </td>
 					          <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
 					          <td class="celles_a_centrar">{{$material->quantitat}}</td>
 					          <td class="celles_a_centrar">*</td>
 					          <td class="celles_a_centrar">				    
-
-		                    	<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+					          	@if ($material->es_del_parc == 0)
+		                    		<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+		                    	@else
+		                    		<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
+		                    	@endif
 		                  	
-					          </td>
-					        @endforeach  
+					          </td>					        
 				        </tr>
+				        @endforeach  
 				      </tbody>
 				  </table>
 				</div> 
