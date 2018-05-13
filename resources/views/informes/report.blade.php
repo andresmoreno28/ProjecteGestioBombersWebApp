@@ -18,7 +18,7 @@
 		<div id="header" class="container-fluid">
 			<img src="img/logo.jpg" height="90" width="165">
 			<div id="inventari" class="container-fluid">INVENTARI</div>
-			<div id="regio_parc_vehicle" class="container-fluid">{{$region->codi}}.{{$user->codi_parc}}.{{$vehicle->id}}</div>
+			<div id="regio_parc_vehicle" class="container-fluid">{{$region->codi}}.{{$user->codi_parc}}.{{$vehicle->codi}}</div>
 
 			@php 
 				$ldate = new DateTime('today');
@@ -49,21 +49,17 @@
 				      </thead>
 				      <tbody>
 				        <tr>
-				        	@dd($contenidor->contenidor->material($materials))
+				        	
 				        	@foreach ($contenidor->material as $material)
+				        	@dd($contenidor->material->nom)
 					          <td>{{ $material->nom }} </td>
 					          <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
 					          <td class="celles_a_centrar">{{$material->quantitat}}</td>
 					          <td class="celles_a_centrar">*</td>
-					          <td class="celles_a_centrar">
-					          	
-					          	
-			                    	<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
-			                 	
+					          <td class="celles_a_centrar">				    
 
-			                    <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
-
-			                  	
+		                    	<input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+		                  	
 					          </td>
 					        @endforeach  
 				        </tr>
