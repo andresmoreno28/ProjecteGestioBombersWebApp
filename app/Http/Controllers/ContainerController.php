@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Container;
+use App\ContainerName;
+use App\Material;
+use App\User;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -26,9 +30,31 @@ class ContainerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $containers = Container::all();
-        return view('contenidors.index', compact('containers'));
+    {   
+        // Si no hi ha assignat cap parc ni cap usuari, diem que el contendor
+        // està per assignar.
+        $containersN = Container::where('user_id', '=', null)
+            ->where('vehicle_id', '=', null)
+            ->get();
+        // Si no és d'un vehicle (0) i té assignat un usuari, diem que el contenidor
+        // forma part del grup dels usuaris (parcs).
+        $containersU = Container::where('es_dun_vehicle', '=', 0)
+            ->where('user_id', '!=', null)
+            ->get();
+        
+        // Si és d'un vehicle (1) i té assignat un vehicle, diem que el contenidor
+        // forma part del grup dels vehicles.
+        $containersV = Container::where('es_dun_vehicle', '=', 1)
+            ->where('vehicle_id', '!=', null)
+            ->get();
+
+        // Vista amb el llistat de contenidors. A la qual li passem arrays amb
+        // dades de contenidors per assignar, de vehicles i d'usuaris.
+        return view('contenidors.index', compact(
+            'containersN',
+            'containersU',
+            'containersV'
+        ));
     }
 
     /**
@@ -37,38 +63,65 @@ class ContainerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('contenidors.create');
+    {   
+        // Contenidors
+        $containers = Container::all();
+
+        // Noms de contenidors
+        $containerNames = ContainerName::all();
+
+        // Usuaris (parcs)
+        $users = User::all();
+
+        // Vehicles
+        $vehicles = Vehicle::all();
+
+        // Materials
+        // ...
+
+        // Si no hi ha noms de contenidors creats, no es permetrà accedir a la
+        // pàgina de creació.
+        if ($containerNames->isEmpty()) {
+            // Vista amb el llistat de contenidors.
+            return back()->with('warning', "No pot crear contenidors perquè encara no hi ha tipus d'aquests.");
+        } else {
+            // Vista de creació de contenidors.
+            return view('contenidors.create', compact(
+                'containers',
+                'containerNames',
+                'users',
+                'vehicles'
+            ));
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
-            'es_dun_vehicle'      => 'required|boolean',
-            'container_parent_id' => 'required|integer',
+            'container_parent_id' => 'nullable|integer',
             'container_name_id'   => 'required|integer',
-            'user_id'             => 'required|integer',
-            'vehicle_id'          => 'required|integer'
+            'es_dun_vehicle'      => 'required|boolean',
+            'vehicle_id'          => 'nullable|integer',
+            'user_id'             => 'nullable|integer'
         ]);
 
-        // Crear el tipus (la validació ha sortit bé).
-        $container = Container::create([
-            'es_dun_vehicle'      => $data['es_dun_vehicle'],
+        // Crear el contenidor (la validació ha sortit bé).
+        $type = ContainerName::create([
             'container_parent_id' => $data['container_parent_id'],
             'container_name_id'   => $data['container_name_id'],
-            'user_id'             => $data['user_id'],
-            'vehicle_id'          => $data['vehicle_id']
+            'es_dun_vehicle'      => $data['es_dun_vehicle'],
+            'vehicle_id'          => $data['vehicle_id'],
+            'user_id'             => $data['user_id']
         ]);
-        
-        // Vista amb el llistat del material.
-        // return redirect()->action('ContainerController@index');
+
+        // Vista amb el llistat de contenidors.
+        return redirect()->action('ContainerNameController@index');
     }
 
     /**
@@ -104,15 +157,19 @@ class ContainerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Obtenir el tipus de contenidor a actualitzar.
+        // Obtenir el contenidor a actualitzar.
         $container = Container::findOrFail($id);
 
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
-            'nom' => 'required|string'
+            'es_dun_vehicle'      => 'required|boolean',
+            'container_parent_id' => 'required|integer',
+            'container_name_id'   => 'required|integer',
+            'user_id'             => 'required|integer',
+            'vehicle_id'          => 'required|integer'
         ]);
 
-        // Actualitzar el tipus (la validació ha sortit bé).
+        // Actualitzar el contenidor (la validació ha sortit bé).
         $container->update($data);
 
         // Vista amb el llistat del material.
@@ -127,13 +184,13 @@ class ContainerController extends Controller
      */
     public function destroy($id)
     {
-        // Obtenir el tipus de contenidor a esborrar.
+        // Obtenir el contenidor a esborrar.
         $container = Container::findOrFail($id);
 
-        // Esborrar el 
+        // Esborrar el contenidor.
         $container->delete();
 
-        // Vista amb el llistat de 
+        // Vista amb el llistat de contenidors.
         return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
     }
 }

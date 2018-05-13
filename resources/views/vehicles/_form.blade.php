@@ -48,6 +48,7 @@
       <!--Formulari-->
       <div class="card shadow-2 mt-5">
         <div class="card-body">
+          <p class="text-danger"><small>Camps obligatoris <strong> * </strong>.</small></p>
           @if ($vehicle->exists)
             <h5 class="card-title">Editar vehicle</h5>
           @else
@@ -78,7 +79,7 @@
             <div class="col-3 ">
               {{-- tipus vehicle --}}
               <div class="form-group">
-                <label for="vehicle_type_id">Tipus de vehicle</label>
+                <label for="vehicle_type_id">Tipus de vehicle <span class="text-danger"><strong>*</strong></span></label>
 
                   <select name="vehicle_type_id"class="custom-select" id="inputGroupSelect02">
                     @if ($vehicle->exists)
@@ -101,7 +102,7 @@
             <div class="col-4 ">
               {{-- Marca & Model --}}
               <div class="form-group">
-                <label for="marca_model">Marca i model del vehicle</label>
+                <label for="marca_model">Marca i model del vehicle <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="marca_model" value="{{ $vehicle->marca_model or old('marca_model') }}" class="form-control" id="marca_model" aria-describedby="marca_model">
                 <small id="marca_model" class="form-text text-muted">Marca i model del vehicle.</small>
               </div>
@@ -117,7 +118,7 @@
             <div class="col-3 ">
               {{-- cadenes --}}
               <div class="form-group">
-                  <label for="roda_cadenes">Cadenes</label>
+                <label for="roda_cadenes">Cadenes <span class="text-danger"><strong>*</strong></span></label>
                   <select name="roda_cadenes"class="custom-select" id="inputGroupSelect04">
                     @if ($vehicle->exists)
                     @else
@@ -148,9 +149,38 @@
             <div class="col-4">
               {{-- Num xasis --}}
               <div class="form-group">
-                <label for="num_xasis">Numero del xasis</label>
+                <label for="num_xasis">Numero del xasis <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="num_xasis" value="{{ $vehicle->num_xasis or old('num_xasis') }}" class="form-control" id="num_xasis" aria-describedby="num_xasis">
                 <small id="num_xasis" class="form-text text-muted">Numero del xasis del vehicle.</small>
+              </div>
+            </div>
+            <div class="col-4">
+              {{-- Name --}}
+              <div class="form-group">
+                <label for="codi">Codi del vehicle <span class="text-danger"><strong>*</strong></span></label>
+                <input type="text" name="codi" value="{{ $vehicle or old('codi') }}" class="form-control" id="codi" aria-describedby="nameHelp" required>
+                <small id="codi" class="form-text text-muted">Matricula per la que es reconeix el vehicle.</small>
+              </div>
+            </div>
+            <div class="col-4">
+              {{-- Parc --}}
+              <div class="form-group">
+                <label for="codi">Parc al que pertany el vehicle <span class="text-danger"><strong>*</strong></span></label>
+                <select name="user_id"class="custom-select" id="inputGroupSelect07" required>
+                  @if ($vehicle->exists)
+                  @else
+                    <option selected disabled>Selecciona una opció</option>
+                  @endif
+                  @forelse ($users as $user)
+                    @if ($vehicle->user['name']==$user['name'])
+                      <option value="{{$user['id']}}" selected> {{$user['name']}} </option>
+                    @else
+                      <option value="{{$user['id']}}">{{$user['name']}}</option>
+                    @endif
+                  @empty
+
+                  @endforelse
+                </select>
               </div>
             </div>
           </div>
@@ -166,7 +196,7 @@
             <div class="col-4">
               {{-- Name --}}
               <div class="form-group">
-                <label for="userName">Matricula del vehicle</label>
+                <label for="userName">Matricula del vehicle <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="matricula" value="{{ $vehicle->matricula or old('matricula') }}" class="form-control" id="matricula" aria-describedby="nameHelp" required>
                 <small id="nameHelp" class="form-text text-muted">Matricula per la que es reconeix el vehicle.</small>
               </div>
@@ -192,7 +222,7 @@
               {{-- Matricula tercera --}}
               <div class="form-group">
                 <div class="col-12">
-                  <label for="matricula_terceraHelp">Tercera matricula</label>
+                  <label for="matricula_terceraHelp">Tercera matricula <span class="text-danger"><strong>*</strong></span></label>
                 </div>
                 <div class="col-12 my-2">
                   @if ($vehicle->exists)
@@ -394,7 +424,7 @@
                 @else
                   <input type="date" name="baixa_prevista" value="" class="form-control" id="baixa_prevista" aria-describedby="baixa_prevista">
                 @endif
-                <small id="baixa_prevista" class="form-text text-muted">Data en la que esta previst donar de baixa el vehicle.</small>
+                <small id="baixa_prevista" class="form-text text-muted">Data en la que està previst donar de baixa el vehicle.</small>
               </div>
             </div>
             <div class="col-4">
@@ -429,7 +459,7 @@
             <div class="col-4">
               {{-- tipus assegurança --}}
               <div class="form-group">
-                <label for="vehicle_insurer_id">Asseguradora</label>
+                <label for="vehicle_insurer_id">Asseguradora <span class="text-danger"><strong>*</strong></span></label>
                   <select name="vehicle_insurer_id"class="custom-select" id="inputGroupSelect01">
                     @if ($vehicle->exists)
                     @else
@@ -451,7 +481,7 @@
             <div class="col-4">
               {{-- tipus assegurança --}}
               <div class="form-group">
-                <label for="asseg_tipus">Tipus assegurança</label>
+                <label for="asseg_tipus">Tipus assegurança <span class="text-danger"><strong>*</strong></span></label>
                   <select name="asseg_tipus"class="custom-select" id="inputGroupSelect04">
                     @if ($vehicle->exists)
                     @else
@@ -470,7 +500,7 @@
             <div class="col-4">
               {{-- propietari vehicle --}}
               <div class="form-group">
-                <label for="vehicle_owner_id">Propietari del vehicle</label>
+                <label for="vehicle_owner_id">Propietari del vehicle <span class="text-danger"><strong>*</strong></span></label>
                   <select name="vehicle_owner_id"class="custom-select" id="inputGroupSelect03">
                     @if ($vehicle->exists)
                     @else
@@ -491,9 +521,26 @@
             <div class="col-4">
               {{-- Num polisa --}}
               <div class="form-group">
-                <label for="asseg_num_polissa">Numero polisa del vehicle</label>
+                <label for="asseg_num_polissa">Numero polisa del vehicle <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="asseg_num_polissa" value="{{ $vehicle->asseg_num_polissa or old('asseg_num_polissa') }}" class="form-control" id="asseg_num_polissa" aria-describedby="asseg_num_polissa">
                 <small id="asseg_num_polissa" class="form-text text-muted">Numero de polisa del vehicle.</small>
+              </div>
+            </div>
+            <div class="col-4">
+              {{-- Final renting --}}
+              <div class="form-group">
+                <label for="final_renting">Final renting</label>
+                @if ($vehicle->exists)
+                  @if ($vehicle['final_renting']==null)
+                    <input type="date" name="final_renting" value="" class="form-control" id="final_renting" aria-describedby="final_renting">
+                  @else
+                    @php ($final_renting=date('Y-m-d',strtotime($vehicle['final_renting'])))
+                    <input type="date" name="final_renting" value="{{ $final_renting or old('final_renting') }}" class="form-control" id="final_renting" aria-describedby="final_renting">
+                  @endif
+                @else
+                  <input type="date" name="final_renting" value="" class="form-control" id="final_renting" aria-describedby="final_renting">
+                @endif
+                <small id="final_renting" class="form-text text-muted">Data en la que finalitza el renting.</small>
               </div>
             </div>
           </div>

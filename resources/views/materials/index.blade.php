@@ -42,26 +42,20 @@
         <!-- Taula de Materials -->
         <div class="row">
             <div class="col-xs-12 col-12">
-                <table class="table table-striped table-bordered">
+                <table class="table table-bordered table-striped">
                     <caption><small>Llista de materials.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
-                            <th>Referència</th>
-                            <th>Nom</th>
-                            <th>Quantitat <abbr title="Prevista">P.</abbr></th>
-                            <th>Quantitat <abbr title="Real">R.</abbr></th>
-                            <th>És del parc</th>
-                            <th>Acció</th>
+                            <th scope="col">Referència</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Acció</th>
                         </tr>
                     </thead>
-                    @forelse ($materials as $material)
-                        <tbody>
+                    <tbody>
+                        @forelse ($materials as $material)
                             <tr>
                                 <td>{{ $material->referencia }}</td>
                                 <td>{{ $material->nom }}</td>
-                                <td>{{ $material->quantitat_prevista }}</td>
-                                <td>{{ $material->quantitat }}</td>
-                                <td>{{ $material->es_del_parc }}</td>
                                 <td class="text-right">
                                     <!-- Editar -->
                                     <a class="btn btn-xs btn-default" href="{{ action('MaterialController@edit', ['id' => $material->id]) }}">
@@ -81,12 +75,12 @@
                                     </div>
                                 </td>
                             </tr>
-                        </tbody>
-                    @empty
-                        <tr>
-                            <td colspan="6">Encara no hi ha material. <a href="{{ action('MaterialController@create') }}">Afegir material</a>.</td>
-                        </tr>
-                    @endforelse
+                        @empty
+                            <tr>
+                                <td colspan="6">Encara no hi ha material. <a href="{{ action('MaterialController@create') }}">Afegir material</a>.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div><!-- /.col -->
         </div><!-- /.row -->

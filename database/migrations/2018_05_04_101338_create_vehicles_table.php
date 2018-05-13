@@ -15,7 +15,7 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codi')->unique();
+            $table->string('codi')->unique()->nullable();
             $table->string('matricula')->unique();
             $table->dateTime('matricula_data')->nullable();
             $table->boolean('matricula_tercera')->default(false)->nullable();
@@ -38,6 +38,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedInteger('places')->nullable();
             $table->string('roda_dimensio')->nullable();
             $table->enum('roda_cadenes', ['no', 'textil', 'metalica']);
+            $table->dateTime('final_renting')->nullable();
             $table->timestamps();
             // Foreign Keys.
             $table->unsignedInteger('vehicle_type_id')->nullable();

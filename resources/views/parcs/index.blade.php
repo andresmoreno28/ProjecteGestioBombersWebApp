@@ -56,9 +56,10 @@
         <div class="col-xs-12 col-12">
             @if (count($users))
 
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
+              <table class="table table-striped table-bordered">
+                  <caption><small>Llistat de parcs.</small></caption>
+                  <thead class="thead-dark">
+                      <tr style="border-bottom:3px solid #dc3545;">
                         <th>Nom</th>
                         <th>Codi</th>
                         <th>Regio</th>
@@ -99,7 +100,12 @@
         </div>
       </div>
       <!--Fi taula Usuaris-->
-      {!! QrCode::size(300)->generate(route('user.index')); !!}
+      <div class="row">
+        <div class="mx-auto">
+          {{ $users->links() }}
+        </div>
+      </div>
+
     </div>
     <!--Fi Contenedor central-->
     <!--Contenedor dret-->

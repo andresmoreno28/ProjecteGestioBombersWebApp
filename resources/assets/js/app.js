@@ -20,3 +20,15 @@ require('./bootstrap');
 // const app = new Vue({
 //     el: '#app'
 // });
+
+jQuery(document).ready(function(){
+           jQuery('#ajaxSubmit').click(function(e){
+              e.preventDefault();
+              alert('hola app');
+              $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                 }
+             });
+           });
+         });

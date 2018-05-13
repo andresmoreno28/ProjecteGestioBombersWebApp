@@ -16,8 +16,7 @@ class CreateVehicleOwnersTable extends Migration
         Schema::create('vehicle_owners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            $table->unsignedInteger('telefon');
-            $table->dateTime('final_renting');
+            $table->string('telefon')->nullable();
             $table->timestamps();
         });
     }

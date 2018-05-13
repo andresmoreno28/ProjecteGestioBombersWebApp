@@ -17,6 +17,7 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
+      'user_id',
         'codi',
         'matricula',
         'matricula_data',
@@ -42,7 +43,8 @@ class Vehicle extends Model
         'roda_cadenes',
         'vehicle_type_id',
         'vehicle_owner_id',
-        'vehicle_insurer_id'
+        'vehicle_insurer_id',
+        'final_renting'
     ];
 
     /**
@@ -103,8 +105,8 @@ class Vehicle extends Model
     {
       $users=$this->belongsTo('App\User','user_id','id','users');
 
-      $x = $this->user->region['codi'].".".$this->user['codi_parc'].".".$this['matricula'];//S'ha dafegir codi vehicle i canviar matricula daquesta funcio
-        return $this->user->region['codi'].".".$this->user['codi_parc'].".".$this['matricula'];
+      //S'ha dafegir codi vehicle i canviar matricula daquesta funcio
+        return $this->user['region_id'].".".$this->user['codi_parc'].".".$this['codi'];
     }
 
     /**

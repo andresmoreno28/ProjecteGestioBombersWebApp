@@ -39,14 +39,26 @@
             </div>
         @endif
 
+        {{-- Warning --}}
+        @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show">
+                {{ session('warning') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <!-- Taula de Materials -->
         <div class="row">
             <div class="col-xs-12 col-12">
-                <h3><span class="text-info">TODO:</span> agrupacions per vehicle/parc i contenidor amb material?</h3>
                 <!-- Navegació (apartats) -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="vehicles-tab" data-toggle="tab" href="#vehicles" role="tab" aria-controls="vehicles" aria-selected="true">Vehicles</a>
+                        <a class="nav-link active" id="no-assignats-tab" data-toggle="tab" href="#no-assignats" role="tab" aria-controls="no-assignats" aria-selected="true">No assignats</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="vehicles-tab" data-toggle="tab" href="#vehicles" role="tab" aria-controls="vehicles" aria-selected="true">Vehicles</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Parcs</a>
@@ -54,10 +66,65 @@
                   </ul>
                   <!-- Apartats -->
                   <div class="tab-content" id="myTabContent">
+                    <!-- NO ASSIGNATS -->
+                    <div class="tab-pane fade show active" id="no-assignats" role="tabpanel" aria-labelledby="no-assignats-tab">
+                        <div class="container-fluid mt-2">
+                            <div class="row">
+                                <div class="col-xs-12 col-12">
+                                    <table class="table table-bordered table-striped">
+                                        <caption><small>Llista de contenidors no assignats (buits).</small></caption>
+                                        <thead class="thead-dark">
+                                            <tr style="border-bottom:3px solid #dc3545;">
+                                                <th scope="col">Nom</th>
+                                                <th scope="col">Ubicat (a)</th>
+                                                <th scope="col">Contingut (en)</th>
+                                                <th scope="col">Materials</th>
+                                                <th scope="col">Acció</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($containersN as $containerN)
+                                                <tr>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td class="text-right">
+                                                        <!-- Editar -->
+                                                        <a class="btn btn-xs btn-default" href="{{ action('ContainerController@edit', ['id' => $containerN->id]) }}">
+                                                            <i class="fas fa-pencil-alt"></i> Editar
+                                                        </a>
+                                                        <!-- Esborrar -->
+                                                        <div class="d-inline-block">
+                                                            <form action="{{ action('ContainerController@destroy', ['id' => $containerN->id]) }}" method="POST" class="form-delete">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <input type="hidden" name="nom" value="{{-- $containerN->referencia --}}">
+                                                                <input type="hidden" name="nom" value="{{-- $containerN->nom --}}">
+                                                                <button type="submit" class="btn btn-xs btn-danger">
+                                                                    <i class="fas fa-times"></i> Eliminar
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6">No hi ha contenidors sense assignar.</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- container-fluid -->
+                    </div>
+
                     <!-- VEHICLES -->
-                    <div class="tab-pane fade show active" id="vehicles" role="tabpanel" aria-labelledby="vehicles-tab">
+                    <div class="tab-pane fade" id="vehicles" role="tabpanel" aria-labelledby="vehicles-tab">
 
                     </div>
+
                     <!-- PARCS -->
                     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                         
@@ -91,7 +158,7 @@
                 <!-- Avís -->
                 <p><strong>Està segur/ra d'esborrar el contenidor?</strong><br>
                 Aquesta acció és irreversible.</p>
-                <!-- Info del material -->
+                <!-- Info del container -->
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Informació</h6>
@@ -139,7 +206,7 @@
         $('#modalEsborrarNom').text(Nom);
         $('#modalEsborrarReferencia').text(Referencia);
 
-        // Obrir el modal que serà emprat per eborrar el material (si es fa clic
+        // Obrir el modal que serà emprat per eborrar el container (si es fa clic
         // al botó amb id="delete-btn").
         $('#contenidorEsborrarModal').modal().on('click', '#delete-btn', function() {
             form.submit();

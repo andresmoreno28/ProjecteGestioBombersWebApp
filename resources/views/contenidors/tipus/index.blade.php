@@ -23,7 +23,7 @@
         <!-- Botó Afegir -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
-                <a href="{{ action('ContainerNameController@create') }}" class="btn btn-danger bg-dark">
+                <a href="{{ action('ContainerNameController@create') }}" class="btn btn-dark">
                   <p class="my-0 underline-small"><i class="fas fa-archive"></i> Afegir un tipus</p>
                 </a>
             </div><!-- /.col -->
@@ -42,21 +42,21 @@
         <!-- Taula de Tipus -->
         <div class="row">
             <div class="col-xs-12 col-12">
-                <table class="table table-striped table-bordered">
-                    <caption><small>Llista de tipus.</small></caption>
+                <table class="table table-bordered table-striped">
+                    <caption><small>Llistat dels tipus de contenidors.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
-                            <th>Nom</th>
-                            <th>Acció</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Acció</th>
                         </tr>
                     </thead>
-                    @forelse ($types as $type)
-                        <tbody>
+                    <tbody>
+                        @forelse ($types as $type)
                             <tr>
                                 <td>{{ $type->nom }}</td>
                                 <td class="text-right">
                                     <!-- Editar -->
-                                    <a class="btn btn-xs btn-default" href="{{ action('ContainerNameController@edit', ['id' => $type->id]) }}">
+                                    <a class="btn btn-default" href="{{ action('ContainerNameController@edit', ['id' => $type->id]) }}">
                                         <i class="fas fa-pencil-alt"></i> Editar
                                     </a>
                                     <!-- Esborrar -->
@@ -65,19 +65,19 @@
                                             @method('DELETE')
                                             @csrf
                                             <input type="hidden" name="nom" value="{{ $type->nom }}">
-                                            <button type="submit" class="btn btn-xs btn-danger">
+                                            <button type="submit" class="btn btn-danger">
                                                 <i class="fas fa-times"></i> Eliminar
                                             </button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
-                        </tbody>
-                    @empty
-                        <tr>
-                            <td colspan="6">Encara no hi ha tipus de contenidors. <a href="{{ action('ContainerNameController@create') }}">Afegir tipus</a>.</td>
-                        </tr>
-                    @endforelse
+                        @empty
+                            <tr>
+                                <td colspan="6">Encara no hi ha tipus de contenidors. <a href="{{ action('ContainerNameController@create') }}">Afegir tipus</a>.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div><!-- /.col -->
         </div><!-- /.row -->

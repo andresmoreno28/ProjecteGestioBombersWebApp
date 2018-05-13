@@ -1,49 +1,102 @@
-<p class="text-danger"><small>Camps obligatoris <strong> * </strong>.</small></p>
-
 @csrf
 
-<!-- Referència -->
-<div class="form-group">
-    <label for="matRef">Referència <span class="text-danger"><strong>*</strong></span></label>
-    <input type="text" name="referencia" value="{{$material->referencia or old('referencia') }}" class="form-control" id="matRef" aria-describedby="matRefHelp" required>
-    <small id="matRefHelp" class="form-text text-muted">Referència del material (ha de ser única).</small>
-</div>
+<!-- CONTENIDOR PARE + NOM -->
+<h6>Dades del contenidor</h6>
+<div class="form-row">
+    <!-- Pare -->
+    <div class="form-group col-md-4">
+        <label for="pareContenidor">Pare</label>
+        <select name="container_parent_id" class="form-control" id="pareContenidor" aria-describedby="pareContenidorHelp">
+            @if(isset($container))
+                <option value="cap" {{ ($container->container_parent_id or old('container_parent_id')) == null ? 'selected' : '' }}>Cap</option>
+                <option value="1" {{ ($container->container_parent_id or old('container_parent_id')) == 1 ? 'selected' : '' }}>Nom 1</option>
+                <option value="0" {{ ($container->container_parent_id or old('container_parent_id')) == 0 ? 'selected' : '' }}>Nom 2</option>
+            @else
+                <option value="cap" selected>Cap</option>
+                <option value="1">Nom 1</option>
+                <option value="0">Nom 2</option>
+            @endif
+        </select>
+        <small id="pareContenidorHelp" class="form-text text-muted">El contenidor on hi serà contingut.</small>
+    </div>
 
-<!-- Nom -->
-<div class="form-group">
-    <label for="matNom">Nom <span class="text-danger"><strong>*</strong></span></label>
-    <input type="text" name="nom" value="{{ $material->nom or old('nom') }}" class="form-control" id="matNom" aria-describedby="matNomHelp" required>
-    <small id="matNomHelp" class="form-text text-muted">Nom del material.</small>
-</div>
-
-<!-- Quantitat (prevista) -->
-<div class="form-group">
-    <label for="matPre">Quantitat prevista <span class="text-danger"><strong>*</strong></span></label>
-    <input type="number" min="0" name="quantitat_prevista" value="{{ $material->quantitat_prevista or old('quantitat_prevista') }}" class="form-control" id="matPre" aria-describedby="matPreHelp" required>
-    <small id="matPreHelp" class="form-text text-muted">Quantitat prevista que s'espera que hi hagi del material.</small>
-</div>
-
-<!-- Quantitat (real) -->
-<div class="form-group">
-    <label for="matRea">Quantitat real</label>
-    <input type="number" min="0" name="quantitat" value="{{ $material->quantitat or old('quantitat') }}" class="form-control" id="matRea" aria-describedby="matReaHelp">
-    <small id="matReaHelp" class="form-text text-muted">Quantitat real que hi ha del material.</small>
-</div>
-
-<!-- És del parc? -->
-<div class="form-group">
-    <label for="matPar">És del parc?</label>
-    <select name="es_del_parc" class="form-control" id="matPar" aria-describedby="matParHelp">
-        @if(isset($material))
-            <option value="1" {{ ($material->es_del_parc or old('es_del_parc')) == 1 ? 'selected' : '' }}>Sí</option>
-            <option value="0" {{ ($material->es_del_parc or old('es_del_parc')) == 0 ? 'selected' : '' }}>No</option>
+    <!-- Nom -->
+    <div class="form-group col-md-8">
+        <label for="nomContenidor">Tipus</label>
+        <select name="container_name_id" class="form-control" id="nomContenidor" aria-describedby="nomContenidorHelp" required {{ $containerNames->isEmpty() ? 'disabled' : '' }}>
+            @forelse ($containerNames as $containerName)
+                @if(isset($container))
+                    <option value="{{ $containerName->id }}" {{ ($container->container_name_id or old('container_name_id')) == $containerName->id ? 'selected' : '' }}>{{ $containerName->nom }}</option>
+                @else
+                    <option value="{{ $containerName->id }}">{{ $containerName->nom }}</option>
+                @endif
+            @empty
+                <option selected>No hi ha tipus de contenidors...</option>
+            @endforelse
+        </select>
+        <small id="nomContenidorHelp" class="form-text text-muted">El tipus de contenidor.</small>
+    </div>
+</div><!-- /.form-row -->
+<hr class="mb-4">
+<!-- CONTENIDOR VEHICLE - USUARI -->
+<h6>Ubicació del contenidor</h6>
+<div class="form-row">
+    <!-- Ubicació -->
+    <div class="form-group col-md-4">
+        @if(isset($container))
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="es_dun_vehicle" id="ubicacioVehicle" value="1"
+                    {{ ($container->es_dun_vehicle or old('es_dun_vehicle')) == 1 ? 'checked' : '' }}>
+                <label class="form-check-label" for="ubicacioVehicle">Vehicle</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="es_dun_vehicle" id="ubicacioParc" value="0"
+                    {{ ($container->es_dun_vehicle or old('es_dun_vehicle')) == 0 ? 'checked' : '' }}>
+                <label class="form-check-label" for="ubicacioParc">Parc</label>
+            </div>
         @else
-            <option value="1" selected>Sí</option>
-            <option value="0">No</option>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="es_dun_vehicle" id="ubicacioVehicle" value="1" checked>
+                <label class="form-check-label" for="ubicacioVehicle">Vehicle</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="es_dun_vehicle" id="ubicacioParc" value="0">
+                <label class="form-check-label" for="ubicacioParc">Parc</label>
+            </div>
         @endif
-    </select>
-    <small id="matParHelp" class="form-text text-muted">El material pertany al parc?</small>
-</div>
+        <small class="form-text text-muted">Lloc en el que s'ubica el contenidor.</small>
+    </div>
+    <!-- Vehicle -->
+    <div id="vehicleContenidorSelect" class="form-group col-md-8">
+        <select name="vehicle_id" class="form-control" id="vehicleContenidor" aria-describedby="vehicleContenidorHelp">
+            @if(isset($container))
+                <option value="cap" {{ ($container->vehicle_id or old('vehicle_id')) == null ? 'selected' : '' }}>Seleccionar vehicle...</option>
+                <option value="1" {{ ($container->vehicle_id or old('vehicle_id')) == 1 ? 'selected' : '' }}>Nom 1</option>
+                <option value="0" {{ ($container->vehicle_id or old('vehicle_id')) == 0 ? 'selected' : '' }}>Nom 2</option>
+            @else
+                <option value="cap" selected>Seleccionar vehicle...</option>
+                <option value="1">Nom 1</option>
+                <option value="0">Nom 2</option>
+            @endif
+        </select>
+        <small id="vehicleContenidorHelp" class="form-text text-muted">El vehicle al qual pertany el contenidor.</small>
+    </div>
+    <!-- Parc -->
+    <div id="parcContenidorSelect" class="form-group col-md-8" style="display:none">
+        <select name="user_id" class="form-control" id="parcContenidor" aria-describedby="parcContenidorHelp">
+            @if(isset($container))
+                <option value="cap" {{ ($container->user_id or old('user_id')) == null ? 'selected' : '' }}>Seleccionar parc...</option>
+                <option value="1" {{ ($container->user_id or old('user_id')) == 1 ? 'selected' : '' }}>Nom 1</option>
+                <option value="0" {{ ($container->user_id or old('user_id')) == 0 ? 'selected' : '' }}>Nom 2</option>
+            @else
+                <option value="cap" selected>Seleccionar parc...</option>
+                <option value="1">Nom 1</option>
+                <option value="0">Nom 2</option>
+            @endif
+        </select>
+        <small id="parcContenidorHelp" class="form-text text-muted">El parc al qual pertany el contenidor.</small>
+    </div>
+</div><!-- /.form-row -->
 
 <!-- Botó (submit) -->
 <button type="submit" class="btn btn-danger bg-dark">

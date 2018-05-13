@@ -54,12 +54,12 @@ class ContainerNameController extends Controller
             'nom' => 'required|string'
         ]);
 
-        // Crear el tipus (la validació ha sortit bé).
+        // Crear el nom del contenidor (la validació ha sortit bé).
         $type = ContainerName::create([
             'nom' => $data['nom']
         ]);
 
-        // Vista amb el llistat del material.
+        // Vista amb el llistat dels tipus de contenidors.
         return redirect()->action('ContainerNameController@index');
     }
 

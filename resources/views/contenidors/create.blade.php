@@ -13,8 +13,8 @@
             <nav aria-label="breadcrumb bg-transparent">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
-                    <li class="breadcrumb-item" aria-current="page">Materials</li>
-                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+                    <li class="breadcrumb-item" aria-current="page">Contenidors</li>
+                    <li class="breadcrumb-item active" aria-current="page">Afegir</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
@@ -36,11 +36,10 @@
             <div class="col-xs-12 col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Editar material</h5>
-                        <form action="{{ action('MaterialController@update', ['id' => $material->id]) }}" method="POST">
-                            @method('PATCH')
-                            @include('materials.partials.form', [
-                                'submitButton' => 'Editar'
+                        <h5 class="card-title">Afegir Contenidor</h5>
+                        <form action="{{ action('ContainerController@store') }}" method="POST">
+                            @include('contenidors.partials.form', [
+                                'submitButton' => 'Afegir'
                             ])
                         </form>
                     </div>
@@ -56,6 +55,22 @@
         </div><!-- /.row -->
     </div><!-- /.col -->
 </div><!-- /.container -->
+@endsection
 
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+$(function() {
+    // Fem que el "radio button" mostri el "select" de vehicles o parcs segons
+    // quina opció s'hagi seleccionat.
+    // Com per defecte el valor seleccionat és el dels vehicles, assignem
+    // style="display:none" als parcs, ja que el toggle ho activa i desactiva
+    // de forma automàtica.
+    $("input[name='es_dun_vehicle']:radio").change(function() {
+        $("#vehicleContenidorSelect").toggle($(this).val() == "1");
+        $("#parcContenidorSelect").toggle($(this).val() == "0");
+    });
+});
+</script>
 @endsection
