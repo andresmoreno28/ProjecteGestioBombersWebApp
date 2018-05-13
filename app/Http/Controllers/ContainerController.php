@@ -172,8 +172,8 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
-        $container = Container::findOrFail($id);
-        return view('contenidors.edit', compact('container'));
+        $containerEdit = Container::findOrFail($id);
+        return view('contenidors.edit', compact('containerEdit'));
     }
 
     /**
@@ -188,13 +188,33 @@ class ContainerController extends Controller
         // Obtenir el contenidor a actualitzar.
         $container = Container::findOrFail($id);
 
+        // Controlar si és un contenidor pare.
+        if ($request['container_parent_id'] == "cap") {
+            $request['container_parent_id'] = null;
+        }
+
+        // Controlar la ubicació del contenidor ("radio button").
+        if ($request['es_dun_vehicle'] == 1) {
+            $request['user_id'] = null;
+        } else {
+            $request['vehicle_id'] = null;
+        }
+
+        // Controlar els valors de la ubicació.
+        if ($request['user_id'] == "cap") {
+            $request['user_id'] = null;
+        }
+        if ($request['vehicle_id'] == "cap") {
+            $request['vehicle_id'] = null;
+        }
+
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
+            'container_parent_id' => 'nullable',
+            'container_name_id'   => 'required',
             'es_dun_vehicle'      => 'required|boolean',
-            'container_parent_id' => 'required|integer',
-            'container_name_id'   => 'required|integer',
-            'user_id'             => 'required|integer',
-            'vehicle_id'          => 'required|integer'
+            'vehicle_id'          => 'nullable',
+            'user_id'             => 'nullable'
         ]);
 
         // Actualitzar el contenidor (la validació ha sortit bé).

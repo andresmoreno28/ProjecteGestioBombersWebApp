@@ -132,10 +132,14 @@
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Informació</h6>
                         <dl class="row">
-                            <dt class="col-sm-3">Nom</dt>
-                            <dd id="modalEsborrarNom" class="col-sm-9"></dd>
-                            <dt class="col-sm-3">Referència</dt>
-                            <dd id="modalEsborrarReferencia" class="col-sm-9"></dd>
+                            <dt class="col-sm-3">Grup</dt>
+                            <dd id="modalEsborrarGrup" class="col-sm-9"></dd>
+                            <dt class="col-sm-3">Tipus</dt>
+                            <dd id="modalEsborrarTipus" class="col-sm-9"></dd>
+                            <dt class="col-sm-3">Ubicat</dt>
+                            <dd id="modalEsborrarUbicat" class="col-sm-9"></dd>
+                            <dt class="col-sm-3">Contingut</dt>
+                            <dd id="modalEsborrarContingut" class="col-sm-9"></dd>
                         </dl>
                     </div>
                 </div>
@@ -169,11 +173,15 @@
 
         // Guardar les dades del formulari (per emplenar el modal).
         // Els índex [0] van segons l'ordre dels <imputs></imputs>.
-        var Referencia = formObject[2].value;
-        var Nom        = formObject[3].value;
+        var tipus     = formObject[2].value;
+        var ubicat    = formObject[3].value;
+        var contingut = formObject[4].value;
+        var grup      = formObject[5].value;
         
-        $('#modalEsborrarNom').text(Nom);
-        $('#modalEsborrarReferencia').text(Referencia);
+        $('#modalEsborrarTipus').text(tipus);
+        $('#modalEsborrarUbicat').text(ubicat);
+        $('#modalEsborrarContingut').text(contingut);
+        $('#modalEsborrarGrup').text(grup);
 
         // Obrir el modal que serà emprat per eborrar el container (si es fa clic
         // al botó amb id="delete-btn").

@@ -38,8 +38,26 @@
                                     <form action="{{ action('ContainerController@destroy', ['id' => $container->id]) }}" method="POST" class="form-delete">
                                         @method('DELETE')
                                         @csrf
-                                        <input type="hidden" name="nom" value="{{-- $containerN->referencia --}}">
-                                        <input type="hidden" name="nom" value="{{-- $containerN->nom --}}">
+                                        {{-- Tipus --}}
+                                        <input type="hidden" name="tipus" value="{{ $container['container_name']['nom'] }}">
+                                        {{-- Ubicat --}}
+                                        @if (isset($container['vehicle']))
+                                            <input type="hidden" name="ubicat" value="{{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}">
+                                        @elseif (isset($container['user']))
+                                            <input type="hidden" name="ubicat" value="{{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}">
+                                        @else
+                                            <input type="hidden" name="ubicat" value="No assignat">
+                                        @endif
+                                        {{-- Contingut --}}
+                                        <input type="hidden" name="contingut" value="{{ $container['parent']['container_name']['nom'] }}">
+                                        {{-- Grup --}}
+                                        @if (isset($container['vehicle']))
+                                            <input type="hidden" name="grup" value="Vehicles">
+                                        @elseif (isset($container['user']))
+                                            <input type="hidden" name="grup" value="Parcs">
+                                        @else
+                                            <input type="hidden" name="grup" value="No assignats">
+                                        @endif
                                         <button type="submit" class="btn btn-xs btn-danger">
                                             <i class="fas fa-times"></i> Eliminar
                                         </button>
