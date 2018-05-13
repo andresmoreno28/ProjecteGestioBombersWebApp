@@ -48,7 +48,7 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-				      	@php 
+				      		@php 
 				        	
 				        		$materialsFromContainers = $contenidor->materials;
 				        	
