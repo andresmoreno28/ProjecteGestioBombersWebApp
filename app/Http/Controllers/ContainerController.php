@@ -59,11 +59,7 @@ class ContainerController extends Controller
      */
     public function create()
     {
-        // Crear el contenidor (automàticament).
-        $container = Container::create();
-
-        // Vista amb el llistat de contenidors.
-        return redirect()->action('ContainerController@index');
+        return view('contenidors.create');
     }
 
     /**
@@ -73,7 +69,26 @@ class ContainerController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'container_parent_id' => 'nullable|integer',
+            'container_name_id'   => 'nullable|integer',
+            'es_dun_vehicle'      => 'required|boolean',
+            'vehicle_id'          => 'nullable|integer',
+            'user_id'             => 'nullable|integer'
+        ]);
+
+        // Crear el contenidor (la validació ha sortit bé).
+        $type = ContainerName::create([
+            'container_parent_id' => $data['container_parent_id'],
+            'container_name_id'   => $data['container_name_id'],
+            'es_dun_vehicle'      => $data['es_dun_vehicle'],
+            'vehicle_id'          => $data['vehicle_id'],
+            'user_id'             => $data['user_id']
+        ]);
+
+        // Vista amb el llistat dels tipus de contenidors.
+        return redirect()->action('ContainerNameController@index');
     }
 
     /**
