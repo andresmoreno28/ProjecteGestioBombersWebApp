@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Container;
+use App\ContainerName;
+use App\Material;
+use App\User;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -26,25 +30,26 @@ class ContainerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $containersN = Container::where('container_parent_id', '=', null)
-            ->where('user_id', '=', null)
+    {   
+        // Si no hi ha assignat cap parc ni cap usuari, diem que el contendor
+        // està per assignar.
+        $containersN = Container::where('user_id', '=', null)
             ->where('vehicle_id', '=', null)
-            ->where('container_name_id', '=', null)
             ->get();
+        // Si no és d'un vehicle (0) i té assignat un usuari, diem que el contenidor
+        // forma part del grup dels usuaris (parcs).
         $containersU = Container::where('es_dun_vehicle', '=', 0)
-            ->where('container_parent_id', '!=', null)
             ->where('user_id', '!=', null)
-            ->where('vehicle_id', '!=', null)
-            ->where('container_name_id', '!=', null)
             ->get();
+        
+        // Si és d'un vehicle (1) i té assignat un vehicle, diem que el contenidor
+        // forma part del grup dels vehicles.
         $containersV = Container::where('es_dun_vehicle', '=', 1)
-            ->where('container_parent_id', '!=', null)
-            ->where('user_id', '!=', null)
             ->where('vehicle_id', '!=', null)
-            ->where('container_name_id', '!=', null)
             ->get();
 
+        // Vista amb el llistat de contenidors. A la qual li passem arrays amb
+        // dades de contenidors per assignar, de vehicles i d'usuaris.
         return view('contenidors.index', compact(
             'containersN',
             'containersU',
@@ -58,8 +63,31 @@ class ContainerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('contenidors.create');
+    {   
+        // Contenidors
+        $containers = Container::all();
+
+        // Noms de contenidors
+        $containerNames = ContainerName::all();
+
+        // Usuaris (parcs)
+        $users = User::all();
+
+        // Vehicles
+        $vehicles = Vehicle::all();
+
+        // Materials
+        // ...
+
+        // Si no hi ha noms de contenidors creats, no es permetrà accedir a la
+        // pàgina de creació.
+        if ($containerNames->isEmpty()) {
+            // Vista amb el llistat de contenidors.
+            return back()->with('warning', "No pot crear contenidors perquè encara no hi ha tipus d'aquests.");
+        } else {
+            // Vista de creació de contenidors.
+            return view('contenidors.create');
+        }
     }
 
     /**
@@ -72,7 +100,7 @@ class ContainerController extends Controller
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
             'container_parent_id' => 'nullable|integer',
-            'container_name_id'   => 'nullable|integer',
+            'container_name_id'   => 'required|integer',
             'es_dun_vehicle'      => 'required|boolean',
             'vehicle_id'          => 'nullable|integer',
             'user_id'             => 'nullable|integer'
@@ -87,7 +115,7 @@ class ContainerController extends Controller
             'user_id'             => $data['user_id']
         ]);
 
-        // Vista amb el llistat dels tipus de contenidors.
+        // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerNameController@index');
     }
 

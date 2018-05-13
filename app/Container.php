@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\User;
 use App\ContainerName;
 use App\Material;
+use App\User;
 use App\Vehicle;
 use Illuminate\Database\Eloquent\Model;
 
