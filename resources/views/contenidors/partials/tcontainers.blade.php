@@ -26,7 +26,7 @@
                                     No assignat
                                 @endif
                             </td>
-                            <td>...</td>
+                            <td>{{ $container['parent']['container_name']['nom'] }}</td>
                             <td>...</td>
                             <td class="text-right">
                                 <!-- Editar -->

@@ -15,7 +15,15 @@
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
                     <option value="{{ $container->id }}" {{ ($containerEdit->container_parent_id or old('container_parent_id')) == $container->id ? 'selected' : '' }}>
-                        {{ $container->container_name->nom }}
+                        {{ $container->container_name->nom.', ' }}
+                        {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
+                        @if (isset($container['vehicle']))
+                            {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                        @elseif (isset($container['user']))
+                            {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
+                        @else
+                            No assignat
+                        @endif
                     </option>
                 @else
                     <option value="{{ $container->id }}">
@@ -100,7 +108,9 @@
                             {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @else
-                    <option value="{{ $vehicle->id }}">{{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})</option>
+                    <option value="{{ $vehicle->id }}">
+                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                    </option>
                 @endif
             @endforeach
         </select>
