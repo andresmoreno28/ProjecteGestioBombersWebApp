@@ -104,8 +104,8 @@ class Vehicle extends Model
     {
       $users=$this->belongsTo('App\User','user_id','id','users');
 
-      $x = $this->user->region['codi'].".".$this->user['codi_parc'].".".$this['matricula'];//S'ha dafegir codi vehicle i canviar matricula daquesta funcio
-        return $this->user->region['codi'].".".$this->user['codi_parc'].".".$this['matricula'];
+      //S'ha dafegir codi vehicle i canviar matricula daquesta funcio
+        return $this->user['region_id'].".".$this->user['codi_parc'].".".$this['codi'];
     }
 
     /**

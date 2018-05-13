@@ -66,6 +66,7 @@ class VehicleController extends Controller
         'vehicle_type_id'    => 'required',
         'asseg_tipus'        => 'required',
         'roda_cadenes'       => 'required',
+        'codi'               => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -75,7 +76,10 @@ class VehicleController extends Controller
       if ($request['matricula_tercera']==null){
         $request['matricula_tercera']=0;
       }
+      $id = Auth::id();
       Vehicle::create([
+        'codi'                    => $data['codi'],
+        'user_id'                 => $id,
         'matricula'               => $data['matricula'],
         'marca_model'             => $data['marca_model'],
         'roda_cadenes'            => $data['roda_cadenes'],
@@ -168,6 +172,7 @@ class VehicleController extends Controller
           'vehicle_type_id'    => 'required',
           'asseg_tipus'        => 'required',
           'roda_cadenes'       => 'required',
+          'codi'               => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -177,7 +182,10 @@ class VehicleController extends Controller
       if ($request['matricula_tercera']==null){
         $request['matricula_tercera']=0;
       }
+      $id = Auth::id();
+
       $vehicle->update([
+        'codi'                    => $data['codi'],
         'matricula'               => $data['matricula'],
         'marca_model'             => $data['marca_model'],
         'roda_cadenes'            => $data['roda_cadenes'],
@@ -233,7 +241,7 @@ class VehicleController extends Controller
       $vehicle = Vehicle::findOrFail($id);
       //$img = new qrImage;
       //create image from text
-      
+
       //$img->createImage($text);
 
       return view('vehicles.qr', ['vehicle' => $vehicle]);
