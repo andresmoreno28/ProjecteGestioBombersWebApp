@@ -43,7 +43,8 @@ class VehicleController extends Controller
       $asseguradores= VehicleInsurer::get();
       $vTypes= VehicleType::get();
       $vOwners= VehicleOwner::get();
-      return view('vehicles._form')->with(['vehicle'=>$vehicle,'asseguradores'=>$asseguradores, 'vTypes'=>$vTypes, 'vOwners'=>$vOwners]);
+      $users= User::get();
+      return view('vehicles._form')->with(['vehicle'=>$vehicle,'asseguradores'=>$asseguradores, 'vTypes'=>$vTypes, 'vOwners'=>$vOwners, 'users'=>$users]);
     }
 
     /**
@@ -66,7 +67,8 @@ class VehicleController extends Controller
         'vehicle_type_id'    => 'required',
         'asseg_tipus'        => 'required',
         'roda_cadenes'       => 'required',
-        'codi'               => 'required',
+        'codi'               => 'required|unique:vehicles',
+        'user_id'               => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -76,10 +78,10 @@ class VehicleController extends Controller
       if ($request['matricula_tercera']==null){
         $request['matricula_tercera']=0;
       }
-      $id = Auth::id();
+
       Vehicle::create([
+        'user_id'               => $data['user_id'],
         'codi'                    => $data['codi'],
-        'user_id'                 => $id,
         'matricula'               => $data['matricula'],
         'marca_model'             => $data['marca_model'],
         'roda_cadenes'            => $data['roda_cadenes'],
@@ -137,7 +139,9 @@ class VehicleController extends Controller
       $asseguradores= VehicleInsurer::get();
       $vTypes= VehicleType::get();
       $vOwners= VehicleOwner::get();
-      return view('vehicles._form', ['vehicle' => $vehicle,'asseguradores'=>$asseguradores, 'vTypes'=>$vTypes, 'vOwners'=>$vOwners]);
+      $users= User::get();
+
+      return view('vehicles._form', ['vehicle' => $vehicle,'asseguradores'=>$asseguradores, 'vTypes'=>$vTypes, 'vOwners'=>$vOwners, 'users'=>$users]);
     }
 
     /**
@@ -172,7 +176,8 @@ class VehicleController extends Controller
           'vehicle_type_id'    => 'required',
           'asseg_tipus'        => 'required',
           'roda_cadenes'       => 'required',
-          'codi'               => 'required',
+          'codi'               => 'required|unique:vehicles',
+          'user_id'               => 'required',
       ]);
 
       // Crear l'usuari (la validació ha sortit bé).
@@ -185,6 +190,7 @@ class VehicleController extends Controller
       $id = Auth::id();
 
       $vehicle->update([
+        'user_id'               => $data['user_id'],
         'codi'                    => $data['codi'],
         'matricula'               => $data['matricula'],
         'marca_model'             => $data['marca_model'],

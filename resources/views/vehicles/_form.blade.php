@@ -146,7 +146,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               {{-- Num xasis --}}
               <div class="form-group">
                 <label for="num_xasis">Numero del xasis <span class="text-danger"><strong>*</strong></span></label>
@@ -154,7 +154,7 @@
                 <small id="num_xasis" class="form-text text-muted">Numero del xasis del vehicle.</small>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
               {{-- Name --}}
               <div class="form-group">
                 <label for="codi">Codi del vehicle <span class="text-danger"><strong>*</strong></span></label>
@@ -162,7 +162,27 @@
                 <small id="codi" class="form-text text-muted">Matricula per la que es reconeix el vehicle.</small>
               </div>
             </div>
+            <div class="col-4">
+              {{-- Parc --}}
+              <div class="form-group">
+                <label for="codi">Parc al que pertany el vehicle <span class="text-danger"><strong>*</strong></span></label>
+                <select name="user_id"class="custom-select" id="inputGroupSelect07" required>
+                  @if ($vehicle->exists)
+                  @else
+                    <option selected disabled>Selecciona una opció</option>
+                  @endif
+                  @forelse ($users as $user)
+                    @if ($vehicle->user['name']==$user['name'])
+                      <option value="{{$user['id']}}" selected> {{$user['name']}} </option>
+                    @else
+                      <option value="{{$user['id']}}">{{$user['name']}}</option>
+                    @endif
+                  @empty
 
+                  @endforelse
+                </select>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-12">

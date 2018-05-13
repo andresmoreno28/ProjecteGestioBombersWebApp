@@ -17,6 +17,7 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
+      'user_id',
         'codi',
         'matricula',
         'matricula_data',
