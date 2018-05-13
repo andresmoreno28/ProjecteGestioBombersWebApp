@@ -13707,6 +13707,18 @@ __webpack_require__(12);
 //     el: '#app'
 // });
 
+jQuery(document).ready(function () {
+  jQuery('#ajaxSubmit').click(function (e) {
+    e.preventDefault();
+    alert('hola app');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    });
+  });
+});
+
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {

@@ -86,8 +86,8 @@
                                  href="{{ action('VehicleController@qr', ['id'=>$vehicle->id]) }}">
                                  <i class="fas fa-qrcode"></i>
                                </a>
-                              <a class="btn btn-xs btn-default"
-                                 href="{{ action('VehicleController@show', ['id'=>$vehicle->id]) }}">
+                              <a class="btn btn-xs btn-default" id="show" name="{{$vehicle->id}}"
+                                 ><!--href="{{ action('VehicleController@show', ['id'=>$vehicle->id]) }}"-->
                                  <i class="far fa-eye"></i>
                                </a>
                               <a class="btn btn-xs btn-default"
@@ -165,6 +165,129 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!-- SHOW (modal) -->
+<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="modalShow" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Dades vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body scroll">
+                <!-- Info del material -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class=" row">
+                          <div class="col-6">
+                            <dt >Matricula vehicle:</dt>
+                            <dd  id="showMatricula"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Data matriculacio:</dt>
+                            <dd id="showdMatricula"></dd>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Nº de xasis:</dt>
+                            <dd id="showdxasi"></dd>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Kilometres:</dt>
+                            <dd id="showKm"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Data kilometres:</dt>
+                            <dd id="showdKm"></dd>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Data manteniment:</dt>
+                            <dd id="showdM"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Data proper manteniment:</dt>
+                            <dd id="showdpm"></dd>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Data proper manteniment KM:</dt>
+                            <dd id="showpmk"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Hores de la bomba:</dt>
+                            <dd id="showhb"></dd>
+                          </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Potencia del motor:</dt>
+                            <dd id="showpot"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Eslora:</dt>
+                            <dd id="showeslo"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Places:</dt>
+                            <dd id="showpla"></dd>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Dimensio roda:</dt>
+                            <dd id="showdro"></dd>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Data ITV:</dt>
+                            <dd id="showitv"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Propera ITV:</dt>
+                            <dd id="showpitv"></dd>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Baixa prevista:</dt>
+                            <dd id="showbapre"></dd>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-6">
+                            <dt>Numero polisa:</dt>
+                            <dd id="shownpol"></dd>
+                          </div>
+                          <div class="col-6">
+                            <dt>Final renting:</dt>
+                            <dd id="showfren"></dd>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -195,5 +318,47 @@
             form.submit();
         });
     });
+    $("#show").click(function(e){
+      e.preventDefault();
+      var x= $(this).attr('name');
+      $.ajax({
+              type: 'get',
+              url: "vehicle/"+x,
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8',
+              success: function(content) {
+
+                $('#showMatricula').text(content.vehicle.matricula);
+                $('#showdMatricula').text(content.vehicle.matricula_data);
+                $('#showKm').text(content.vehicle.km);
+                $('#showdKm').text(content.vehicle.km_data);
+                $('#showdM').text(content.vehicle.manteniment_data);
+                $('#showdpm').text(content.vehicle.proper_manteniment_data);
+                $('#showdxasi').text(content.vehicle.num_xasis);
+                $('#showpmk').text(content.vehicle.proper_manteniment_km);
+                $('#showhb').text(content.vehicle.hores_bomba);
+                $('#showpot').text(content.vehicle.motor_potencia);
+                $('#showeslo').text(content.vehicle.eslora);
+                $('#showitv').text(content.vehicle.itv_vigor);
+                $('#showpitv').text(content.vehicle.itv_propera);
+                $('#showpla').text(content.vehicle.places);
+                $('#showbapre').text(content.vehicle.baixa_prevista);
+                $('#showdro').text(content.vehicle.roda_dimensio);
+                $('#shownpol').text(content.vehicle.asseg_num_polissa);
+                $('#showfren').text(content.vehicle.final_renting);
+
+
+
+                $('#showModal').modal().on('click', '#show', function() {
+
+                });
+              },
+              error: function(xhr, status, text) {
+                console.log(xhr);
+                  $("#content").text(text);
+              }
+          });
+    });
+
 </script>
 @endsection
