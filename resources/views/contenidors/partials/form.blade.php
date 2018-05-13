@@ -17,22 +17,24 @@
                 <option value="0">Nom 2</option>
             @endif
         </select>
-        <small id="pareContenidorHelp" class="form-text text-muted">El nom del contenidor.</small>
+        <small id="pareContenidorHelp" class="form-text text-muted">El contenidor on hi serà contingut.</small>
     </div>
 
     <!-- Nom -->
     <div class="form-group col-md-8">
-        <label for="nomContenidor">Nom</label>
-        <select name="container_name_id" class="form-control" id="nomContenidor" aria-describedby="nomContenidorHelp" required>
-            @if(isset($container))
-                <option value="1" {{ ($container->container_name_id or old('container_name_id')) == 1 ? 'selected' : '' }}>Nom 1</option>
-                <option value="0" {{ ($container->container_name_id or old('container_name_id')) == 0 ? 'selected' : '' }}>Nom 2</option>
-            @else
-                <option value="1" selected>Nom 1</option>
-                <option value="0">Nom 2</option>
-            @endif
+        <label for="nomContenidor">Tipus</label>
+        <select name="container_name_id" class="form-control" id="nomContenidor" aria-describedby="nomContenidorHelp" required {{ $containerNames->isEmpty() ? 'disabled' : '' }}>
+            @forelse ($containerNames as $containerName)
+                @if(isset($container))
+                    <option value="{{ $containerName->id }}" {{ ($container->container_name_id or old('container_name_id')) == $containerName->id ? 'selected' : '' }}>{{ $containerName->nom }}</option>
+                @else
+                    <option value="{{ $containerName->id }}">{{ $containerName->nom }}</option>
+                @endif
+            @empty
+                <option selected>No hi ha tipus de contenidors...</option>
+            @endforelse
         </select>
-        <small id="nomContenidorHelp" class="form-text text-muted">El nom del contenidor.</small>
+        <small id="nomContenidorHelp" class="form-text text-muted">El tipus de contenidor.</small>
     </div>
 </div><!-- /.form-row -->
 <hr class="mb-4">

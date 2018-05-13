@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Afegir Contenidor</h5>
-                        <form action="{{ action('MaterialController@store') }}" method="POST">
+                        <form action="{{ action('ContainerController@store') }}" method="POST">
                             @include('contenidors.partials.form', [
                                 'submitButton' => 'Afegir'
                             ])

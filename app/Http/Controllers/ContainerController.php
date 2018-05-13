@@ -86,7 +86,12 @@ class ContainerController extends Controller
             return back()->with('warning', "No pot crear contenidors perquè encara no hi ha tipus d'aquests.");
         } else {
             // Vista de creació de contenidors.
-            return view('contenidors.create');
+            return view('contenidors.create', compact(
+                'containers',
+                'containerNames',
+                'users',
+                'vehicles'
+            ));
         }
     }
 
