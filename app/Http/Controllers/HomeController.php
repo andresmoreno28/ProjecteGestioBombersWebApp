@@ -2,8 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Auth;
+use App\User;
+use App\Region;
+use Illuminate\Support\Facades\DB;
+use App\Vehicle;
+use App\VehicleInsurer;
+use App\VehicleType;
+use App\VehicleOwner;
+use Illuminate\Validation\Rule;
+use App\qrImage;
+use Illuminate\Http\Response;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +34,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $vehicles = Vehicle::where('donat_de_baixa', 0)->get();
+      $users= User::get();
+      return view('home', ['vehicles' => $vehicles, 'users'=>$users]);
+    }
+    public function filtre($id)
+    {
+        $vehicles= Vehicle::where('user_id', $id)->get();
+
+        return response()->json(['response' => 'success', 'vehicles' => $vehicles]);
     }
 }

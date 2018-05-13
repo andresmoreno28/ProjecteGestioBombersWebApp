@@ -22,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/vehicle/{id}', 'HomeController@filtre');
 
 Route::resource('user', 'UserController');
 Route::get('location/delete/{id}', 'LocationController@destroy');
@@ -33,6 +34,7 @@ Route::get('user/delete/{id}', 'UserController@destroy');
 Route::get('vehicle/delete/{id}', 'VehicleController@destroy');
 Route::get('vehicle/qr/{id}', 'VehicleController@qr');
 Route::get('vehicle/material/{id}', 'VehicleController@material');
+Route::delete('vehicle/{id}/del', 'VehicleController@destroy');
 
 // Gestió del material
 Route::resource('material', 'MaterialController');
