@@ -111,6 +111,16 @@ class ContainerController extends Controller
             'user_id'             => 'nullable|integer'
         ]);
 
+        // Controlar les dades de la ubicació del contenidor.
+        // Tindrem en compte el "radio button" seleccionat per assegurar-nos de
+        // que no sigui possible passar dades d'ubicació d'un vehicle i d'un
+        // usuari (parc) al mateix temps.
+        if ($data['es_dun_vehicle'] == 1) {
+            $data['user_id'] = null;
+        } else {
+            $data['es_dun_vehicle'] = null;
+        }
+
         // Crear el contenidor (la validació ha sortit bé).
         $type = ContainerName::create([
             'container_parent_id' => $data['container_parent_id'],

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -54,4 +56,5 @@ Route::get('backup/delete/{file_name}', 'BackupController@delete')->name('dbacku
 	return $pdf->download('informe.pdf');
 })->name('pdf');*/
 
-Route::get('/informes', 'PDFController@crearPDF')->name('report');
+Route::get('informes', 'PDFController@crearPDF')->name('report');
+

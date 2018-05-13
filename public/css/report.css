@@ -5,7 +5,7 @@ body {
 
 #header {
 	height: 100px;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -15,13 +15,13 @@ body {
 
 #eo {
 	margin-top: 130px;
-	border:2px solid green;
+	/* border:2px solid green; */
 	width: 100%;
 }
 
 #inventari {
 	width: 11.1%;
-	border: 2px solid black;
+	border: 3px solid black;
 	margin-top: -60px;
 	margin-left: 450px;
 	font-size: 22px;
@@ -31,7 +31,7 @@ body {
 
 #regio_parc_vehicle {
 	width: 11.1%;
-	border: 2px solid black;
+	border: 3px solid black;
 	margin-top: -60px;
 	margin-left: 600px;
 	font-size: 22px;
@@ -41,10 +41,25 @@ body {
 
 #data {
 	width: 11.1%;
-	border: 2px solid black;
+	border: 3px solid black;
 	margin-top: -60px;
 	margin-left: 750px;
 	font-size: 22px;
 	position: absolute;
 	text-align: center;
+}
+
+.celles_a_centrar {
+	text-align: center;
+}
+
+#contorn_contenidors {
+	text-align: center;
+	border: 3px solid black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	padding-left: 20px;
+	width: 28%;
+
 }

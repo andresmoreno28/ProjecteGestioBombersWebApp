@@ -12,6 +12,11 @@ use App\Material;
 
 class PDFController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,16 +29,23 @@ class PDFController extends Controller
 
     public function crearPDF()
     {
+      
         //Agafem el vehicle mitjançant el seu "id"
         $vehicle = Vehicle::findOrFail(1);
+
         //Agafem l'usuari a través de la seva relació amb el vehicle
         $user = $vehicle->user;
+
         //Agafem la regió a través de la seva relació amb l'usuari
         $region = $user->region;      
+
+        $contenidors = $vehicle->containers;
         
-        $contenedors = Container::all();
+       //$nomContenidor = Container::find(1)->nom;
+
         $materials = Material::all();
 
-        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenedors' => $contenedors, 'materials' => $materials]);
+        
+        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors, 'materials' => $materials]);
     }
 }
