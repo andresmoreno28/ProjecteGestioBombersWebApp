@@ -85,16 +85,18 @@
     </div>
     <!-- Parc -->
     <div id="parcContenidorSelect" class="form-group col-md-8" style="display:none">
-        <select name="user_id" class="form-control" id="parcContenidor" aria-describedby="parcContenidorHelp">
-            @if(isset($container))
-                <option value="cap" {{ ($container->user_id or old('user_id')) == null ? 'selected' : '' }}>Seleccionar parc...</option>
-                <option value="1" {{ ($container->user_id or old('user_id')) == 1 ? 'selected' : '' }}>Nom 1</option>
-                <option value="0" {{ ($container->user_id or old('user_id')) == 0 ? 'selected' : '' }}>Nom 2</option>
-            @else
-                <option value="cap" selected>Seleccionar parc...</option>
-                <option value="1">Nom 1</option>
-                <option value="0">Nom 2</option>
-            @endif
+        <select name="user_id" class="form-control" id="parcContenidor" aria-describedby="parcContenidorHelp" {{ $users->isEmpty() ? 'disabled' : '' }}>
+            @forelse ($users as $user)
+                @if(isset($container))
+                    <option value="{{ $user->id }}" {{ ($container->user_id or old('user_id')) == $user->id ? 'selected' : '' }}>
+                        {{ $user->codi_parc }}, {{ $user->name }}
+                    </option>
+                @else
+                    <option value="{{ $user->id }}">{{ $user->codi_parc }}, {{ $user->name }}</option>
+                @endif
+            @empty
+                <option selected>No hi ha vehicles...</option>
+            @endforelse
         </select>
         <small id="parcContenidorHelp" class="form-text text-muted">El parc al qual pertany el contenidor.</small>
     </div>
