@@ -32,12 +32,10 @@
                                 {{ $container['parent']['container_name']['nom'] }}
                                 {{-- Mostrar les dades del lloc on està contingut el contenidor. --}}
                                 @if (isset($container['parent']['vehicle']))
-                                    {{ $container['parent']['vehicle']['codi'] }}, {{ $container['parent']['vehicle']['type']['codi'] }}
+                                    , {{ $container['parent']['vehicle']['codi'] }}, {{ $container['parent']['vehicle']['type']['codi'] }}
                                 @elseif (isset($container['parent']['user']))
-                                    {{ $container['parent']['user']['codi_parc'] }}, {{ $container['parent']['user']['name'] }}
-                                @else
-                                    -
-                                @endif
+                                    , {{ $container['parent']['user']['codi_parc'] }}, {{ $container['parent']['user']['name'] }}
+                                @else @endif
                             </td>
                             <td>...</td>
                             <td class="text-right">

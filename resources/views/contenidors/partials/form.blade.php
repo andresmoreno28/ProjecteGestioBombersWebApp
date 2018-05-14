@@ -14,18 +14,21 @@
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    <option value="{{ $container->id }}"
-                        @if($container->id == $containerEdit['parent']['id'] or $container->id == old('container_parent_id')) selected @endif>
-                        {{ $container->container_name->nom.', ' }}
-                        {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
-                        @if (isset($container['vehicle']))
-                            {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
-                        @elseif (isset($container['user']))
-                            {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
-                        @else
-                            No assignat
-                        @endif
-                    </option>
+                    {{-- Un contenior no podrà ser inclòs dintre d'ell mateix. --}}
+                    @if($container->id != $containerEdit['id'])
+                        <option value="{{ $container->id }}"
+                            @if($container->id == $containerEdit['parent']['id'] or $container->id == old('container_parent_id')) selected @endif>
+                            {{ $container->container_name->nom.', ' }}
+                            {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
+                            @if (isset($container['vehicle']))
+                                {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                            @elseif (isset($container['user']))
+                                {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
+                            @else
+                                No assignat
+                            @endif
+                        </option>
+                    @endif
                 @else
                     <option value="{{ $container->id }}">
                         {{ $container->container_name->nom.', ' }}
