@@ -40,10 +40,8 @@ Route::delete('vehicle/{id}/del', 'VehicleController@destroy');
 Route::resource('material', 'MaterialController');
 
 // Gestió de Contenidors
-Route::group(['prefix'=>'container'], function () {
-    Route::resource('/', 'ContainerController');
-    Route::resource('types', 'ContainerNameController');
-});
+Route::resource('container', 'ContainerController');
+Route::resource('container/types', 'ContainerNameController');
 
 // Backup routes
 Route::get('backup', 'BackupController@index')->name('backup');
