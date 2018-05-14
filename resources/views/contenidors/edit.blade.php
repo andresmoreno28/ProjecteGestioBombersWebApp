@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Editar Contenidor</h5>
-                        <form action="{{ action('ContainerController@update', ['id' => $container->id]) }}" method="POST">
+                        <form action="{{ action('ContainerController@update', ['id' => $containerEdit->id]) }}" method="POST">
                             @method('PATCH')
                             @include('contenidors.partials.form', [
                                 'submitButton' => 'Editar'
@@ -56,6 +56,27 @@
         </div><!-- /.row -->
     </div><!-- /.col -->
 </div><!-- /.container -->
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+$(function() {
+    // RADIO BUTTON (ubicació)
+    // -----------------------
+    // Seleccionar la ubicació del contenidor quan carrega la pàgina (auto).
+    esDunVehicle = $("input[name='es_dun_vehicle']:checked").val();
+    if (esDunVehicle == 1) {
+        $("#vehicleContenidorSelect").toggle();
+    } else {
+        $("#parcContenidorSelect").toggle();
+    }
 
+    // Fem que el "radio button" mostri el "select" de vehicles o parcs segons
+    // quina opció s'hagi seleccionat (manual).
+    $("input[name='es_dun_vehicle']:radio").change(function() {
+        $("#vehicleContenidorSelect").toggle($(this).val() == "1");
+        $("#parcContenidorSelect").toggle($(this).val() == "0");
+    });
+});
+</script>
 @endsection

@@ -886,16 +886,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.6.7",
+            "version": "v5.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9"
+                "reference": "42c0854e00d6bb3346883d122b444fbf15a13ecb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
-                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/42c0854e00d6bb3346883d122b444fbf15a13ecb",
+                "reference": "42c0854e00d6bb3346883d122b444fbf15a13ecb",
                 "shasum": ""
             },
             "require": {
@@ -950,7 +950,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2018-04-26T16:09:18+00:00"
+            "time": "2018-05-10T17:15:15+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1796,16 +1796,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.6.6",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "e40a94f5d1224356a002c1f74643782e684caa17"
+                "reference": "60c6fbc27c9c2cbdf3c7da90b080a63d2599cd2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/e40a94f5d1224356a002c1f74643782e684caa17",
-                "reference": "e40a94f5d1224356a002c1f74643782e684caa17",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/60c6fbc27c9c2cbdf3c7da90b080a63d2599cd2d",
+                "reference": "60c6fbc27c9c2cbdf3c7da90b080a63d2599cd2d",
                 "shasum": ""
             },
             "require": {
@@ -1865,7 +1865,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2018-05-05T09:08:56+00:00"
+            "time": "2018-05-11T07:06:58+00:00"
         },
         {
             "name": "spatie/temporary-directory",
