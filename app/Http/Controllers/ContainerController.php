@@ -85,7 +85,7 @@ class ContainerController extends Controller
         $vehicles = Vehicle::all();
 
         // Materials
-        // ...
+        $materials = Material::all();
 
         // Si no hi ha noms de contenidors creats, no es permetrà accedir a la
         // pàgina de creació.
@@ -98,7 +98,8 @@ class ContainerController extends Controller
                 'containers',
                 'containerNames',
                 'users',
-                'vehicles'
+                'vehicles',
+                'materials'
             ));
         }
     }
@@ -187,13 +188,17 @@ class ContainerController extends Controller
         // Vehicles
         $vehicles = Vehicle::all();
 
+        // Materials
+        $materials = Material::all();
+
         // Vista d'edició de contenidors.
         return view('contenidors.edit', compact(
             'containerEdit',
             'containers',
             'containerNames',
             'users',
-            'vehicles'
+            'vehicles',
+            'materials'
     ));
     }
 
@@ -228,6 +233,19 @@ class ContainerController extends Controller
         if ($request['vehicle_id'] == "cap") {
             $request['vehicle_id'] = null;
         }
+
+        // Ubicar automàticament, si el contenidor pare està ubicat.
+        //$idPare            = $request['container_parent_id'];
+        //$contPare          = Container::findOrFail($idPare);
+        //$contPareUserId    = $contPare['user']['id'];
+        //$contPareVehicleId = $contPare['vehicle']['id'];
+
+        //if ($contPareVehicleId != null) {
+        //    $request['vehicle_id'] = $contPareVehicleId;
+        //}
+        //if ($contPareUserId != null) {
+        //    $request['user_id'] = $contPareUserId;
+        //}
 
         // Validar dades obtingudes del formulari.
         $data = $request->validate([

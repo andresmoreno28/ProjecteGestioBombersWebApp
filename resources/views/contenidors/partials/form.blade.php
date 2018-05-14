@@ -70,6 +70,7 @@
     </div>
 </div><!-- /.form-row -->
 <hr class="mb-4">
+
 <!-- CONTENIDOR VEHICLE - USUARI -->
 <h6>Ubicació del contenidor</h6>
 <div class="form-row">
@@ -143,6 +144,14 @@
             @endforeach
         </select>
         <small id="parcContenidorHelp" class="form-text text-muted">El parc al qual pertany el contenidor.</small>
+    </div>
+</div><!-- /.form-row -->
+<hr class="mb-4">
+
+<!-- CONTENIDOR VEHICLE - USUARI -->
+<h6>Materials</h6>
+<div class="form-row">
+    <div class="form-group col-md-4">
     </div>
 </div><!-- /.form-row -->
 
