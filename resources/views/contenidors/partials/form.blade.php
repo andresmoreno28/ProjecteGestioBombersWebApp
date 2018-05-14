@@ -14,7 +14,8 @@
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    <option value="{{ $container->id }}" {{ ($containerEdit->container_parent_id or old('container_parent_id')) == $container->id ? 'selected' : '' }}>
+                    <option value="{{ $container->id }}"
+                        @if($container->id == $containerEdit['parent']['id'] or $container->id == old('container_parent_id')) selected @endif>
                         {{ $container->container_name->nom.', ' }}
                         {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                         @if (isset($container['vehicle']))
@@ -52,7 +53,9 @@
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    <option value="{{ $containerName->id }}" {{ ($containerEdit->container_name_id or old('container_name_id')) == $containerName->id ? 'selected' : '' }}>
+                    
+                    <option value="{{ $containerName->id }}"
+                        @if($containerName->id == $containerEdit['container_name']['id'] or $containerName->id == old('container_name_id')) selected @endif>
                         {{ $containerName->nom }}
                     </option>
                 @else
@@ -95,17 +98,18 @@
         <small class="form-text text-muted">Lloc en el que s'ubica el contenidor.</small>
     </div>
     <!-- Vehicle -->
-    <div id="vehicleContenidorSelect" class="form-group col-md-8">
+    <div id="vehicleContenidorSelect" class="form-group col-md-8" style="display:none">
         <select name="vehicle_id" class="form-control" id="vehicleContenidor" aria-describedby="vehicleContenidorHelp">
-            <!-- Permetre que no hi hagi contenidor pare -->
+            <!-- Permetre que no hi hagi cap vehicle -->
             <option value="cap">----</option>
             <!-- Llistat dels vehicles -->
             @foreach ($vehicles as $vehicle)
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    <option value="{{ $vehicle->id }}" {{ ($containerEdit->vehicle_id or old('vehicle_id')) == $vehicle->id ? 'selected' : '' }}>
-                            {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                    <option value="{{ $vehicle->id }}"
+                        @if($vehicle->id == $containerEdit['vehicle']['id'] or $vehicle->id == old('vehicle_id')) selected @endif>
+                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @else
                     <option value="{{ $vehicle->id }}">
@@ -119,14 +123,15 @@
     <!-- Parc -->
     <div id="parcContenidorSelect" class="form-group col-md-8" style="display:none">
         <select name="user_id" class="form-control" id="parcContenidor" aria-describedby="parcContenidorHelp">
-            <!-- Permetre que no hi hagi contenidor pare -->
+            <!-- Permetre que no hi hagi cap parc -->
             <option value="cap">----</option>
-            <!-- Llistat dels vehicles -->
+            <!-- Llistat dels parcs -->
             @foreach ($users as $user)
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    <option value="{{ $user->id }}" {{ ($containerEdit->user_id or old('user_id')) == $user->id ? 'selected' : '' }}>
+                    <option value="{{ $user->id }}"
+                        @if($user->id == $containerEdit['user']['id'] or $user->id == old('user_id')) selected @endif>
                         {{ $user->codi_parc }}, {{ $user->name }}
                     </option>
                 @else

@@ -172,8 +172,29 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
+        // Obtenir el contenidor a editar.
         $containerEdit = Container::findOrFail($id);
-        return view('contenidors.edit', compact('containerEdit'));
+
+        // Contenidors
+        $containers = Container::all();
+
+        // Noms de contenidors
+        $containerNames = ContainerName::all();
+
+        // Usuaris (parcs)
+        $users = User::all();
+
+        // Vehicles
+        $vehicles = Vehicle::all();
+
+        // Vista d'edició de contenidors.
+        return view('contenidors.edit', compact(
+            'containerEdit',
+            'containers',
+            'containerNames',
+            'users',
+            'vehicles'
+    ));
     }
 
     /**
