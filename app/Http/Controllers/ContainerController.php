@@ -141,13 +141,25 @@ class ContainerController extends Controller
         ]);
 
         // Crear el contenidor (la validació ha sortit bé).
-        $type = Container::create([
+        $container = Container::create([
             'container_parent_id' => $data['container_parent_id'],
             'container_name_id'   => $data['container_name_id'],
             'es_dun_vehicle'      => $data['es_dun_vehicle'],
             'vehicle_id'          => $data['vehicle_id'],
             'user_id'             => $data['user_id']
         ]);
+
+        // Obtenir la ID del contenidor creat.
+        // Obtenir el contenidor creat.
+        $id        = $container->id;
+        $contCreat = Container::find($id);
+
+        // Obtenir els materials seleccionats (array).
+        $materials = $request['material_container'];
+
+        // Associar els materials amb el contenidors (taula pivot
+        // container_material).
+        $contCreat->materials()->attach($materials);
 
         // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerController@index');
