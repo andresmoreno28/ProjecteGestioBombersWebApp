@@ -39,7 +39,7 @@
   <div class="row">
       <div class="col-xs-12 col-2 my-3 clearfix">
         <select name="id"class="custom-select" id="inputGroupSelect07" required>
-            <option selected disabled>Selecciona un parc</option>
+            <option value="a">Tots els vehicles</option>
           @forelse ($users as $user)
               <option value="{{$user['id']}}"> {{$user['name']}} </option>
           @empty
@@ -55,7 +55,7 @@
         @if (count($vehicles))
 
           <table class="table table-striped table-bordered">
-              <caption><small>Llista de vehicles.</small></caption>
+
               <thead class="thead-dark">
                   <tr style="border-bottom:3px solid #dc3545;">
                     <th>Codi vehicle</th>
@@ -69,7 +69,7 @@
                 <tbody id="cosTaula">
                 @foreach($vehicles as $vehicle)
                     <tr >
-                        <td>{{ $vehicle->matricula }}</td>
+                        <td>{{ $vehicle->codigo() }}</td>
                         <td>{{   $vehicle->marca_model }}</td>
                         <td>
                           {{ $vehicle->type->nom }}
@@ -113,6 +113,10 @@
                 <h4>No hi han vehicles</h4>
             </div>
         @endif
+        <div class="well">
+
+        </div>
+        <caption><small>Llista de vehicles.</small></caption>
     </div>
   </div>
   <!--Fi taula Usuaris-->
@@ -371,28 +375,37 @@ $( "select" ).change(function() {
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function(content) {
+                  console.log(content);
+                  if (content.vehicles.length!=0) {
 
-                  for(i=0; i<content.vehicles.length; i++){
-                    if (i==0) {
-                      taula="<tr>";
-                    }else {
-                      taula=taula+"<tr>";
+
+                    for(i=0; i<content.vehicles.length; i++){
+                      if (i==0) {
+                        taula="<tr>";
+                      }else {
+                        taula=taula+"<tr>";
+                      }
+                        taula=taula+"<td>"+content.vehicles[i][0]+"</td>";
+                        taula=taula+"<td>"+content.vehicles[i][1]+"</td>";
+                        taula=taula+"<td>"+content.vehicles[i][2]+"</td>";
+                        taula=taula+"<td>"+content.vehicles[i][3]+"</td>";
+                        taula=taula+"<td>"+content.vehicles[i][4]+"</td>";
+                        taula=taula+"<td class='text-right'><a class='btn btn-xs btn-default' target='_blank' href='vehicle/qr/"+content.vehicles[i][5]+"><i class='fas fa-qrcode'><i class='fas fa-qrcode'></i></a>";
+                        taula=taula+"<a class='btn btn-xs btn-default see' id='show' name="+content.vehicles[i][5]+"><i class='far fa-eye'></i></i></a>";
+                        taula=taula+"<a class='btn btn-xs btn-default' href='vehicle/"+content.vehicles[i][5]+"/edit') }}'><i class='fas fa-pencil-alt'></i> Editar</i></a>";
+                        //taula=taula+"<a class='btn btn-xs btn-danger' href='vehicle/"+content.vehicles[i].id+"/del') }}'><input type='hidden' name='nom' value="+content.vehicles[i].matricula+"><i class='fas fa-times'></i> Eliminar</a>";ç
+                        taula=taula+"<div class='d-inline-block'><form action='vehicle/"+content.vehicles[i][5]+"/del'class='form-delete'><input type='hidden' name='_method' value='DELETE'><input type='hidden' name='janose' value'hola'><input type='hidden' name='nom' value="+content.vehicles[i][0]+"><button type='submit' class='btn btn-xs btn-danger'><i class='fas fa-times'></i> Eliminar</button></form></div>";
+                        taula=taula+"</td></tr>";
                     }
-                      taula=taula+"<td>"+content.vehicles[i].codi+"</td>";
-                      taula=taula+"<td>"+content.vehicles[i].marca_model+"</td>";
-                      taula=taula+"<td>"+content.vehicles[i].vehicle_type_id+"</td>";
-                      taula=taula+"<td>"+content.vehicles[i].matricula+"</td>";
-                      taula=taula+"<td>"+content.vehicles[i].vehicle_insurer_id+"</td>";
-                      taula=taula+"<td class='text-right'><a class='btn btn-xs btn-default' target='_blank' href='vehicle/qr/"+content.vehicles[i].id+"><i class='fas fa-qrcode'><i class='fas fa-qrcode'></i></a>";
-                      taula=taula+"<a class='btn btn-xs btn-default see' id='show' name="+content.vehicles[i].id+"><i class='far fa-eye'></i></i></a>";
-                      taula=taula+"<a class='btn btn-xs btn-default' href='vehicle/"+content.vehicles[i].id+"/edit') }}'><i class='fas fa-pencil-alt'></i> Editar</i></a>";
-                      //taula=taula+"<a class='btn btn-xs btn-danger' href='vehicle/"+content.vehicles[i].id+"/del') }}'><input type='hidden' name='nom' value="+content.vehicles[i].matricula+"><i class='fas fa-times'></i> Eliminar</a>";ç
-                      taula=taula+"<div class='d-inline-block'><form action='vehicle/"+content.vehicles[i].id+"/del'class='form-delete'><input type='hidden' name='_method' value='DELETE'><input type='hidden' name='janose' value'hola'><input type='hidden' name='nom' value="+content.vehicles[i].matricula+"><button type='submit' class='btn btn-xs btn-danger'><i class='fas fa-times'></i> Eliminar</button></form></div>";
-                      taula=taula+"</td></tr>";
+                    $( "#cosTaula" ).empty();
+                    $( ".well" ).empty();
+                    $("#cosTaula").html(taula)
+                  }else {
+                    taula="<h4>No hi han vehicles en aquest parc</h4>"
+                    $( "#cosTaula" ).empty();
+                    $(".well").html(taula)
+                  }
 
-                }
-                $( "#cosTaula" ).empty();
-                $("#cosTaula").html(taula)
 
                 },
                 error: function(xhr, status, text) {

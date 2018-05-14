@@ -57,4 +57,3 @@ Route::get('pdf', function() {
 })->name('pdf');
 
 Route::get('informes', 'PDFController@crearPDF')->name('report');
-
