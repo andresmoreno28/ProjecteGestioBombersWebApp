@@ -235,10 +235,14 @@ class ContainerController extends Controller
         // Obtenir el contenidor a esborrar.
         $container = Container::findOrFail($id);
 
+        // Obtenir el tipus del contenidor per enviar-lo amb el missatge que
+        // informa sobre el correcte esborrat.
+        $tipusEsborrat = $container['container_name']['nom'];
+
         // Esborrar el contenidor.
         $container->delete();
 
         // Vista amb el llistat de contenidors.
-        return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
+        return back()->with('success', "S'ha esborrat \"$tipusEsborrat\" de forma satisfactoria.");
     }
 }
