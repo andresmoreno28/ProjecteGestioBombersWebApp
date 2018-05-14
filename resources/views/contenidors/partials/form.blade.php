@@ -148,10 +148,29 @@
 </div><!-- /.form-row -->
 <hr class="mb-4">
 
-<!-- CONTENIDOR VEHICLE - USUARI -->
+<!-- MATERIALS -->
 <h6>Materials</h6>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div id="materialContenidorSelect" class="form-group col">
+        <select name="material_container_id[]" class="form-control" id="materialContenidor" multiple="multiple" aria-describedby="materialContenidorHelp">
+            <!-- Llistat dels materials -->
+            @foreach ($materials as $material)
+                {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
+                en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
+                @if (isset($containerEdit))
+                    <option value="{{ $material->id }}"
+                        @if($material->id == $containerEdit['user']['id'] or $material->id == old('material_container_id')) selected @endif>
+                        {{ $material->codi_parc }}, {{ $material->name }}
+                    </option>
+                @else
+                    <option value="{{ $material->id }}">
+                        {{ $material->nom }}
+                        @if ($material->referencia) [{{ $material->referencia }}] @endif
+                    </option>
+                @endif
+            @endforeach
+        </select>
+        <small id="materialContenidorHelp" class="form-text text-muted">El material del contenidor.</small>
     </div>
 </div><!-- /.form-row -->
 
