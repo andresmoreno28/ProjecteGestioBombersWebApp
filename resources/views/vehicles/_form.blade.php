@@ -158,7 +158,7 @@
               {{-- Name --}}
               <div class="form-group">
                 <label for="codi">Codi del vehicle <span class="text-danger"><strong>*</strong></span></label>
-                <input type="text" name="codi" value="{{ $vehicle or old('codi') }}" class="form-control" id="codi" aria-describedby="nameHelp" required>
+                <input type="text" name="codi" value="{{ $vehicle->codi or old('codi') }}" class="form-control" id="codi" aria-describedby="nameHelp" required>
                 <small id="codi" class="form-text text-muted">Matricula per la que es reconeix el vehicle.</small>
               </div>
             </div>

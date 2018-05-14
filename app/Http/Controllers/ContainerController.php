@@ -48,12 +48,20 @@ class ContainerController extends Controller
             ->where('vehicle_id', '!=', null)
             ->get();
 
+        // Comptar contenidors per mostrar el total en les pestanyes.
+        $containersNC = $containersN->count();
+        $containersUC = $containersU->count();
+        $containersVC = $containersV->count();
+
         // Vista amb el llistat de contenidors. A la qual li passem arrays amb
         // dades de contenidors per assignar, de vehicles i d'usuaris.
         return view('contenidors.index', compact(
             'containersN',
             'containersU',
-            'containersV'
+            'containersV',
+            'containersNC',
+            'containersUC',
+            'containersVC'
         ));
     }
 
@@ -77,7 +85,7 @@ class ContainerController extends Controller
         $vehicles = Vehicle::all();
 
         // Materials
-        // ...
+        $materials = Material::all();
 
         // Si no hi ha noms de contenidors creats, no es permetrà accedir a la
         // pàgina de creació.
@@ -90,7 +98,8 @@ class ContainerController extends Controller
                 'containers',
                 'containerNames',
                 'users',
-                'vehicles'
+                'vehicles',
+                'materials'
             ));
         }
     }
@@ -102,27 +111,37 @@ class ContainerController extends Controller
      */
     public function store(Request $request)
     {
-        // Validar dades obtingudes del formulari.
-        $data = $request->validate([
-            'container_parent_id' => 'nullable|integer',
-            'container_name_id'   => 'required|integer',
-            'es_dun_vehicle'      => 'required|boolean',
-            'vehicle_id'          => 'nullable|integer',
-            'user_id'             => 'nullable|integer'
-        ]);
-
-        // Controlar les dades de la ubicació del contenidor.
-        // Tindrem en compte el "radio button" seleccionat per assegurar-nos de
-        // que no sigui possible passar dades d'ubicació d'un vehicle i d'un
-        // usuari (parc) al mateix temps.
-        if ($data['es_dun_vehicle'] == 1) {
-            $data['user_id'] = null;
-        } else {
-            $data['es_dun_vehicle'] = null;
+        // Controlar si és un contenidor pare.
+        if ($request['container_parent_id'] == "cap") {
+            $request['container_parent_id'] = null;
         }
 
+        // Controlar la ubicació del contenidor ("radio button").
+        if ($request['es_dun_vehicle'] == 1) {
+            $request['user_id'] = null;
+        } else {
+            $request['vehicle_id'] = null;
+        }
+
+        // Controlar els valors de la ubicació.
+        if ($request['user_id'] == "cap") {
+            $request['user_id'] = null;
+        }
+        if ($request['vehicle_id'] == "cap") {
+            $request['vehicle_id'] = null;
+        }
+
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'container_parent_id' => 'nullable',
+            'container_name_id'   => 'required',
+            'es_dun_vehicle'      => 'required|boolean',
+            'vehicle_id'          => 'nullable',
+            'user_id'             => 'nullable'
+        ]);
+
         // Crear el contenidor (la validació ha sortit bé).
-        $type = ContainerName::create([
+        $type = Container::create([
             'container_parent_id' => $data['container_parent_id'],
             'container_name_id'   => $data['container_name_id'],
             'es_dun_vehicle'      => $data['es_dun_vehicle'],
@@ -131,7 +150,7 @@ class ContainerController extends Controller
         ]);
 
         // Vista amb el llistat de contenidors.
-        return redirect()->action('ContainerNameController@index');
+        return redirect()->action('ContainerController@index');
     }
 
     /**
@@ -154,8 +173,33 @@ class ContainerController extends Controller
      */
     public function edit($id)
     {
-        $container = Container::findOrFail($id);
-        return view('contenidors.edit', compact('container'));
+        // Obtenir el contenidor a editar.
+        $containerEdit = Container::findOrFail($id);
+
+        // Contenidors
+        $containers = Container::all();
+
+        // Noms de contenidors
+        $containerNames = ContainerName::all();
+
+        // Usuaris (parcs)
+        $users = User::all();
+
+        // Vehicles
+        $vehicles = Vehicle::all();
+
+        // Materials
+        $materials = Material::all();
+
+        // Vista d'edició de contenidors.
+        return view('contenidors.edit', compact(
+            'containerEdit',
+            'containers',
+            'containerNames',
+            'users',
+            'vehicles',
+            'materials'
+    ));
     }
 
     /**
@@ -170,13 +214,46 @@ class ContainerController extends Controller
         // Obtenir el contenidor a actualitzar.
         $container = Container::findOrFail($id);
 
+        // Controlar si és un contenidor pare.
+        if ($request['container_parent_id'] == "cap") {
+            $request['container_parent_id'] = null;
+        }
+
+        // Controlar la ubicació del contenidor ("radio button").
+        if ($request['es_dun_vehicle'] == 1) {
+            $request['user_id'] = null;
+        } else {
+            $request['vehicle_id'] = null;
+        }
+
+        // Controlar els valors de la ubicació.
+        if ($request['user_id'] == "cap") {
+            $request['user_id'] = null;
+        }
+        if ($request['vehicle_id'] == "cap") {
+            $request['vehicle_id'] = null;
+        }
+
+        // Ubicar automàticament, si el contenidor pare està ubicat.
+        //$idPare            = $request['container_parent_id'];
+        //$contPare          = Container::findOrFail($idPare);
+        //$contPareUserId    = $contPare['user']['id'];
+        //$contPareVehicleId = $contPare['vehicle']['id'];
+
+        //if ($contPareVehicleId != null) {
+        //    $request['vehicle_id'] = $contPareVehicleId;
+        //}
+        //if ($contPareUserId != null) {
+        //    $request['user_id'] = $contPareUserId;
+        //}
+
         // Validar dades obtingudes del formulari.
         $data = $request->validate([
+            'container_parent_id' => 'nullable',
+            'container_name_id'   => 'required',
             'es_dun_vehicle'      => 'required|boolean',
-            'container_parent_id' => 'required|integer',
-            'container_name_id'   => 'required|integer',
-            'user_id'             => 'required|integer',
-            'vehicle_id'          => 'required|integer'
+            'vehicle_id'          => 'nullable',
+            'user_id'             => 'nullable'
         ]);
 
         // Actualitzar el contenidor (la validació ha sortit bé).
@@ -197,10 +274,14 @@ class ContainerController extends Controller
         // Obtenir el contenidor a esborrar.
         $container = Container::findOrFail($id);
 
+        // Obtenir el tipus del contenidor per enviar-lo amb el missatge que
+        // informa sobre el correcte esborrat.
+        $tipusEsborrat = $container['container_name']['nom'];
+
         // Esborrar el contenidor.
         $container->delete();
 
         // Vista amb el llistat de contenidors.
-        return back()->with('success', "S'ha esborrat \"$container->nom\" de forma satisfactoria.");
+        return back()->with('success', "S'ha esborrat \"$tipusEsborrat\" de forma satisfactoria.");
     }
 }

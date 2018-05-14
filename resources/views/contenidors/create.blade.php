@@ -62,11 +62,18 @@
 
 <script type="text/javascript">
 $(function() {
+    // RADIO BUTTON (ubicació)
+    // -----------------------
+    // Seleccionar la ubicació del contenidor quan carrega la pàgina (auto).
+    esDunVehicle = $("input[name='es_dun_vehicle']:checked").val();
+    if (esDunVehicle == 1) {
+        $("#vehicleContenidorSelect").toggle();
+    } else {
+        $("#parcContenidorSelect").toggle();
+    }
+
     // Fem que el "radio button" mostri el "select" de vehicles o parcs segons
-    // quina opció s'hagi seleccionat.
-    // Com per defecte el valor seleccionat és el dels vehicles, assignem
-    // style="display:none" als parcs, ja que el toggle ho activa i desactiva
-    // de forma automàtica.
+    // quina opció s'hagi seleccionat (manual).
     $("input[name='es_dun_vehicle']:radio").change(function() {
         $("#vehicleContenidorSelect").toggle($(this).val() == "1");
         $("#parcContenidorSelect").toggle($(this).val() == "0");

@@ -101,7 +101,7 @@ class Vehicle extends Model
      * Codi.
      * Get the code of the vehicle.
      */
-    public function codi()
+    public function codigo()
     {
       $users=$this->belongsTo('App\User','user_id','id','users');
 

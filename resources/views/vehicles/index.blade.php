@@ -69,9 +69,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($vehicles as $vehicle)
                         <tr>
-                            <td>{{ $vehicle->matricula }}</td>
+                            <td>{{ $vehicle->codigo() }}</td>
                             <td>{{   $vehicle->marca_model }}</td>
                             <td>
                               {{ $vehicle->type->nom }}
@@ -327,7 +328,7 @@
               dataType: 'json',
               contentType: 'application/json; charset=utf-8',
               success: function(content) {
-
+                
                 $('#showMatricula').text(content.vehicle.matricula);
                 $('#showdMatricula').text(content.vehicle.matricula_data);
                 $('#showKm').text(content.vehicle.km);
