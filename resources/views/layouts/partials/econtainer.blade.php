@@ -93,7 +93,14 @@
                 <a class="dropdown-item" href="{{action('MaterialController@index')}}">Consultar materials</a>
               </div>
             </div>
+            <!-- Aplicació -->
+            <a class="btn-group btn btn-secondary btn-lg"href="http://bombers.ooo/app/bombers.apk">
+              <p class="underline-small text-left"><i class="fab fa-android"></i> Aplicació
+              </p>
+            </a>
+
         </div>
+
       </div>
     </div>
 </div>

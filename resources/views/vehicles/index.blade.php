@@ -75,7 +75,7 @@
                             <td>{{ $vehicle->codigo() }}</td>
                             <td>{{   $vehicle->marca_model }}</td>
                             <td>
-                              {{ $vehicle->type->nom }}
+                              {{ $vehicle->type->codi }}
                             </td>
                             <td>
                               {{$vehicle->matricula}}
@@ -328,7 +328,7 @@
               dataType: 'json',
               contentType: 'application/json; charset=utf-8',
               success: function(content) {
-                
+
                 $('#showMatricula').text(content.vehicle.matricula);
                 $('#showdMatricula').text(content.vehicle.matricula_data);
                 $('#showKm').text(content.vehicle.km);
