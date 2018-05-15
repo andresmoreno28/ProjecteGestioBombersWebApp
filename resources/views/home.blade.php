@@ -294,6 +294,7 @@
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+@if (Auth::id() == 1)
 <script type="text/javascript">
 $('table').on('click', '.form-delete', function(e) {
     // Evitar que continuï endavant el "submit" per fer que finalitzi, o no,
@@ -418,4 +419,75 @@ $( "select" ).change(function() {
   })
   .trigger( "change" );
 </script>
+@else
+
+<script type="text/javascript">
+  $('table').on('click', '.form-delete', function(e) {
+      // Evitar que continuï endavant el "submit" per fer que finalitzi, o no,
+      // a través del modal.
+      e.preventDefault();
+  
+      // Guardar el submit per permetre que continuï o no.
+      var form = $(this);
+  
+      // Tractar dades del formulari per obtenir les dades dels inputs.
+      var formData     = $(this).serializeArray();
+      var formDataJson = JSON.stringify(formData);
+      var formObject   = JSON.parse(formDataJson);
+  console.log(formObject);
+      // Guardar les dades del formulari (per emplenar el modal).
+      // Els índex [0] van segons l'ordre dels <imputs></imputs>.
+      var Nom = formObject[2].value;
+  
+      $('#modalEsborrarNom').text(Nom);
+  
+      // Obrir el modal que serà emprat per eborrar el material (si es fa clic
+      // al botó amb id="delete-btn").
+      $('#materialEsborrarModal').modal().on('click', '#delete-btn', function() {
+          form.submit();
+      });
+  });
+  $('table').on('click', '.see', function(e) {
+    e.preventDefault();
+    var x= $(this).attr('name');
+    $.ajax({
+            type: 'get',
+            url: "vehicle/"+x,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function(content) {
+  
+              $('#showMatricula').text(content.vehicle.matricula);
+              $('#showdMatricula').text(content.vehicle.matricula_data);
+              $('#showKm').text(content.vehicle.km);
+              $('#showdKm').text(content.vehicle.km_data);
+              $('#showdM').text(content.vehicle.manteniment_data);
+              $('#showdpm').text(content.vehicle.proper_manteniment_data);
+              $('#showdxasi').text(content.vehicle.num_xasis);
+              $('#showpmk').text(content.vehicle.proper_manteniment_km);
+              $('#showhb').text(content.vehicle.hores_bomba);
+              $('#showpot').text(content.vehicle.motor_potencia);
+              $('#showeslo').text(content.vehicle.eslora);
+              $('#showitv').text(content.vehicle.itv_vigor);
+              $('#showpitv').text(content.vehicle.itv_propera);
+              $('#showpla').text(content.vehicle.places);
+              $('#showbapre').text(content.vehicle.baixa_prevista);
+              $('#showdro').text(content.vehicle.roda_dimensio);
+              $('#shownpol').text(content.vehicle.asseg_num_polissa);
+              $('#showfren').text(content.vehicle.final_renting);
+  
+  
+  
+              $('#showModal').modal().on('click', '#show', function() {
+  
+              });
+            },
+            error: function(xhr, status, text) {
+              console.log(xhr);
+                $("#content").text(text);
+            }
+        });
+  });
+  </script>
+@endif
 @endsection
