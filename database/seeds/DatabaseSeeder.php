@@ -21,39 +21,39 @@ class DatabaseSeeder extends Seeder
       ----------------------------------------------------------------------- */
       Region::create([
           'codi' => '01',
-          'nom'     => 'REC'
+          'nom'  => 'REC'
       ]);
       Region::create([
           'codi' => '02',
-          'nom'     => 'REG'
+          'nom'  => 'REG'
       ]);
       Region::create([
           'codi' => '03',
-          'nom'     => 'RELL'
+          'nom'  => 'RELL'
       ]);
       Region::create([
           'codi' => '04',
-          'nom'     => 'REMN'
+          'nom'  => 'REMN'
       ]);
       Region::create([
           'codi' => '05',
-          'nom'     => 'REMS'
+          'nom'  => 'REMS'
       ]);
       Region::create([
           'codi' => '06',
-          'nom'     => 'RET'
+          'nom'  => 'RET'
       ]);
       Region::create([
           'codi' => '07',
-          'nom'     => 'RETE'
+          'nom'  => 'RETE'
       ]);
       Region::create([
           'codi' => '08',
-          'nom'     => 'NO OCUP'
+          'nom'  => 'NO OCUP'
       ]);
       Region::create([
           'codi' => '09',
-          'nom'     => 'DG'
+          'nom'  => 'DG'
       ]);
 
       /* USUARIS / PARCS
@@ -158,114 +158,114 @@ class DatabaseSeeder extends Seeder
       /* VEHICLES / TIPUS
       ----------------------------------------------------------------------- */
       VehicleType::create([
-        'codi'       => 'BRP',
+        'nom'        => 'BRP',
         'descripcio' => 'Bomba Rural Pesant',
-        'nom'        => '30-33'
+        'codi'       => '30-33'
       ]);
       VehicleType::create([
-        'codi'       => 'BFP',
+        'nom'        => 'BFP',
         'descripcio' => 'Bomba Forestal Pesant',
-        'nom'        => '34-37'
+        'codi'       => '34-37'
       ]);
       VehicleType::create([
-        'codi'       => 'BFL / BRL',
+        'nom'        => 'BFL / BRL',
         'descripcio' => 'Bomba Forestal-Rural Lleugera',
-        'nom'        => '38-39'
+        'codi'       => '38-39'
       ]);
       VehicleType::create([
-        'codi'       => 'BUP',
+        'nom'        => 'BUP',
         'descripcio' => 'Bomba Urbana Pesant',
-        'nom'        => '40-43'
+        'codi'       => '40-43'
       ]);
       VehicleType::create([
-        'codi'       => 'BNP',
+        'nom'        => 'BNP',
         'descripcio' => 'Bomba Nodrissa Pesant',
-        'nom'        => '44-47'
+        'codi'       => '44-47'
       ]);
       VehicleType::create([
-        'codi'       => 'BUL',
+        'nom'        => 'BUL',
         'descripcio' => 'Bomba Urbana Lleugera',
-        'nom'        => '48-49'
+        'codi'       => '48-49'
       ]);
       VehicleType::create([
-        'codi'       => 'FSV',
+        'nom'        => 'FSV',
         'descripcio' => 'Salvaments Varis',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'FRQ',
+        'nom'        => 'FRQ',
         'descripcio' => 'Risc Químic',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'FER',
+        'nom'        => 'FER',
         'descripcio' => 'Equips Respiratoris',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'FRM',
+        'nom'        => 'FRM',
         'descripcio' => 'Rescats de Muntanya',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'FRA',
+        'nom'        => 'FRA',
         'descripcio' => 'Rescats Aquàtics',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'FSA',
+        'nom'        => 'FSA',
         'descripcio' => 'Salvaments Apícoles',
-        'nom'        => '50-55'
+        'codi'       => '50-55'
       ]);
       VehicleType::create([
-        'codi'       => 'BSAL',
+        'nom'        => 'BSAL',
         'descripcio' => 'Barques de Salvaments',
-        'nom'        => '56-59'
+        'codi'       => '56-59'
       ]);
       VehicleType::create([
-        'codi'       => 'AEA / AES / ABA',
+        'nom'        => 'AEA / AES / ABA',
         'descripcio' => 'Autoescales',
-        'nom'        => '60-61'
+        'codi'       => '60-61'
       ]);
       VehicleType::create([
-        'codi'       => 'AMB',
+        'nom'        => 'AMB',
         'descripcio' => 'Ambulàncies',
-        'nom'        => '62-69'
+        'codi'       => '62-69'
       ]);
       VehicleType::create([
-        'codi'       => 'CCA / UPT',
+        'nom'        => 'CCA / UPT',
         'descripcio' => 'Unitat de Suport al Comandament',
-        'nom'        => '70-71'
+        'codi'       => '70-71'
       ]);
       VehicleType::create([
-        'codi'       => 'UTP',
+        'nom'        => 'UTP',
         'descripcio' => 'Vehicle de Transport de Personal',
-        'nom'        => '72-73'
+        'codi'       => '72-73'
       ]);
       VehicleType::create([
-        'codi'       => 'UCA',
+        'nom'        => 'UCA',
         'descripcio' => 'Vehicle de Càrrega',
-        'nom'        => '74-77'
+        'codi'       => '74-77'
       ]);
       VehicleType::create([
-        'codi'       => 'UE',
+        'nom'        => 'UE',
         'descripcio' => 'Vehicles Especials',
-        'nom'        => '78-79'
+        'codi'       => '78-79'
       ]);
       VehicleType::create([
-        'codi'       => 'UPCL',
+        'nom'        => 'UPCL',
         'descripcio' => 'Unitats de Personal i Càrrega Lleugeres',
-        'nom'        => '80-89'
+        'codi'       => '80-89'
       ]);
       VehicleType::create([
-        'codi'       => 'USL',
+        'nom'        => 'USL',
         'descripcio' => 'Unitat de Suport Logístic',
-        'nom'        => '80-89'
+        'codi'       => '80-89'
       ]);
       VehicleType::create([
-        'codi'       => 'UPC',
+        'nom'        => 'UPC',
         'descripcio' => 'Unitats de Personal i Càrrega',
-        'nom'        => '90-99'
+        'codi'       => '90-99'
       ]);
 
       /* VEHICLES / ASSEGURADORA
@@ -286,36 +286,36 @@ class DatabaseSeeder extends Seeder
       /* VEHICLES / PROPIETARI
       ----------------------------------------------------------------------- */
       VehicleOwner::create([
-        'nom'           => 'ALPHABET ESPAÑA',
-        'telefon'       => '902374837'
+        'nom'     => 'ALPHABET ESPAÑA',
+        'telefon' => '902374837'
       ]);
       VehicleOwner::create([
-        'nom'           => 'ARVAL SERVICE LEASE, S.A.',
-        'telefon'       => '901121965'
+        'nom'     => 'ARVAL SERVICE LEASE, S.A.',
+        'telefon' => '901121965'
       ]);
       VehicleOwner::create([
-        'nom'           => 'BANESTO RENTING, S.A.',
-        'telefon'       => null
+        'nom'     => 'BANESTO RENTING, S.A.',
+        'telefon' => null
       ]);
       VehicleOwner::create([
-        'nom'           => 'BANSALEASE, S.A.',
-        'telefon'       => null
+        'nom'     => 'BANSALEASE, S.A.',
+        'telefon' => null
       ]);
       VehicleOwner::create([
-        'nom'           => 'CAIXARENTING, S.A.',
-        'telefon'       => null
+        'nom'     => 'CAIXARENTING, S.A.',
+        'telefon' => null
       ]);
       VehicleOwner::create([
-        'nom'           => 'CESSIÓ AJ.ASCÓ',
-        'telefon'       => null
+        'nom'     => 'CESSIÓ AJ.ASCÓ',
+        'telefon' => null
       ]);
       VehicleOwner::create([
-        'nom'           => 'GENERALITAT DE CATALUNYA',
-        'telefon'       => null
+        'nom'     => 'GENERALITAT DE CATALUNYA',
+        'telefon' => null
       ]);
       VehicleOwner::create([
-        'nom'           => 'ING CAR LEASE',
-        'telefon'       => '902374837'
+        'nom'     => 'ING CAR LEASE',
+        'telefon' => '902374837'
       ]);
 
       /* CONTENIDORS / NOMS

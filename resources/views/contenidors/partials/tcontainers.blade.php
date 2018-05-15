@@ -21,7 +21,7 @@
                             <td>
                                 {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                                 @if (isset($container['vehicle']))
-                                    {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                                    {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['codi'] }}
                                 @elseif (isset($container['user']))
                                     {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                                 @else

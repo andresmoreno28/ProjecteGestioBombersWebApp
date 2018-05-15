@@ -113,11 +113,11 @@
                 @if (isset($containerEdit))
                     <option value="{{ $vehicle->id }}"
                         @if($vehicle->id == $containerEdit['vehicle']['id'] or $vehicle->id == old('vehicle_id')) selected @endif>
-                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                        {{ $vehicle->codigo() }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @else
                     <option value="{{ $vehicle->id }}">
-                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                        {{ $vehicle->codigo() }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @endif
             @endforeach
