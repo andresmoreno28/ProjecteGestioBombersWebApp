@@ -49,7 +49,7 @@
                   @endphp
                   @endif
                   @foreach ($materialsFromContainers as $material)
-                   @dd($contenidor['materials'])
+
                   <tr>
                    <td>{{ $material->nom }} </td>
                    <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
