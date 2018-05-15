@@ -177,7 +177,7 @@
 						@foreach ($contenidor->containers as $key => $contenidor_fill)
 							<tr>
 
-								<td id="cont_fill">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
+								<td id="cont_fill col-12">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
 							</tr>
 
 							@php 

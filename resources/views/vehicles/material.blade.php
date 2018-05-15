@@ -25,82 +25,88 @@
     <div class="col-12 border-top border-danger">
       <div class="row mx-2 mt-2">
         <div class="col-12">
-          @foreach ($vehicle->containers as $contenidor)
+          <form action="">
+            @foreach ($vehicle->containers as $contenidor)
             @if ($contenidor->container_parent_id == null)
-              <div id="contorn_contenidors" class="row">
-                <h3 class="border-bottom border-danger">{{ $contenidor->nom->nom }}</h3>
-              </div>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>MATERIAL</th>
-                      <th class="celles_a_centrar">PREVIST</th>
-                      <th class="celles_a_centrar">REAL</th>
-                      <th class="celles_a_centrar">REFERENCIA</th>
-                      <th class="celles_a_centrar">MATERIAL PARC</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+            <div id="contorn_contenidors" class="row">
+              <h3 class="border-bottom border-danger">{{ $contenidor->nom->nom }}</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>MATERIAL</th>
+                    <th class="celles_a_centrar">PREVIST</th>
+                    <th class="celles_a_centrar">REAL</th>
+                    <th class="celles_a_centrar">REFERENCIA</th>
+                    <th class="celles_a_centrar">MATERIAL PARC</th>
+                  </tr>
+                </thead>
+                <tbody>
                   @php
 
                   $materialsFromContainers = $contenidor->materials;
-
                   @endphp
                   @endif
                   @foreach ($materialsFromContainers as $material)
-                    <tr>
-                       <td>{{ $material->nom }} </td>
-                       <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
-                       <td class="celles_a_centrar"><form><input type="number" class="form-control" min="0"></form></td>
-                       <td class="celles_a_centrar">{{$material->referencia}}</td>
-                       <td class="celles_a_centrar">
-                        @if ($material->es_del_parc == 0)
-                        <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
-                        @else
-                        <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
-                        @endif
-                      </td>
-                    </tr>
-                  @endforeach
-                  <!-- Apartat de subcontenidors -->
-                  @if ($contenidor->containers()->count() > 0)
-                  @foreach ($contenidor->containers as $key => $contenidor_fill)
+                   @dd($contenidor['materials'])
                   <tr>
+                   <td>{{ $material->nom }} </td>
+                   <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
+                   <td class="celles_a_centrar">
+                    <input type="number" class="form-control" min="0" name="">
+                  </td>
+                  <td class="celles_a_centrar">{{$material->referencia}}</td>
+                  <td class="celles_a_centrar">
+                    @if ($material->es_del_parc == 0)
+                    <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+                    @else
+                    <input class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
+                    @endif
+                  </td>
+                </tr>
+                @endforeach
+                <!-- Apartat de subcontenidors -->
+                @if ($contenidor->containers()->count() > 0)
+                @foreach ($contenidor->containers as $key => $contenidor_fill)
+                <tr>
 
-                    <td id="cont_fill">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
-                  </tr>
+                  <td id="cont_fill">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
+                </tr>
 
-                  @php 
+                @php 
 
-                  $materials_subcontenidors = $contenidor_fill->materials;
+                $materials_subcontenidors = $contenidor_fill->materials;
 
-                  @endphp
-                  <!-- Materials de subcontenidors -->
-                  @foreach ($materials_subcontenidors as $material)
-
-                  <tr>
-                    <td>**    {{ $material->nom }}</td>
-                    <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
-                    <td class="celles_a_centrar"><form><input type="number" class="form-control"></form></td>
-                    <td class="celles_a_centrar">{{$material->referencia}}</td>
-                    <td style="text-align:center;" class="celles_a_centrar subcont">            
-                      @if ($material->es_del_parc == 0)
-                      <input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
-                      @else
-                      <input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
-                      @endif
-                    </td>                 
-                  </tr>
-                  @endforeach
-                  @endforeach
-                  @endif
-                </tbody>
-              </table>
-            </div>
+                @endphp
+                <!-- Materials de subcontenidors -->
+                @foreach ($materials_subcontenidors as $material)                 
+                <tr>
+                  <td>**    {{ $material->nom }}</td>
+                  <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
+                  <td class="celles_a_centrar">
+                    <input type="number" class="form-control" min="0">
+                  </td>
+                  <td class="celles_a_centrar">{{$material->referencia}}</td>
+                  <td style="text-align:center;" class="celles_a_centrar subcont">
+                    @if ($material->es_del_parc == 0)
+                    <input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+                    @else
+                    <input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
+                    @endif
+                  </td>                 
+                </tr>                    
+                @endforeach
+                @endforeach
+                @endif
+              </tbody>
+            </table>
+          </div>
           @endforeach
-        </div>
+          <input type="submit" name="enviar" value="Enviar">
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
