@@ -5,6 +5,7 @@
                 <caption><small>{{ $tInfo }}</small></caption>
                 <thead class="thead-dark">
                     <tr style="border-bottom:3px solid #dc3545;">
+                        <th scope="col">#</th>
                         <th scope="col">Tipus</th>
                         <th scope="col">Ubicat (a)</th>
                         <th scope="col">Contingut (en)</th>
@@ -13,8 +14,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($containers as $container)
+                    @forelse ($containers as $key => $container)
+                        @php $count = $key+1; @endphp
                         <tr>
+                            <td>{{ $count }}</td>
                             <td>{{ $container['container_name']['nom'] }}</td>
                             <td>
                                 {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
@@ -35,7 +38,17 @@
                                     , {{ $container['parent']['user']['codi_parc'] }}, {{ $container['parent']['user']['name'] }}
                                 @else @endif
                             </td>
-                            <td>...</td>
+                            <td>
+                                @if(!empty($container['materials']))
+                                    <form action="#" method="POST" class="form-materials">
+                                        <input type="hidden" name="tipus" value="{{ $container['container_name']['nom'] }}">
+                                        <input type="hidden" name="materials" value="{{ $container['materials'] }}">
+                                        <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                                            <i class="fas fa-clipboard-list"></i> Veure
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                             <td class="text-right">
                                 <!-- Editar -->
                                 <a class="btn btn-xs btn-default" href="{{ action('ContainerController@edit', ['id' => $container->id]) }}">
