@@ -36,14 +36,15 @@ class ContainerController extends Controller
         $containersN = Container::where('user_id', '=', null)
             ->where('vehicle_id', '=', null)
             ->orderBy('updated_at', 'DESC') // Ordenar de més antic a més nou.
-            ->paginate(10);
+            ->paginate(8, ['*'], 'per_assignar');
+
         // Si no és d'un vehicle (0) i té assignat un usuari, diem que el contenidor
         // forma part del grup dels usuaris (parcs).
         $containersU = Container::where('es_dun_vehicle', '=', 0)
             ->where('user_id', '!=', null)
             ->orderBy('user_id', 'ASC')             // Ordenar per id d'usuari/parc
             ->orderBy('container_parent_id', 'ASC') // Ordenar per id pare
-            ->paginate(10);
+            ->paginate(8, ['*'], 'parcs');
         
         // Si és d'un vehicle (1) i té assignat un vehicle, diem que el contenidor
         // forma part del grup dels vehicles.
@@ -51,7 +52,7 @@ class ContainerController extends Controller
             ->where('vehicle_id', '!=', null)
             ->orderBy('vehicle_id', 'ASC')          // Ordenar per id vehicle
             ->orderBy('container_parent_id', 'ASC') // Ordenar per id pare
-            ->paginate(10);
+            ->paginate(8, ['*'], 'vehicles');
 
         // Comptar contenidors per mostrar el total en les pestanyes.
         $containersNC = $containersN->count();

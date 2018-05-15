@@ -15,6 +15,9 @@ class CreateContainerMaterialTable extends Migration
     {
         Schema::create('container_material', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('quantitat_prevista')->default(0);
+            $table->unsignedInteger('quantitat')->default(0);
+            $table->boolean('es_del_parc')->default(true);
             // Foreign Keys.
             $table->unsignedInteger('container_id');
             $table->foreign('container_id')->references('id')->on('containers')->onDelete('cascade');

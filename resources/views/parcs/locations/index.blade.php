@@ -54,18 +54,21 @@
             <div class="row">
               <div class="col-xs-12 col-12">
                   @if (count($locations))
-
                       <table class="table table-striped table-bordered">
-                          <thead>
-                          <tr>
+                          <caption><small>Llista de poblacions.</small></caption>
+                          <thead class="thead-dark">
+                              <tr style="border-bottom:3px solid #dc3545;">
+                              <th>#</th>
                               <th>Codi</th>
                               <th>Nom</th>
-                              <th></th>
+                              <th>Acció</th>
                           </tr>
                           </thead>
                           <tbody>
-                          @foreach($locations as $location)
+                          @foreach($locations as $key => $location)
+                              @php $count = $key+1; @endphp
                               <tr>
+                                  <td>{{ $count }}</td>
                                   <td>{{ $location['codi'] }}</td>
                                   <td>{{ $location['nom'] }}</td>
 
@@ -83,6 +86,8 @@
                           @endforeach
                           </tbody>
                       </table>
+                      <!-- Paginació -->
+                      {{ $locations->links() }}
                   @else
                       <div class="well">
                           <h4>No hi han poblacions inserides</h4>

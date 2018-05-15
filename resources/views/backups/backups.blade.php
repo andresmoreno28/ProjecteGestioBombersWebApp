@@ -53,16 +53,19 @@
                         <caption><small>Llista de backups.</small></caption>
                         <thead class="thead-dark">
                             <tr style="border-bottom:3px solid #dc3545;">
+                              <th>#</th>
                               <th>Arxiu</th>
                               <th>Tamany</th>
                               <th>Data</th>
                               <th>Temps</th>
-                              <th></th>
+                              <th>Acció</th>
                           </tr>
                           </thead>
                           <tbody>
-                          @foreach($backups as $backup)
+                          @foreach($backups as $key => $backup)
+                              @php $count = $key+1; @endphp
                               <tr>
+                                  <td>{{ $count }}</td>
                                   <td>{{ $backup['file_name'] }}</td>
                                   <td>{{   SomeClass::bytesToHuman($backup['file_size']) }}</td>
                                   <td>

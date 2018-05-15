@@ -39,8 +39,61 @@
         </div>
         @endif
       </div>
-    </div>
-    <!-- {!! QrCode::size(600)->generate(route('region.index')); !!} -->
+     <!-- {!! QrCode::size(600)->generate(route('region.index')); !!} -->
+
+     <!-- Taula amb llistat de regions -->
+     <!-- <hr class="my-0 d-none d-sm-block"> -->
+        <div class="row">
+            <div class="col-xs-12 col-2 my-3 clearfix">
+                <a id="create-new-backup-button" href="{{ route('region.create') }}" class="btn btn-danger bg-dark">
+                  <p class="my-0 underline-small"><i class="fas fa-archive"></i> Crear nova regió</p>
+                </a>
+            </div>
+        </div>
+            <div class="row">
+              <div class="col-xs-12 col-12">
+                  @if (count($regions))
+                      <table class="table table-striped table-bordered">
+                          <caption><small>Llista de regions.</small></caption>
+                          <thead class="thead-dark">
+                              <tr style="border-bottom:3px solid #dc3545;">
+                              <th>#</th>
+                              <th>Codi</th>
+                              <th>Nom</th>
+                              <th>Acció</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          @foreach($regions as $key => $region)
+                              @php $count = $key+1; @endphp
+                              <tr>
+                                  <td>{{ $count }}</td>
+                                  <td>{{ $region['codi'] }}</td>
+                                  <td>{{ $region['nom'] }}</td>
+
+                                  <td class="text-right">
+                                      <a class="btn btn-xs btn-default"
+                                         href="{{ action('RegionController@edit',$region['id']) }}">
+                                         <i class="fas fa-download"></i> Editar
+                                       </a>
+                                      <a class="btn btn-xs btn-danger" data-button-type="delete"
+                                         href="{{ url('region/delete/'.$region['id']) }}" role="button">
+                                         <i class="fas fa-times"></i>
+                                          Eliminar</a>
+                                  </td>
+                              </tr>
+                          @endforeach
+                          </tbody>
+                      </table>
+                      <!-- Paginació -->
+                      {{ $regions->links() }}
+                  @else
+                      <div class="well">
+                          <h4>No hi han regions inserides</h4>
+                      </div>
+                  @endif
+              </div>
+            </div>
 
     <!-- Taula amb llistat de regions -->
     <!-- <hr class="my-0 d-none d-sm-block"> -->

@@ -22,7 +22,7 @@ class LocationController extends Controller
     public function index()
     {
         //Agafa totes les poblacions
-        $locations = Location::get();
+        $locations = Location::paginate(8);
         //Retorna a la pàgina d'index de poblacions amb l'objecte $locations
         return view('parcs/locations.index', ['locations' => $locations]);
     }

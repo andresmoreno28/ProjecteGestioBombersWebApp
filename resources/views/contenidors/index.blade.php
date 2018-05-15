@@ -52,53 +52,40 @@
         <!-- Taula de Materials -->
         <div class="row">
             <div class="col-xs-12 col-12">
-                <!-- Navegació (apartats) -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="vehicles-tab" data-toggle="tab" href="#vehicles" role="tab" aria-controls="vehicles" aria-selected="true">
-                          Vehicles <small>({{ $containersVC }})</small>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">
-                          Parcs <small>({{ $containersUC }})</small>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="no-assignats-tab" data-toggle="tab" href="#no-assignats" role="tab" aria-controls="no-assignats" aria-selected="true">
-                            No assignats <small>({{ $containersNC }})</small>
-                        </a>
-                    </li>
-                </ul>
-                <!-- Apartats -->
-                <div class="tab-content" id="myTabContent">
-                    <!-- VEHICLES -->
-                    <div class="tab-pane fade show active" id="vehicles" role="tabpanel" aria-labelledby="vehicles-tab">
-                        @include('contenidors.partials.tcontainers', [
-                            'containers'  => $containersV,
-                            'tBuida'      => 'No hi ha contenidors associats a vehicles.',
-                            'tInfo'       => 'Llista de contenidors associats a vehicles.'
-                        ])
-                    </div><!-- /.tab-pane -->
+                <!-- NAVEGACIÓ AJUDA -->
+                @include('contenidors.partials.tanchors')
 
-                    <!-- PARCS -->
-                    <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
-                        @include('contenidors.partials.tcontainers', [
-                            'containers'  => $containersU,
-                            'tBuida'      => 'No hi ha contenidors associats a parcs.',
-                            'tInfo'       => 'Llista de contenidors associats a parcs.'
-                        ])
-                    </div><!-- /.tab-pane -->
+                <!-- VEHICLES -->
+                <h5 id="vehicles">Vehicles <span class="badge badge-danger">({{ $containersVC }})</span></h5>
+                @include('contenidors.partials.tcontainers', [
+                    'containers'  => $containersV,
+                    'tBuida'      => 'No hi ha contenidors associats a vehicles.',
+                    'tInfo'       => 'Llista de contenidors associats a vehicles.'
+                ])
+                <hr class="mb-4">
 
-                    <!-- NO ASSIGNATS -->
-                    <div class="tab-pane fade" id="no-assignats" role="tabpanel" aria-labelledby="no-assignats-tab">
-                        @include('contenidors.partials.tcontainers', [
-                            'containers'  => $containersN,
-                            'tBuida'      => 'No hi ha contenidors sense assignar.',
-                            'tInfo'       => 'Llista de contenidors no assignats (buits).'
-                        ])
-                    </div><!-- /.tab-pane -->
-                  </div><!-- /.tab-content -->
+                <!-- NAVEGACIÓ AJUDA -->
+                @include('contenidors.partials.tanchors')
+
+                <!-- PARCS -->
+                <h5 id="parcs">Parcs <span class="badge badge-danger">({{ $containersUC }})</span></h5>
+                @include('contenidors.partials.tcontainers', [
+                    'containers'  => $containersU,
+                    'tBuida'      => 'No hi ha contenidors associats a parcs.',
+                    'tInfo'       => 'Llista de contenidors associats a parcs.'
+                ])
+                <hr class="mb-4">
+
+                <!-- NAVEGACIÓ AJUDA -->
+                @include('contenidors.partials.tanchors')
+                
+                <!-- NO ASSIGNATS -->
+                <h5 id="assignar">No assignats <span class="badge badge-danger">({{ $containersNC }})</span></h5>
+                @include('contenidors.partials.tcontainers', [
+                    'containers'  => $containersN,
+                    'tBuida'      => 'No hi ha contenidors sense assignar.',
+                    'tInfo'       => 'Llista de contenidors no assignats (buits).'
+                ])
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.col -->
@@ -152,37 +139,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-<!-- MATERIALS (modal) -->
-<div class="modal fade" id="contenidorMaterialsModal" tabindex="-1" role="dialog" aria-labelledby="modalMaterials" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title">Materials del contenidor</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body scroll">
-                    <!-- Llista de materials -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">NomContenidor</h6>
-                            <ul>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 @endsection
 
 @section('scripts')
@@ -221,35 +177,5 @@
             form.submit();
         });
     });
-
-    // MATERIAL CONTENIDOR
-    $('table').on('click', '.form-materials', function(e) {
-        // Evitar que continuï endavant el "submit".
-        e.preventDefault();
-
-        // Guardar les dades del submit.
-        var form = $(this);
-/*
-        // Tractar dades del formulari per obtenir les dades dels inputs.
-        var formData     = $(this).serializeArray();
-        var formDataJson = JSON.stringify(formData);
-        var formObject   = JSON.parse(formDataJson);
-
-        // Guardar les dades del formulari (per emplenar el modal).
-        // Els índex [0] van segons l'ordre dels <imputs></imputs>.
-        var tipus     = formObject[2].value;
-        var ubicat    = formObject[3].value;
-        var contingut = formObject[4].value;
-        var grup      = formObject[5].value;
-        
-        $('#modalMaterialsTipus').text(tipus);
-        $('#modalMaterialsUbicat').text(ubicat);
-        $('#modalMaterialsContingut').text(contingut);
-        $('#modalMaterialsGrup').text(grup);
-*/
-        // Obrir el modal.
-        $('#contenidorMaterialsModal').modal();
-    });
-    
 </script>
 @endsection

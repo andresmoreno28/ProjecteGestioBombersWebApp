@@ -13,8 +13,6 @@
             <li class="breadcrumb-item" aria-current="page">Home</li>
             <li class="breadcrumb-item" aria-current="page">Parcs</li>
             <li class="breadcrumb-item active" aria-current="page">Index</li>
-
-
           </ol>
         </nav>
       </div>
@@ -60,20 +58,23 @@
                   <caption><small>Llista de vehicles.</small></caption>
                   <thead class="thead-dark">
                       <tr style="border-bottom:3px solid #dc3545;">
+                        <th>#</th>
                         <th>Codi vehicle</th>
                         <th>Marca model</th>
                         <th>Tipus de vehicle</th>
                         <th>Matricula</th>
                         <th>Asseguradora</th>
-                        <th></th>
+                        <th>Acció</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($vehicles as $vehicle)
+                    @foreach($vehicles as $key => $vehicle)
+                        @php $count = $key+1; @endphp
                         <tr>
+                            <td>{{ $count }}</td>
                             <td>{{ $vehicle->codigo() }}</td>
-                            <td>{{   $vehicle->marca_model }}</td>
+                            <td>{{ $vehicle->marca_model }}</td>
                             <td>
                               {{ $vehicle->type->codi }}
                             </td>
@@ -115,6 +116,8 @@
                     @endforeach
                     </tbody>
                 </table>
+                <!-- Paginació -->
+                {{ $vehicles->links() }}
             @else
                 <div class="well">
                     <h4>No hi han vehicles</h4>

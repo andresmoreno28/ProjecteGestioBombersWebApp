@@ -38,7 +38,7 @@
                 </button>
             </div>
         @endif
-
+@dd($types)
         <!-- Taula de Tipus -->
         <div class="row">
             <div class="col-xs-12 col-12">
