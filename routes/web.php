@@ -41,7 +41,8 @@ Route::resource('material', 'MaterialController');
 
 // Gestió de Contenidors
 Route::resource('container', 'ContainerController');
-Route::resource('container/types', 'ContainerNameController');
+//Route::resource('container/types', 'ContainerNameController');
+Route::get('container/types', 'UserController@index');
 
 // Backup routes
 Route::get('backup', 'BackupController@index')->name('backup');
