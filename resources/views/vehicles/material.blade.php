@@ -25,7 +25,7 @@
     <div class="col-12 border-top border-danger">
       <div class="row mx-2 mt-2">
         <div class="col-12">
-          <form action="">
+          <form action="{{ action('InventoryController@update', ['quantitat' => 'real[]','id' => 'id_cont_mat[]']) }}">
             @foreach ($vehicle->containers as $contenidor)
             @if ($contenidor->container_parent_id == null)
             <div id="contorn_contenidors" class="row">
@@ -52,9 +52,10 @@
 
                   <tr>
                    <td>{{ $material->nom }} </td>
-                   <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
+                   <td class="celles_a_centrar">{{$material->pivot->quantitat_prevista}}</td>
                    <td class="celles_a_centrar">
-                    <input type="number" class="form-control" min="0" name="">
+                    <input type="number" class="form-control" min="0" name="real[]">
+                    <input type="hidden" name="id_cont_mat[]" value="{{ $material->pivot->id }}">
                   </td>
                   <td class="celles_a_centrar">{{$material->referencia}}</td>
                   <td class="celles_a_centrar">
@@ -83,9 +84,11 @@
                 @foreach ($materials_subcontenidors as $material)                 
                 <tr>
                   <td>**    {{ $material->nom }}</td>
-                  <td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
+                  <td class="celles_a_centrar">{{$material->pivot->quantitat_prevista}}</td>
                   <td class="celles_a_centrar">
-                    <input type="number" class="form-control" min="0">
+                    <input type="number" class="form-control" min="0" name="
+                    real[]">
+                    <input type="hidden" name="id_cont_mat[]" value="{{ $material->pivot->id }}">
                   </td>
                   <td class="celles_a_centrar">{{$material->referencia}}</td>
                   <td style="text-align:center;" class="celles_a_centrar subcont">

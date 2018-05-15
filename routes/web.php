@@ -55,3 +55,4 @@ Route::get('backup/delete/{file_name}', 'BackupController@delete')->name('dbacku
 })->name('pdf');*/
 
 Route::get('informes/{id}', 'PDFController@crearPDF')->name('report');
+Route::get('inventory', 'InventoryController@update')->name('inventory');

@@ -88,6 +88,6 @@ class Container extends Model
     public function materials()
     {
         return $this->belongsToMany(Material::class)
-            ->withPivot('quantitat_prevista', 'quantitat', 'es_del_parc');
+            ->withPivot('id','quantitat_prevista', 'quantitat', 'es_del_parc');
     }
 }
