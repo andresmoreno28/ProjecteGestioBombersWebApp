@@ -1,8 +1,6 @@
 <div class="container-fluid mt-2">
     <div class="row">
         <div class="col-xs-12 col-12">
-
-            <h3>TAULA</h3>
             <table class="table table-bordered table-striped">
                 <caption><small>{{ $tInfo }}</small></caption>
                 <thead class="thead-dark">
@@ -21,7 +19,7 @@
                             <td>
                                 {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                                 @if (isset($container['vehicle']))
-                                    {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['codi'] }}
+                                    {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['nom'] }}
                                 @elseif (isset($container['user']))
                                     {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                                 @else
@@ -32,7 +30,7 @@
                                 {{ $container['parent']['container_name']['nom'] }}
                                 {{-- Mostrar les dades del lloc on està contingut el contenidor. --}}
                                 @if (isset($container['parent']['vehicle']))
-                                    , {{ $container['parent']['vehicle']['codi'] }}, {{ $container['parent']['vehicle']['type']['codi'] }}
+                                    , {{ $container['parent']['vehicle']['codi'] }}, {{ $container['parent']['vehicle']['type']['nom'] }}
                                 @elseif (isset($container['parent']['user']))
                                     , {{ $container['parent']['user']['codi_parc'] }}, {{ $container['parent']['user']['name'] }}
                                 @else @endif
@@ -52,7 +50,7 @@
                                         <input type="hidden" name="tipus" value="{{ $container['container_name']['nom'] }}">
                                         {{-- Ubicat --}}
                                         @if (isset($container['vehicle']))
-                                            <input type="hidden" name="ubicat" value="{{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}">
+                                            <input type="hidden" name="ubicat" value="{{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['codi'] }}">
                                         @elseif (isset($container['user']))
                                             <input type="hidden" name="ubicat" value="{{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}">
                                         @else

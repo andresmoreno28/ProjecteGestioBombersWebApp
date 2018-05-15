@@ -21,7 +21,7 @@
                             {{ $container->container_name->nom.', ' }}
                             {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                             @if (isset($container['vehicle']))
-                                {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                                {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['nom'] }}
                             @elseif (isset($container['user']))
                                 {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                             @else
@@ -34,7 +34,7 @@
                         {{ $container->container_name->nom.', ' }}
                         {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                         @if (isset($container['vehicle']))
-                            {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                            {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['nom'] }}
                         @elseif (isset($container['user']))
                             {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                         @else
