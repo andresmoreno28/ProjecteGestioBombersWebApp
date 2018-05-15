@@ -54,18 +54,21 @@
             <div class="row">
               <div class="col-xs-12 col-12">
                   @if (count($regions))
-
                       <table class="table table-striped table-bordered">
+                          <caption><small>Llista de regions.</small></caption>
                           <thead>
                           <tr>
+                              <th>#</th>
                               <th>Codi</th>
                               <th>Nom</th>
-                              <th></th>
+                              <th>Acció</th>
                           </tr>
                           </thead>
                           <tbody>
-                          @foreach($regions as $region)
+                          @foreach($regions as $key => $region)
+                              @php $count = $key+1; @endphp
                               <tr>
+                                  <td>{{ $count }}</td>
                                   <td>{{ $region['codi'] }}</td>
                                   <td>{{ $region['nom'] }}</td>
 
@@ -83,6 +86,8 @@
                           @endforeach
                           </tbody>
                       </table>
+                      <!-- Paginació -->
+                      {{ $regions->links() }}
                   @else
                       <div class="well">
                           <h4>No hi han regions inserides</h4>

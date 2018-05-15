@@ -27,7 +27,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-      $vehicles = Vehicle::where('donat_de_baixa', 0)->get();
+      $vehicles = Vehicle::where('donat_de_baixa', 0)->paginate(8);
 
       return view('vehicles.index', ['vehicles' => $vehicles]);
     }

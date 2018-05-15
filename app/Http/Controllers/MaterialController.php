@@ -27,7 +27,8 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::all();
+        $materials = Material::orderBy('nom', 'ASC') // Ordenar de més antic a més nou.
+            ->paginate(8);
         return view('materials.index', compact('materials'));
     }
 

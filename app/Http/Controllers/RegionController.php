@@ -24,7 +24,7 @@ class RegionController extends Controller
     public function index()
     {
         //Agafa totes les regions
-        $regions = Region::get();
+        $regions = Region::paginate(8);
         //Retorna a la pàgina d'index de regions amb l'objecte $regions
         return view('parcs/regions.index', ['regions' => $regions]);
     }

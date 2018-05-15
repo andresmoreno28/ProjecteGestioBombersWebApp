@@ -46,14 +46,17 @@
                     <caption><small>Llista de materials.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
+                            <th scope="col">#</th>
                             <th scope="col">Referència</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Acció</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($materials as $material)
+                        @forelse ($materials as $key => $material)
+                            @php $count = $key+1; @endphp
                             <tr>
+                                <td>{{ $count }}</td>
                                 <td>{{ $material->referencia }}</td>
                                 <td>{{ $material->nom }}</td>
                                 <td class="text-right">
@@ -82,6 +85,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                <!-- Paginació -->
+                {{ $materials->links() }}
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.col -->

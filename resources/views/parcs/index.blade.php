@@ -60,16 +60,19 @@
                   <caption><small>Llistat de parcs.</small></caption>
                   <thead class="thead-dark">
                       <tr style="border-bottom:3px solid #dc3545;">
+                        <th>#</th>
                         <th>Nom</th>
                         <th>Codi</th>
                         <th>Regio</th>
                         <th>Data modificació</th>
-                        <th></th>
+                        <th>Acció</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
+                    @foreach($users as $key => $user)
+                        @php $count = $key+1; @endphp
                         <tr>
+                            <td>{{ $count }}</td>
                             <td>{{ $user['name'] }}</td>
                             <td>{{   $user['codi_parc'] }}</td>
                             <td>
