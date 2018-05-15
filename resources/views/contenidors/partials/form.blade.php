@@ -163,8 +163,9 @@
             </thead>
             <tbody>
                 @forelse ($materials as $key => $material)
+                    @php $count = $key+1; @endphp
                     <tr>
-                        <td>{{ ++$key }}</td>
+                        <td>{{ $count }}</td>
                         <td>{{ $material->nom }}</td>
                         <td>{{ $material->referencia }}</td>
                         <td>
@@ -175,12 +176,11 @@
                                     <input class="form-check-input" type="checkbox"
                                         value="{{ $material->id }}" id="material-{{ $material->id }}"
                                         name="material_container[]"
-                                        @if($material->id == $containerEdit['user']['id'] or $material->id == old('material_container')) checked @endif>
+                                        @if(!empty($containerEdit['materials'][$key]))
+                                            @if ($material->id == $containerEdit['materials'][$key]['id'] or $material->id == old('material_container')) checked @endif>
+                                        @endif
                                     <label class="form-check-label text-muted" for="material-{{ $material->id }}">
                                         Seleccionar
-                                        @if($material->id == $containerEdit['user']['id'] or $material->id == old('material_container')) checked @endif
-                                        {{$containerEdit['materials'][2]}}
-                                        {{$material->id}}
                                     </label>
                                 </div>
                             @else

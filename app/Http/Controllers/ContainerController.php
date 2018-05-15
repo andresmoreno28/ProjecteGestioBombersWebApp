@@ -271,6 +271,13 @@ class ContainerController extends Controller
         // Actualitzar el contenidor (la validació ha sortit bé).
         $container->update($data);
 
+        // Obtenir els materials seleccionats (array).
+        $materials = $request['material_container'];
+
+        // Associar els materials amb el contenidors (taula pivot
+        // container_material).
+        $container->materials()->attach($materials);
+
         // Vista amb el llistat del material.
         return redirect()->action('ContainerController@index');
     }
