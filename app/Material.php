@@ -14,10 +14,7 @@ class Material extends Model
      */
     protected $fillable = [
         'referencia',
-        'nom',
-        'quantitat_prevista',
-        'quantitat',
-        'es_del_parc'
+        'nom'
     ];
 
     /**
