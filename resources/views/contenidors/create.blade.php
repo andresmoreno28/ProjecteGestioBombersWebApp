@@ -59,6 +59,8 @@
 
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 
 <script type="text/javascript">
 $(function() {
@@ -79,5 +81,8 @@ $(function() {
         $("#parcContenidorSelect").toggle($(this).val() == "0");
     });
 });
+
+// Select Múltiple per als materials.
+$("#materialContenidor").select2();
 </script>
 @endsection

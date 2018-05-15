@@ -21,7 +21,7 @@
                             {{ $container->container_name->nom.', ' }}
                             {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                             @if (isset($container['vehicle']))
-                                {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                                {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['nom'] }}
                             @elseif (isset($container['user']))
                                 {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                             @else
@@ -34,7 +34,7 @@
                         {{ $container->container_name->nom.', ' }}
                         {{-- Mostrar les dades del lloc on està ubicat el contenidor. --}}
                         @if (isset($container['vehicle']))
-                            {{ $container['vehicle']['codi'] }}, {{ $container['vehicle']['type']['codi'] }}
+                            {{ $container['vehicle']->codigo() }}, {{ $container['vehicle']['type']['nom'] }}
                         @elseif (isset($container['user']))
                             {{ $container['user']['codi_parc'] }}, {{ $container['user']['name'] }}
                         @else
@@ -113,11 +113,11 @@
                 @if (isset($containerEdit))
                     <option value="{{ $vehicle->id }}"
                         @if($vehicle->id == $containerEdit['vehicle']['id'] or $vehicle->id == old('vehicle_id')) selected @endif>
-                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                        {{ $vehicle->codigo() }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @else
                     <option value="{{ $vehicle->id }}">
-                        {{ $vehicle->codi }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
+                        {{ $vehicle->codigo() }}, {{ $vehicle->type->codi }}, {{ $vehicle->type->descripcio }} ({{ $vehicle->type->nom }})
                     </option>
                 @endif
             @endforeach
@@ -148,12 +148,62 @@
 </div><!-- /.form-row -->
 <hr class="mb-4">
 
-<!-- CONTENIDOR VEHICLE - USUARI -->
+<!-- MATERIALS -->
 <h6>Materials</h6>
-<div class="form-row">
-    <div class="form-group col-md-4">
-    </div>
-</div><!-- /.form-row -->
+<div class="row">
+    <div class="col table-responsive">
+        <table class="table table-hover table-sm">
+            <thead class="thead-dark">
+                <tr style="border-bottom:3px solid #dc3545;">
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Referència</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($materials as $key => $material)
+                    @php $count = $key+1; @endphp
+                    <tr>
+                        <td>{{ $count }}</td>
+                        <td>{{ $material->nom }}</td>
+                        <td>{{ $material->referencia }}</td>
+                        <td>
+                            {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
+                            en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
+                            @if (isset($containerEdit))
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        value="{{ $material->id }}" id="material-{{ $material->id }}"
+                                        name="material_container[]"
+                                        @if(!empty($containerEdit['materials'][$key]))
+                                            @if ($material->id == $containerEdit['materials'][$key]['id'] or $material->id == old('material_container')) checked @endif>
+                                        @endif
+                                    <label class="form-check-label text-muted" for="material-{{ $material->id }}">
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            @else
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        value="{{ $material->id }}" id="material-{{ $material->id }}" name="material_container[]">
+                                    <label class="form-check-label text-muted" for="material-{{ $material->id }}">
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">Encara no hi ha materials.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div><!-- /.col -->
+</div><!-- /.row -->
+<hr class="mb-4">
 
 <!-- Botó (submit) -->
 <button type="submit" class="btn btn-danger bg-dark">

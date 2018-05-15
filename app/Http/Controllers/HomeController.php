@@ -47,12 +47,12 @@ class HomeController extends Controller
         for($i=0; $i < $arr_length; $i++){
             $array[$i][0]=$vehicles1[$i]->codigo();
             $array[$i][1]=$vehicles1[$i]->marca_model;
-            $array[$i][2]=$vehicles1[$i]->type->nom;
+            $array[$i][2]=$vehicles1[$i]->type->codi;
             $array[$i][3]=$vehicles1[$i]->matricula;
             $array[$i][4]=$vehicles1[$i]->insurers->nom;
             $array[$i][5]=$vehicles1[$i]->id;
         }
-      
+
       }else{
 
         $vehicles1= Vehicle::where('user_id', $id)->get();
@@ -61,7 +61,7 @@ class HomeController extends Controller
         for($i=0; $i < $arr_length; $i++){
             $array[$i][0]=$vehicles1[$i]->codigo();
             $array[$i][1]=$vehicles1[$i]->marca_model;
-            $array[$i][2]=$vehicles1[$i]->type->nom;
+            $array[$i][2]=$vehicles1[$i]->type->codi;
             $array[$i][3]=$vehicles1[$i]->matricula;
             $array[$i][4]=$vehicles1[$i]->insurers->nom;
             $array[$i][5]=$vehicles1[$i]->id;

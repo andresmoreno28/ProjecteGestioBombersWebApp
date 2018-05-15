@@ -27,7 +27,7 @@
         <div class="col-12">
           @foreach ($vehicle->containers as $contenidor)
       			<div id="contorn_contenidors" class="row">
-      				<h3>{{ $contenidor->nom->nom }}</h3>
+      				<h3 class="border-bottom border-danger">{{ $contenidor->nom->nom }}</h3>
       			</div>
 
       				 <div class="table-responsive">

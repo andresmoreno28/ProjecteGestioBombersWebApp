@@ -88,9 +88,9 @@
                     @endif
                     @forelse ($vTypes as $type)
                       @if ($vehicle->type['nom']==$type['nom'])
-                        <option value="{{$type['id']}}" selected> {{$type['nom']}} </option>
+                        <option value="{{$type['id']}}" selected> {{$type['codi']}} </option>
                       @else
-                        <option value="{{$type['id']}}">{{$type['nom']}}</option>
+                        <option value="{{$type['id']}}">{{$type['codi']}}</option>
                       @endif
                     @empty
 

@@ -72,7 +72,7 @@
                         <td>{{ $vehicle->codigo() }}</td>
                         <td>{{   $vehicle->marca_model }}</td>
                         <td>
-                          {{ $vehicle->type->nom }}
+                          {{ $vehicle->type->codi }}
                         </td>
                         <td>
                           {{$vehicle->matricula}}

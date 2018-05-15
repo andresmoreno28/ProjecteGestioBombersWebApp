@@ -89,10 +89,4 @@ class Container extends Model
     {
         return $this->belongsToMany(Material::class);
     }
-
-    // ...
-    public function material()
-    {
-        return $this->hasMany(ContainersMaterials::class, 'material_id');
-    }
 }
