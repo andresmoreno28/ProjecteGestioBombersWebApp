@@ -159,7 +159,7 @@ class ContainerController extends Controller
 
         // Associar els materials amb el contenidors (taula pivot
         // container_material).
-        $contCreat->materials()->attach($materials);
+        $contCreat->materials()->sync($materials);
 
         // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerController@index');
@@ -276,7 +276,7 @@ class ContainerController extends Controller
 
         // Associar els materials amb el contenidors (taula pivot
         // container_material).
-        $container->materials()->attach($materials);
+        $container->materials()->sync($materials);
 
         // Vista amb el llistat del material.
         return redirect()->action('ContainerController@index');

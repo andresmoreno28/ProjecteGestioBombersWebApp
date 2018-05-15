@@ -87,6 +87,6 @@ class Container extends Model
      */
     public function materials()
     {
-        return $this->belongsToMany(Material::class)->withTimestamps();
+        return $this->belongsToMany(Material::class);
     }
 }
