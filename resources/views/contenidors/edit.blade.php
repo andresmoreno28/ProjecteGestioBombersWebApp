@@ -62,7 +62,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-$(function() {
+$(document).ready(function() {
     // RADIO BUTTON (ubicació)
     // -----------------------
     // Seleccionar la ubicació del contenidor quan carrega la pàgina (auto).
@@ -79,6 +79,29 @@ $(function() {
         $("#vehicleContenidorSelect").toggle($(this).val() == "1");
         $("#parcContenidorSelect").toggle($(this).val() == "0");
     });
+
+    // QUANTITATS MATERIAL
+    // -----------------------
+    $('.form-check-input').ready(function(){
+        $('.form-check-input').each(function (){
+            var row = $(this).closest('tr');
+            if($(this).is(':checked')) {
+                $(row).find('.qr, .qp').prop("disabled",false);
+            } else {
+                $(row).find('.qr, .qp').prop("disabled",true);
+            }
+        });
+    })
+    $(document).on('change','.form-check-input',function() {
+        var row = $(this).closest('tr');
+        if($(this).is(':checked')) {
+            $(row).find('.qr, .qp').prop("disabled",false);
+        } else {
+            $(row).find('.qr, .qp').prop("disabled",true);
+        }
+    });
 });
+
+
 </script>
 @endsection
