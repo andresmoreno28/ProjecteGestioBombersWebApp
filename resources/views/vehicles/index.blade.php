@@ -13,8 +13,6 @@
             <li class="breadcrumb-item" aria-current="page">Home</li>
             <li class="breadcrumb-item" aria-current="page">Parcs</li>
             <li class="breadcrumb-item active" aria-current="page">Index</li>
-
-
           </ol>
         </nav>
       </div>
@@ -66,7 +64,7 @@
                         <th>Tipus de vehicle</th>
                         <th>Matricula</th>
                         <th>Asseguradora</th>
-                        <th></th>
+                        <th>Acció</th>
                     </tr>
                     </thead>
                     <tbody>

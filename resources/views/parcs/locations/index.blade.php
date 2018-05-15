@@ -56,8 +56,8 @@
                   @if (count($locations))
                       <table class="table table-striped table-bordered">
                           <caption><small>Llista de poblacions.</small></caption>
-                          <thead>
-                          <tr>
+                          <thead class="thead-dark">
+                              <tr style="border-bottom:3px solid #dc3545;">
                               <th>#</th>
                               <th>Codi</th>
                               <th>Nom</th>

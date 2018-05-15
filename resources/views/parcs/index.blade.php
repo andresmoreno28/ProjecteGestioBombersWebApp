@@ -95,6 +95,8 @@
                     @endforeach
                     </tbody>
                 </table>
+                <!-- Paginació -->
+                {{ $users->links() }}
             @else
                 <div class="well">
                     <h4>No hi han parcs</h4>
@@ -103,11 +105,6 @@
         </div>
       </div>
       <!--Fi taula Usuaris-->
-      <div class="row">
-        <div class="mx-auto">
-          {{ $users->links() }}
-        </div>
-      </div>
 
     </div>
     <!--Fi Contenedor central-->
