@@ -1,5 +1,4 @@
-<?php
-
+<?php                                                                                                                                                               
 namespace App;
 
 use App\Container;

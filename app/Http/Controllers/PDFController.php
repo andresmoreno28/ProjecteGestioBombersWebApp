@@ -9,6 +9,10 @@ use App\User;
 use App\Vehicle;
 use App\Container;
 use App\Material;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use dompdf\dompdf\src\Adapter\CPDF;
+use dompdf\dompdf\src\Exception;
 
 class PDFController extends Controller
 {
@@ -23,11 +27,20 @@ class PDFController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function crearPDF()
-    {
+    public function crearPDF($id)
+    {     
+      $data = $this->getData($id);
       
+      $view =  \View::make('informes.report', $data)->render();
+
+      $pdf = PDF::loadHTML($view);
+      return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
+    }
+
+    public function getData($id_vehicle)
+    {
         //Agafem el vehicle mitjançant el seu "id"
-        $vehicle = Vehicle::findOrFail(1);
+        $vehicle = Vehicle::find($id_vehicle);
 
         //Agafem l'usuari a través de la seva relació amb el vehicle
         $user = $vehicle->user;
@@ -36,10 +49,14 @@ class PDFController extends Controller
         $region = $user->region;      
 
         $contenidors = $vehicle->containers;
-       
-        return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors]);
 
-        $pdf = PDF::loadView('informes/report');
-        return $pdf->download('informe.pdf');
+        $data = [
+            'region' => $region,
+            'user' => $user,
+            'vehicle' => $vehicle,
+            'contenidors' => $contenidors
+        ];
+
+        return $data;
     }
 }

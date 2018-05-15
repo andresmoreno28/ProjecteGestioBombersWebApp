@@ -35,18 +35,23 @@ class ContainerController extends Controller
         // està per assignar.
         $containersN = Container::where('user_id', '=', null)
             ->where('vehicle_id', '=', null)
-            ->get();
+            ->orderBy('updated_at', 'DESC') // Ordenar de més antic a més nou.
+            ->paginate(8);
         // Si no és d'un vehicle (0) i té assignat un usuari, diem que el contenidor
         // forma part del grup dels usuaris (parcs).
         $containersU = Container::where('es_dun_vehicle', '=', 0)
             ->where('user_id', '!=', null)
-            ->get();
+            ->orderBy('user_id', 'ASC')             // Ordenar per id d'usuari/parc
+            ->orderBy('container_parent_id', 'ASC') // Ordenar per id pare
+            ->paginate(8);
         
         // Si és d'un vehicle (1) i té assignat un vehicle, diem que el contenidor
         // forma part del grup dels vehicles.
         $containersV = Container::where('es_dun_vehicle', '=', 1)
             ->where('vehicle_id', '!=', null)
-            ->get();
+            ->orderBy('vehicle_id', 'ASC')          // Ordenar per id vehicle
+            ->orderBy('container_parent_id', 'ASC') // Ordenar per id pare
+            ->paginate(8);
 
         // Comptar contenidors per mostrar el total en les pestanyes.
         $containersNC = $containersN->count();
@@ -141,13 +146,25 @@ class ContainerController extends Controller
         ]);
 
         // Crear el contenidor (la validació ha sortit bé).
-        $type = Container::create([
+        $container = Container::create([
             'container_parent_id' => $data['container_parent_id'],
             'container_name_id'   => $data['container_name_id'],
             'es_dun_vehicle'      => $data['es_dun_vehicle'],
             'vehicle_id'          => $data['vehicle_id'],
             'user_id'             => $data['user_id']
         ]);
+
+        // Obtenir la ID del contenidor creat.
+        // Obtenir el contenidor creat.
+        $id        = $container->id;
+        $contCreat = Container::find($id);
+
+        // Obtenir els materials seleccionats (array).
+        $materials = $request['material_container'];
+
+        // Associar els materials amb el contenidors (taula pivot
+        // container_material).
+        $contCreat->materials()->sync($materials);
 
         // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerController@index');
@@ -258,6 +275,13 @@ class ContainerController extends Controller
 
         // Actualitzar el contenidor (la validació ha sortit bé).
         $container->update($data);
+
+        // Obtenir els materials seleccionats (array).
+        $materials = $request['material_container'];
+
+        // Associar els materials amb el contenidors (taula pivot
+        // container_material).
+        $container->materials()->sync($materials);
 
         // Vista amb el llistat del material.
         return redirect()->action('ContainerController@index');

@@ -27,6 +27,7 @@ body {
 	font-size: 22px;
 	position: absolute;
 	text-align: center;
+	border-collapse: collapse
 }
 
 #regio_parc_vehicle {
@@ -37,6 +38,7 @@ body {
 	font-size: 22px;
 	position: absolute;
 	text-align: center;
+	border-collapse: collapse
 }
 
 #data {
@@ -47,6 +49,7 @@ body {
 	font-size: 22px;
 	position: absolute;
 	text-align: center;
+	border-collapse: collapse
 }
 
 .celles_a_centrar {
@@ -56,10 +59,11 @@ body {
 #contorn_contenidors {
 	text-align: center;
 	border: 3px solid black;
+	border-collapse: collapse
 	margin-top: 20px;
 	margin-bottom: 20px;
 	margin-left: 10px;
 	padding-left: 20px;
 	width: 28%;
-
+	page-break-before:always;
 }
