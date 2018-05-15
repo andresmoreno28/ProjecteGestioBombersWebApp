@@ -27,9 +27,9 @@ class PDFController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function crearPDF()
+    public function crearPDF($id)
     {     
-      $data = $this->getData();
+      $data = $this->getData($id);
       
       $view =  \View::make('informes.report', $data)->render();
 
@@ -37,10 +37,10 @@ class PDFController extends Controller
       return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
     }
 
-    public function getData()
+    public function getData($id_vehicle)
     {
         //Agafem el vehicle mitjançant el seu "id"
-        $vehicle = Vehicle::find(1);
+        $vehicle = Vehicle::find($id_vehicle);
 
         //Agafem l'usuari a través de la seva relació amb el vehicle
         $user = $vehicle->user;
