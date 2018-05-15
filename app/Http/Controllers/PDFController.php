@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-use Barryvdh\Snappy\Facades\SnappyPdf as SPDF;
 use App\Region;
 use App\User;
 use App\Vehicle;
@@ -29,38 +28,13 @@ class PDFController extends Controller
      */
 
     public function crearPDF()
-    {
+    {     
+      $data = $this->getData();
       
-        
-        $data = $this->getData();
-        
-        $view =  \View::make('informes.report', $data)->render();
-        //$data = array('region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors);
+      $view =  \View::make('informes.report', $data)->render();
 
-        $pdf = PDF::loadHTML($view);
-        return $pdf->download('informe');
-
-        //$snappy = SPDF::generate('http://www.w3schools.com', '/tmp/testPdf.pdf');
-
-        /*return view('informes.report', ['region' => $region,'user' => $user, 'vehicle' => $vehicle,'contenidors' => $contenidors]);*/
-
-        /*$options = new Dompdf\Options();
-        $options->setDpi(150);
-        $pdf = new \Dompdf($options);
-        $pdf ->loadView('informes.report', $data)->save('informe.pdf');
-        $pdf->render();
-        return $pdf->stream('informe.pdf');*/
-
-        // instantiate and use the dompdf class
-       // $options = new Options();
-        //$options->setDpi(150);
-        //$dompdf = PDF::loadView('informes.report', $data);
-        //$dompdf->setOptions($options);
-        // (Optional) Setup the paper size and orientation
-        //$dompdf->setPaper('A4', 'portrait');
-
-        // Output the generated PDF to Browser
-        //$dompdf->stream('informe.pdf');
+      $pdf = PDF::loadHTML($view);
+      return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
     }
 
     public function getData()
