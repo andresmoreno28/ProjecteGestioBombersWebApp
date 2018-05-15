@@ -26,6 +26,7 @@ class Material extends Model
      */
     public function containers()
     {
-        return $this->belongsToMany(Container::class);
+        return $this->belongsToMany(Container::class)
+            ->withPivot('quantitat_prevista', 'quantitat', 'es_del_parc');
     }
 }
