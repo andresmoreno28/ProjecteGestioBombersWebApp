@@ -80,6 +80,8 @@
                     @endforelse
                 </tbody>
             </table>
+            <!-- Paginació -->
+            {{ $containers->links() }}
         </div><!-- /.col -->
     </div><!-- /.row -->
 </div><!-- container-fluid -->
