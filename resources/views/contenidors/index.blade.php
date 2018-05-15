@@ -152,12 +152,44 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- MATERIALS (modal) -->
+<div class="modal fade" id="contenidorMaterialsModal" tabindex="-1" role="dialog" aria-labelledby="modalMaterials" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Materials del contenidor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Body -->
+                <div class="modal-body scroll">
+                    <!-- Llista de materials -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">NomContenidor</h6>
+                            <ul>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @endsection
 
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+    // ESBORRAR CONTENIDOR
     $('table').on('click', '.form-delete', function(e) {
         // Evitar que continuï endavant el "submit" per fer que finalitzi, o no,
         // a través del modal.
@@ -189,5 +221,35 @@
             form.submit();
         });
     });
+
+    // MATERIAL CONTENIDOR
+    $('table').on('click', '.form-materials', function(e) {
+        // Evitar que continuï endavant el "submit".
+        e.preventDefault();
+
+        // Guardar les dades del submit.
+        var form = $(this);
+/*
+        // Tractar dades del formulari per obtenir les dades dels inputs.
+        var formData     = $(this).serializeArray();
+        var formDataJson = JSON.stringify(formData);
+        var formObject   = JSON.parse(formDataJson);
+
+        // Guardar les dades del formulari (per emplenar el modal).
+        // Els índex [0] van segons l'ordre dels <imputs></imputs>.
+        var tipus     = formObject[2].value;
+        var ubicat    = formObject[3].value;
+        var contingut = formObject[4].value;
+        var grup      = formObject[5].value;
+        
+        $('#modalMaterialsTipus').text(tipus);
+        $('#modalMaterialsUbicat').text(ubicat);
+        $('#modalMaterialsContingut').text(contingut);
+        $('#modalMaterialsGrup').text(grup);
+*/
+        // Obrir el modal.
+        $('#contenidorMaterialsModal').modal();
+    });
+    
 </script>
 @endsection
