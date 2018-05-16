@@ -56,7 +56,7 @@
                 {{-- Quan la variable $containerEdit estigui definida, seleccionem l'ítem que pertoqui.
                 en cas contrari mostrem valors sense selecció, sent el primer el que es mostri. --}}
                 @if (isset($containerEdit))
-                    
+
                     <option value="{{ $containerName->id }}"
                         @if($containerName->id == $containerEdit['container_name']['id'] or $containerName->id == old('container_name_id')) selected @endif>
                         {{ $containerName->nom }}
@@ -152,7 +152,8 @@
 <h6>Materials</h6>
 <div class="row">
     <div class="col table-responsive">
-        <table class="table table-hover table-sm">
+      <input class="form-control mb-2" type="text" placeholder="Cercar material" id="myInput" onkeyup="myFunction()">
+        <table class="table table-hover table-sm" id="myTable">
             <thead class="thead-dark">
                 <tr style="border-bottom:3px solid #dc3545;">
                     <th scope="col">#</th>
@@ -221,3 +222,24 @@
 <button type="submit" class="btn btn-danger bg-dark">
     <p class="my-0 underline-small">{{ $submitButton }}</p>
 </button>
+
+<script type="text/javascript">
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>

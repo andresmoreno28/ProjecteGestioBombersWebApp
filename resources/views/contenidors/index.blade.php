@@ -78,7 +78,7 @@
 
                 <!-- NAVEGACIÓ AJUDA -->
                 @include('contenidors.partials.tanchors')
-                
+
                 <!-- NO ASSIGNATS -->
                 <h5 id="assignar">No assignats <span class="badge badge-danger">({{ $containersNC }})</span></h5>
                 @include('contenidors.partials.tcontainers', [
@@ -165,7 +165,7 @@
         var ubicat    = formObject[3].value;
         var contingut = formObject[4].value;
         var grup      = formObject[5].value;
-        
+
         $('#modalEsborrarTipus').text(tipus);
         $('#modalEsborrarUbicat').text(ubicat);
         $('#modalEsborrarContingut').text(contingut);
