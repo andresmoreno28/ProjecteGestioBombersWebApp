@@ -1,14 +1,14 @@
 {
-    "name": "DatabaseSeeder",
-    "line": 7,
+    "name": "ContainerNameSeeder",
+    "line": 6,
     "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
-    "file": "D:\\www\\bombers\/\\database\\seeds\\DatabaseSeeder.php",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\ContainerNameSeeder.php",
     "relative_file": null,
-    "hash": "cd5d343af3db927584531e1e80776759fc003815",
+    "hash": "440bddf040a8b3c99e58a239508f750b2edceae3",
     "parent": "Illuminate\\Database\\Seeder",
     "modifiers": 0,
     "is_trait": false,
@@ -17,9 +17,7 @@
         "StreamHandler": "Monolog\\Handler\\StreamHandler",
         "Faker": "Faker\\Generator",
         "ContainerName": "App\\ContainerName",
-        "Seeder": "Illuminate\\Database\\Seeder",
-        "Model": "Illuminate\\Database\\Eloquent\\Model",
-        "DB": "Illuminate\\Support\\Facades\\DB"
+        "Seeder": "Illuminate\\Database\\Seeder"
     },
     "errors": [],
     "interfaces": [],
@@ -28,8 +26,8 @@
     "methods": {
         "run": {
             "name": "run",
-            "line": 14,
-            "short_desc": "Seed the application's database.",
+            "line": 13,
+            "short_desc": "Run the database seeds.",
             "long_desc": "",
             "hint": [
                 [
