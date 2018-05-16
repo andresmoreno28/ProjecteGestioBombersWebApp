@@ -12,7 +12,7 @@
           <ol class="breadcrumb bg-transparent">
             <li class="breadcrumb-item" aria-current="page">Home</li>
             <li class="breadcrumb-item" aria-current="page">Poblacions</li>
-            <li class="breadcrumb-item active" aria-current="page">Index</li>
+            <li class="breadcrumb-item active" aria-current="page">Consultar</li>
           </ol>
         </nav>
       </div>

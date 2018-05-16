@@ -24,11 +24,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/vehicle/{id}', 'HomeController@filtre');
 
+// Gestió de l'usuari
 Route::resource('user', 'UserController');
-Route::get('location/delete/{id}', 'LocationController@destroy');
-Route::resource('location', 'LocationController');
+
+// Gestió de poblacions
+//Route::get('location/delete/{id}', 'LocationController@destroy');
+//Route::resource('location', 'LocationController');
+
+// Gestió de regions
 Route::get('region/delete/{id}', 'RegionController@destroy');
 Route::resource('region', 'RegionController');
+
+// Gestió de vehicles
 Route::resource('vehicle', 'VehicleController');
 Route::get('user/delete/{id}', 'UserController@destroy');
 Route::get('vehicle/delete/{id}', 'VehicleController@destroy');

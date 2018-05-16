@@ -41,10 +41,12 @@
                   <h6 class="dropdown-header">Gestió de les regions</h6>
                   <a class="dropdown-item" href="{{action('RegionController@create')}}">Afegir regions</a>
                   <a class="dropdown-item" href="{{action('RegionController@index')}}">Consultar regions</a>
+                  {{--
                   <div class="dropdown-divider"></div>
                   <h6 class="dropdown-header">Gestió de les poblacions</h6>
                   <a class="dropdown-item" href="{{action('LocationController@create')}}">Afegir poblacions</a>
                   <a class="dropdown-item" href="{{action('LocationController@index')}}">Consultar poblacions</a>
+                  --}}
                 </div>
               </div>
               <div class="btn-group dropright" role="group">
