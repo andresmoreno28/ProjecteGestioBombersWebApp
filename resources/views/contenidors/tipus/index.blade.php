@@ -14,7 +14,8 @@
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Contenidors</li>
-                    <li class="breadcrumb-item active" aria-current="page">Tipus</li>
+                    <li class="breadcrumb-item" aria-current="page">Tipus</li>
+                    <li class="breadcrumb-item active" aria-current="page">Consultar</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
