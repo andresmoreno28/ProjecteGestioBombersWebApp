@@ -1,14 +1,14 @@
 {
-    "name": "DatabaseSeeder",
-    "line": 7,
+    "name": "VehicleTypeSeeder",
+    "line": 6,
     "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
-    "file": "D:\\www\\bombers\/\\database\\seeds\\DatabaseSeeder.php",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\VehicleTypeSeeder.php",
     "relative_file": null,
-    "hash": "cd5d343af3db927584531e1e80776759fc003815",
+    "hash": "87e65f29e1fb3e5b58ec26993ced361e655e6caf",
     "parent": "Illuminate\\Database\\Seeder",
     "modifiers": 0,
     "is_trait": false,
@@ -19,7 +19,12 @@
         "ContainerName": "App\\ContainerName",
         "Seeder": "Illuminate\\Database\\Seeder",
         "Model": "Illuminate\\Database\\Eloquent\\Model",
-        "DB": "Illuminate\\Support\\Facades\\DB"
+        "DB": "Illuminate\\Support\\Facades\\DB",
+        "Region": "App\\Region",
+        "User": "App\\User",
+        "VehicleInsurer": "App\\VehicleInsurer",
+        "VehicleOwner": "App\\VehicleOwner",
+        "VehicleType": "App\\VehicleType"
     },
     "errors": [],
     "interfaces": [],
@@ -28,8 +33,8 @@
     "methods": {
         "run": {
             "name": "run",
-            "line": 14,
-            "short_desc": "Seed the application's database.",
+            "line": 13,
+            "short_desc": "Run the database seeds.",
             "long_desc": "",
             "hint": [
                 [
