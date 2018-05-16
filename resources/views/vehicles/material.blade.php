@@ -25,6 +25,29 @@
     <div class="col-12 border-top border-danger">
       <div class="row mx-2 mt-2">
         <div class="col-12">
+          <div class="row">
+            <div class="col-12 mt-3">
+              {{-- Warning --}}
+              @if (session('warning'))
+              <div class="alert alert-warning alert-dismissible fade show">
+                {{ session('warning') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              @endif
+
+              {{-- Success --}}
+              @if (session('success'))
+              <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              @endif
+            </div>
+          </div>
           <form action="{{ action('InventoryController@update', ['quantitat' => 'real[]','id' => 'id_cont_mat[]']) }}">
             @foreach ($vehicle->containers as $contenidor)
             @if ($contenidor->container_parent_id == null)

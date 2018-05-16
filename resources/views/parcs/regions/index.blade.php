@@ -39,10 +39,8 @@
         </div>
         @endif
       </div>
-     <!-- {!! QrCode::size(600)->generate(route('region.index')); !!} -->
 
      <!-- Taula amb llistat de regions -->
-     <!-- <hr class="my-0 d-none d-sm-block"> -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
                 <a id="create-new-backup-button" href="{{ route('region.create') }}" class="btn btn-danger bg-dark">
