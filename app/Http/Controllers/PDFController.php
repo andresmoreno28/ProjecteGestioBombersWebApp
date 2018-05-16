@@ -35,13 +35,19 @@ class PDFController extends Controller
      * @return array
      */
     public function crearPDF($id)
-    {     
-      $data = $this->getData($id);
-      
-      $view =  \View::make('informes.report', $data)->render();
+    {  
+        //S'agafa les dades mitjançant el mètode getData() enviant l'id del
+        //vehicle com a paràmetre  
+        $data = $this->getData($id);
 
-      $pdf = PDF::loadHTML($view);
-      return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
+        //Crea l'objecte View amb la vista del disseny i les dades. Seguidament es renderitza 
+        $view =  \View::make('informes.report', $data)->render();
+
+        //Mitjançant el Facade PDF i el seu mètode loadHTML() es carrega la vista ja renderitzada
+        $pdf = PDF::loadHTML($view);
+
+        //Fa que es descarregui l'informe en pdf mitjançant el mètode download() possant-li ja un nom dinàmic pels codis de vehicle, regio i usuari i la data de la descàrrega.
+        return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
     }
 
     /**
@@ -52,17 +58,19 @@ class PDFController extends Controller
      */
     public function getData($id_vehicle)
     {
-        //Agafem el vehicle mitjançant el seu "id"
+        //Agafa el vehicle mitjançant el seu "id"
         $vehicle = Vehicle::find($id_vehicle);
 
-        //Agafem l'usuari a través de la seva relació amb el vehicle
+        //Agafa l'usuari a través de la seva relació amb el vehicle
         $user = $vehicle->user;
 
-        //Agafem la regió a través de la seva relació amb l'usuari
+        //Agafa la regió a través de la seva relació amb l'usuari
         $region = $user->region;      
 
+        //Agafa tots els contenidors que té el vehicle en qüestió
         $contenidors = $vehicle->containers;
 
+        //Introduïm totes les dades a un array associatiu
         $data = [
             'region' => $region,
             'user' => $user,
