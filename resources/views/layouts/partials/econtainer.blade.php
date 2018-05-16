@@ -6,7 +6,10 @@
       <ol class="breadcrumb bg-transparent">
         <li class="breadcrumb-item underline-small">
             {{ Auth::user()->codi_parc }}, {{ Auth::user()->name }} <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();"><i class="fas fa-power-off fa-sm text-danger"></i></a>
+                  document.getElementById('logout-form').submit();"
+                  tooltip="tooltip" data-placement="bottom" title="Tancar sessió">
+                  <i class="fas fa-power-off fa-sm text-danger"></i>
+                </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
           </form>
