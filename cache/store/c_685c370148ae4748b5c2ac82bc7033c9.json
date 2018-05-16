@@ -1,0 +1,75 @@
+{
+    "name": "Tests\\DuskTestCase",
+    "line": 10,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests",
+    "file": "D:\\www\\bombers\/\\tests\\DuskTestCase.php",
+    "relative_file": null,
+    "hash": "68bbd4b56298ce94c7d944210fe2fa77d258f62e",
+    "parent": "Laravel\\Dusk\\TestCase",
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "BaseTestCase": "Laravel\\Dusk\\TestCase",
+        "ChromeOptions": "Facebook\\WebDriver\\Chrome\\ChromeOptions",
+        "RemoteWebDriver": "Facebook\\WebDriver\\Remote\\RemoteWebDriver",
+        "DesiredCapabilities": "Facebook\\WebDriver\\Remote\\DesiredCapabilities"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Tests\\CreatesApplication": "Tests\\CreatesApplication"
+    },
+    "properties": [],
+    "methods": {
+        "prepare": {
+            "name": "prepare",
+            "line": 20,
+            "short_desc": "Prepare for Dusk test execution.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "beforeClass": [
+                    [
+                        ""
+                    ]
+                ]
+            },
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "driver": {
+            "name": "driver",
+            "line": 30,
+            "short_desc": "Create the RemoteWebDriver instance.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Facebook\\WebDriver\\Remote\\RemoteWebDriver",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

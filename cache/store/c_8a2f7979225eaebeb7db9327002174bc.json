@@ -1,0 +1,57 @@
+{
+    "name": "DatabaseSeeder",
+    "line": 11,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\DatabaseSeeder.php",
+    "relative_file": null,
+    "hash": "7903ba7602f943c565b9589d0232dc359b223ef4",
+    "parent": "Illuminate\\Database\\Seeder",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "StreamHandler": "Monolog\\Handler\\StreamHandler",
+        "Faker": "Faker\\Generator",
+        "Schema": "Illuminate\\Support\\Facades\\Schema",
+        "Blueprint": "Illuminate\\Database\\Schema\\Blueprint",
+        "Migration": "Illuminate\\Database\\Migrations\\Migration",
+        "User": "App\\User",
+        "Region": "App\\Region",
+        "VehicleType": "App\\VehicleType",
+        "VehicleInsurer": "App\\VehicleInsurer",
+        "VehicleOwner": "App\\VehicleOwner",
+        "ContainerName": "App\\ContainerName",
+        "Material": "App\\Material",
+        "Seeder": "Illuminate\\Database\\Seeder"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "run": {
+            "name": "run",
+            "line": 18,
+            "short_desc": "Seed the application's database.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,96 @@
+{
+    "name": "App\\Http\\Controllers\\Auth\\LoginController",
+    "line": 11,
+    "short_desc": "Class LoginController",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "package": [
+            [
+                "App\\Http\\Controllers\\Auth"
+            ]
+        ]
+    },
+    "namespace": "App\\Http\\Controllers\\Auth",
+    "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\Auth\\LoginController.php",
+    "relative_file": null,
+    "hash": "bff8bffd47ef6b93335251a91fbc8b0c187712a1",
+    "parent": "App\\Http\\Controllers\\Controller",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Controller": "App\\Http\\Controllers\\Controller",
+        "AuthenticatesUsers": "Illuminate\\Foundation\\Auth\\AuthenticatesUsers",
+        "Request": "Illuminate\\Http\\Request",
+        "ValidationException": "Illuminate\\Validation\\ValidationException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Illuminate\\Foundation\\Auth\\AuthenticatesUsers": "Illuminate\\Foundation\\Auth\\AuthenticatesUsers"
+    },
+    "properties": {
+        "redirectTo": {
+            "name": "redirectTo",
+            "line": 29,
+            "short_desc": "Where to redirect users after login.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": {
+                "nodeType": "Scalar_String",
+                "value": "\/home",
+                "attributes": {
+                    "startLine": 29,
+                    "endLine": 29,
+                    "kind": 1
+                }
+            },
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 33,
+            "short_desc": "Create a new controller instance.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "username": {
+            "name": "username",
+            "line": 41,
+            "short_desc": "Check either username or email.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,96 @@
+{
+    "name": "App\\Http\\Controllers\\Auth\\AuthController",
+    "line": 13,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "App\\Http\\Controllers\\Auth",
+    "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\Auth\\AuthController.php",
+    "relative_file": null,
+    "hash": "e279ba669d4ffdc164d04ccd0985b7b19c247c6a",
+    "parent": "App\\Http\\Controllers\\Controller",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Controller": "App\\Http\\Controllers\\Controller",
+        "Request": "Illuminate\\Http\\Request",
+        "Google_Client": "Google_Client",
+        "Google_Service_People": "Google_Service_People",
+        "Socialite": "Socialite",
+        "User": "App\\User",
+        "Auth": "Auth"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "redirectToProvider": {
+            "name": "redirectToProvider",
+            "line": 20,
+            "short_desc": "Redirect the user to the GitHub authentication page.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\App\\Http\\Controllers\\Auth\\Response",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "provider": {
+                    "name": "provider",
+                    "line": 20,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "handleProviderCallback": {
+            "name": "handleProviderCallback",
+            "line": 30,
+            "short_desc": "Obtain the user information from GitHub.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\App\\Http\\Controllers\\Auth\\Response",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "provider": {
+                    "name": "provider",
+                    "line": 30,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}
