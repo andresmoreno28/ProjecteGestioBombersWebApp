@@ -42,7 +42,8 @@
         <!-- Taula de Materials -->
         <div class="row">
             <div class="col-xs-12 col-12">
-                <table class="table table-bordered table-striped">
+              <input class="form-control mb-2" type="text" placeholder="Cercar material" id="myInput" onkeyup="myFunction()">
+                <table class="table table-bordered table-striped" id="myTable">
                     <caption><small>Llista de materials.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
@@ -159,7 +160,7 @@
         // Els índex [0] van segons l'ordre dels <imputs></imputs>.
         var Referencia = formObject[2].value;
         var Nom        = formObject[3].value;
-        
+
         $('#modalEsborrarNom').text(Nom);
         $('#modalEsborrarReferencia').text(Referencia);
 
@@ -169,5 +170,25 @@
             form.submit();
         });
     });
+</script>
+<script type="text/javascript">
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 </script>
 @endsection
