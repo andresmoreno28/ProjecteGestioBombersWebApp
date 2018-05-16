@@ -7,12 +7,25 @@ use Log;
 use Storage;
 class BackupController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
-  public function index()
-   {
+    /**
+     * Create a new controller instance.
+     * Only authenticated users will be able to interact with the methods of the
+     * ContainerController.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
        $disk = Storage::disk(config('laravel-backup.backup.destination.disks')[0]);
 
        $files = $disk->files('copia-seguretat');
@@ -38,7 +51,11 @@ class BackupController extends Controller
        return view("backups.backups")->with(compact('backups'));
    }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
 
@@ -56,6 +73,7 @@ class BackupController extends Controller
             return redirect()->back()->with($missatge);
         }
     }
+
     /**
      * Downloads a backup zip file.
      *
@@ -79,6 +97,7 @@ class BackupController extends Controller
             abort(404, "The backup file doesn't exist.");
         }
     }
+    
     /**
      * Deletes a backup file.
      */
