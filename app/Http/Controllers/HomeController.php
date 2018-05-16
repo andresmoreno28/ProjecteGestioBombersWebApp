@@ -34,7 +34,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $vehicles = Vehicle::where('donat_de_baixa', 0)->get();
+      if (Auth::id()==1) {
+        $vehicles = Vehicle::where('donat_de_baixa', 0)->get();
+      }else {
+        $vehicles = Vehicle::where('donat_de_baixa', 0)->where('user_id', '=',Auth::id())->get();
+      }
+
       $users= User::get();
       return view('home', ['vehicles' => $vehicles, 'users'=>$users]);
     }
