@@ -40,7 +40,7 @@ Route::delete('vehicle/{id}/del', 'VehicleController@destroy');
 Route::resource('material', 'MaterialController');
 
 // Gestió de Contenidors
-Route::resource('container', 'ContainerController');
+Route::resource('containers', 'ContainerController');
 Route::resource('container/types', 'ContainerNameController');
 
 // Backup routes

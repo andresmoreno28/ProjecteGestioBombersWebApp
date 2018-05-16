@@ -36,18 +36,20 @@
     </div>
   </div>
   <!-- Boto per crear usuaris-->
-  <div class="row">
-      <div class="col-xs-12 col-2 my-3 clearfix">
-        <select name="id"class="custom-select" id="inputGroupSelect07" required>
-            <option value="a">Tots els vehicles</option>
-          @forelse ($users as $user)
-              <option value="{{$user['id']}}"> {{$user['name']}} </option>
-          @empty
+  @if (Auth::id() == 1)
+    <div class="row">
+        <div class="col-xs-12 col-2 my-3 clearfix">
+          <select name="id"class="custom-select" id="inputGroupSelect07" required>
+              <option value="a">Tots els vehicles</option>
+            @forelse ($users as $user)
+                <option value="{{$user['id']}}"> {{$user['name']}} </option>
+            @empty
 
-          @endforelse
-        </select>
-      </div>
-  </div>
+            @endforelse
+          </select>
+        </div>
+    </div>
+  @endif
   <!--Fi BOTO-->
   <!--Taula Usuaris-->
   <div class="row">

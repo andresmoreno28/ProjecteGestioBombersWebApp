@@ -1,0 +1,47 @@
+{
+    "name": "Tests\\Browser\\ExampleTest",
+    "line": 9,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests\\Browser",
+    "file": "D:\\www\\bombers\/\\tests\\Browser\\ExampleTest.php",
+    "relative_file": null,
+    "hash": "fb72a01e1fb70b6b4562997f239bb2c94be51ad3",
+    "parent": "Tests\\DuskTestCase",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DuskTestCase": "Tests\\DuskTestCase",
+        "Browser": "Laravel\\Dusk\\Browser",
+        "DatabaseMigrations": "Illuminate\\Foundation\\Testing\\DatabaseMigrations"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "testBasicExample": {
+            "name": "testBasicExample",
+            "line": 16,
+            "short_desc": "A basic browser test example.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,46 @@
+{
+    "name": "Tests\\Feature\\ExampleTest",
+    "line": 8,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests\\Feature",
+    "file": "D:\\www\\bombers\/\\tests\\Feature\\ExampleTest.php",
+    "relative_file": null,
+    "hash": "b543aa56bf297805a3a7901750f810065bdeb965",
+    "parent": "Tests\\TestCase",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "TestCase": "Tests\\TestCase",
+        "RefreshDatabase": "Illuminate\\Foundation\\Testing\\RefreshDatabase"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "testBasicTest": {
+            "name": "testBasicTest",
+            "line": 15,
+            "short_desc": "A basic test example.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

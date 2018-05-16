@@ -32,3 +32,10 @@ jQuery(document).ready(function(){
              });
            });
          });
+
+/**
+ * Bootstrap: Tooltips
+ ******************************************************************************/
+$(function () {
+    $('[tooltip="tooltip"]').tooltip()
+});

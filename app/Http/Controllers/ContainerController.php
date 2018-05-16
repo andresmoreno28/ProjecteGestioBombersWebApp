@@ -161,11 +161,16 @@ class ContainerController extends Controller
         $contCreat = Container::find($id);
 
         // Obtenir els materials seleccionats (array).
-        $materials = $request['material_container'];
+        $materials           = $request['material_container'];
+        $materialsQuantitatP = $request['quantitat_prevista'];
+        $materialsQuantitatR = $request['quantitat'];
 
         // Associar els materials amb el contenidors (taula pivot
         // container_material).
-        $contCreat->materials()->sync($materials);
+        $contCreat->materials()->sync($materials, [
+            'quantitat_prevista' => $materialsQuantitatP,
+            'quantitat' => $materialsQuantitatR
+        ]);
 
         // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerController@index');

@@ -1,0 +1,112 @@
+{
+    "name": "Tests\\Browser\\Pages\\HomePage",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests\\Browser\\Pages",
+    "file": "D:\\www\\bombers\/\\tests\\Browser\\Pages\\HomePage.php",
+    "relative_file": null,
+    "hash": "e880b7956f64a21a6bdc5617c8c556c39968a12a",
+    "parent": "Tests\\Browser\\Pages\\Page",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Browser": "Laravel\\Dusk\\Browser"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "url": {
+            "name": "url",
+            "line": 14,
+            "short_desc": "Get the URL for the page.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "assert": {
+            "name": "assert",
+            "line": 25,
+            "short_desc": "Assert that the browser is on the page.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "browser": {
+                    "name": "browser",
+                    "line": 25,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Laravel\\Dusk\\Browser",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Laravel",
+                            "Dusk",
+                            "Browser"
+                        ],
+                        "attributes": {
+                            "startLine": 25,
+                            "endLine": 25
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "elements": {
+            "name": "elements",
+            "line": 35,
+            "short_desc": "Get the element shortcuts for the page.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}
