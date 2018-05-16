@@ -90,7 +90,14 @@
                              >
                              <i class="far fa-eye"></i>
                            </a>
-                          <a class="btn btn-xs btn-default"
+                         
+                           <a class="btn btn-xs btn-default"
+                                 href="{{ action('PDFController@crearPDF', ['id' => $vehicle->id]) }}">
+                                 <i class="far fa-file-pdf"></i></i>
+                          </a>
+                           @if (Auth::id() == 1)
+                           <!-- Editar -->
+                            <a class="btn btn-xs btn-default"
                              href="{{ url('vehicle/'.$vehicle->id.'/edit') }}">
                              <i class="fas fa-pencil-alt"></i> Editar
                            </a>
@@ -105,6 +112,7 @@
                                    </button>
                                </form>
                            </div>
+                           @endif
                         </td>
                     </tr>
                 @endforeach
