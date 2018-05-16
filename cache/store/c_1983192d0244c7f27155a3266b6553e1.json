@@ -8,7 +8,7 @@
     "namespace": "App\\Http\\Controllers",
     "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\PDFController.php",
     "relative_file": null,
-    "hash": "4f877b03a3641311dff3ce1bd89743d0ba971705",
+    "hash": "b44cacf2ab110fe16f1546c6e3cf1781cd20fb58",
     "parent": "App\\Http\\Controllers\\Controller",
     "modifiers": 0,
     "is_trait": false,
@@ -33,11 +33,16 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 20,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "line": 26,
+            "short_desc": "Create a new controller instance.",
+            "long_desc": "Only authenticated users will be able to interact with the methods of the\nContainerController.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -47,12 +52,12 @@
         },
         "crearPDF": {
             "name": "crearPDF",
-            "line": 30,
-            "short_desc": "Display a listing of the resource.",
+            "line": 37,
+            "short_desc": "Generar el document PDF.",
             "long_desc": "",
             "hint": [
                 [
-                    "\\Illuminate\\Http\\Response",
+                    "array",
                     false
                 ]
             ],
@@ -65,10 +70,10 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 30,
-                    "short_desc": null,
+                    "line": 37,
+                    "short_desc": "",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -79,11 +84,16 @@
         },
         "getData": {
             "name": "getData",
-            "line": 40,
-            "short_desc": "",
+            "line": 53,
+            "short_desc": "Obtenir dades del vehicle.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -92,10 +102,10 @@
             "parameters": {
                 "id_vehicle": {
                     "name": "id_vehicle",
-                    "line": 40,
-                    "short_desc": null,
+                    "line": 53,
+                    "short_desc": "",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [],
                     "tags": [],
                     "modifiers": null,
                     "default": null,

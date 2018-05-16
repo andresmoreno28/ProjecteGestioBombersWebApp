@@ -8,7 +8,7 @@
     "namespace": "App\\Http\\Controllers",
     "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\HomeController.php",
     "relative_file": null,
-    "hash": "0bdc23732d42a84d2edfa7c1d078c30683368032",
+    "hash": "01286c2c9886e266f42d53a33216176ec0053af1",
     "parent": "App\\Http\\Controllers\\Controller",
     "modifiers": 0,
     "is_trait": false,
@@ -72,11 +72,16 @@
         },
         "filtre": {
             "name": "filtre",
-            "line": 41,
-            "short_desc": "",
+            "line": 47,
+            "short_desc": "Filtre de vehicles AJAX.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Illuminate\\Http\\Response",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -85,7 +90,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 41,
+                    "line": 47,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

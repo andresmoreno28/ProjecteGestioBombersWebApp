@@ -8,7 +8,7 @@
     "namespace": "App",
     "file": "D:\\www\\bombers\/\\app\\ContainerMaterial.php",
     "relative_file": null,
-    "hash": "eda584db7a9eb6a9c871a0eb5ce754ccdd1af980",
+    "hash": "fd5eea16f50b257b8b037cbe77511be5df129bb3",
     "parent": "Illuminate\\Database\\Eloquent\\Model",
     "modifiers": 0,
     "is_trait": false,
@@ -22,9 +22,9 @@
     "interfaces": [],
     "traits": [],
     "properties": {
-        "fillable": {
-            "name": "fillable",
-            "line": 16,
+        "table": {
+            "name": "table",
+            "line": 17,
             "short_desc": "The attributes that are mass assignable.",
             "long_desc": "",
             "hint": [
@@ -37,6 +37,65 @@
             "tags": [],
             "modifiers": 2,
             "default": {
+                "nodeType": "Scalar_String",
+                "value": "container_material",
+                "attributes": {
+                    "startLine": 17,
+                    "endLine": 17,
+                    "kind": 1
+                }
+            },
+            "errors": []
+        },
+        "timestamps": {
+            "name": "timestamps",
+            "line": 19,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {
+                "nodeType": "Expr_ConstFetch",
+                "name": {
+                    "nodeType": "Name",
+                    "parts": [
+                        "false"
+                    ],
+                    "attributes": {
+                        "startLine": 19,
+                        "endLine": 19,
+                        "namespacedName": {
+                            "nodeType": "Name_FullyQualified",
+                            "parts": [
+                                "App",
+                                "false"
+                            ],
+                            "attributes": {
+                                "startLine": 19,
+                                "endLine": 19
+                            }
+                        }
+                    }
+                },
+                "attributes": {
+                    "startLine": 19,
+                    "endLine": 19
+                }
+            },
+            "errors": []
+        },
+        "fillable": {
+            "name": "fillable",
+            "line": 21,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 2,
+            "default": {
                 "nodeType": "Expr_Array",
                 "items": [
                     {
@@ -46,15 +105,15 @@
                             "nodeType": "Scalar_String",
                             "value": "quantitat_prevista",
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16,
+                                "startLine": 21,
+                                "endLine": 21,
                                 "kind": 1
                             }
                         },
                         "byRef": false,
                         "attributes": {
-                            "startLine": 16,
-                            "endLine": 16
+                            "startLine": 21,
+                            "endLine": 21
                         }
                     },
                     {
@@ -64,15 +123,15 @@
                             "nodeType": "Scalar_String",
                             "value": "quantitat",
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16,
+                                "startLine": 21,
+                                "endLine": 21,
                                 "kind": 1
                             }
                         },
                         "byRef": false,
                         "attributes": {
-                            "startLine": 16,
-                            "endLine": 16
+                            "startLine": 21,
+                            "endLine": 21
                         }
                     },
                     {
@@ -82,15 +141,15 @@
                             "nodeType": "Scalar_String",
                             "value": "es_del_parc",
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16,
+                                "startLine": 21,
+                                "endLine": 21,
                                 "kind": 1
                             }
                         },
                         "byRef": false,
                         "attributes": {
-                            "startLine": 16,
-                            "endLine": 16
+                            "startLine": 21,
+                            "endLine": 21
                         }
                     },
                     {
@@ -100,15 +159,15 @@
                             "nodeType": "Scalar_String",
                             "value": "container_id",
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16,
+                                "startLine": 21,
+                                "endLine": 21,
                                 "kind": 1
                             }
                         },
                         "byRef": false,
                         "attributes": {
-                            "startLine": 16,
-                            "endLine": 16
+                            "startLine": 21,
+                            "endLine": 21
                         }
                     },
                     {
@@ -118,21 +177,21 @@
                             "nodeType": "Scalar_String",
                             "value": "material_id",
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16,
+                                "startLine": 21,
+                                "endLine": 21,
                                 "kind": 1
                             }
                         },
                         "byRef": false,
                         "attributes": {
-                            "startLine": 16,
-                            "endLine": 16
+                            "startLine": 21,
+                            "endLine": 21
                         }
                     }
                 ],
                 "attributes": {
-                    "startLine": 16,
-                    "endLine": 16,
+                    "startLine": 21,
+                    "endLine": 21,
                     "kind": 2
                 }
             },
@@ -142,7 +201,7 @@
     "methods": {
         "material": {
             "name": "material",
-            "line": 18,
+            "line": 23,
             "short_desc": "",
             "long_desc": "",
             "hint": null,

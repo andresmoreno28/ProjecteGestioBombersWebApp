@@ -8,7 +8,7 @@
     "namespace": "App\\Http\\Controllers",
     "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\BackupController.php",
     "relative_file": null,
-    "hash": "b1266f63af71220ebae9fa34623f4add5cd6348b",
+    "hash": "6fea6a295e6b4299bcaaabc4b8e4f1178b203a40",
     "parent": "App\\Http\\Controllers\\Controller",
     "modifiers": 0,
     "is_trait": false,
@@ -27,11 +27,16 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 10,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "line": 17,
+            "short_desc": "Create a new controller instance.",
+            "long_desc": "Only authenticated users will be able to interact with the methods of the\nContainerController.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -41,11 +46,16 @@
         },
         "index": {
             "name": "index",
-            "line": 14,
-            "short_desc": "",
+            "line": 27,
+            "short_desc": "Display a listing of the resource.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Illuminate\\Http\\Response",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -55,11 +65,16 @@
         },
         "create": {
             "name": "create",
-            "line": 42,
-            "short_desc": "",
+            "line": 59,
+            "short_desc": "Show the form for creating a new resource.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Illuminate\\Http\\Response",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -69,7 +84,7 @@
         },
         "download": {
             "name": "download",
-            "line": 64,
+            "line": 82,
             "short_desc": "Downloads a backup zip file.",
             "long_desc": "TODO: make it work no matter the flysystem driver (S3 Bucket, etc).",
             "hint": null,
@@ -82,7 +97,7 @@
             "parameters": {
                 "file_name": {
                     "name": "file_name",
-                    "line": 64,
+                    "line": 82,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -96,7 +111,7 @@
         },
         "delete": {
             "name": "delete",
-            "line": 85,
+            "line": 104,
             "short_desc": "Deletes a backup file.",
             "long_desc": "",
             "hint": null,
@@ -109,7 +124,7 @@
             "parameters": {
                 "file_name": {
                     "name": "file_name",
-                    "line": 85,
+                    "line": 104,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

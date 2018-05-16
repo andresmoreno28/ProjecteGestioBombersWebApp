@@ -8,7 +8,7 @@
     "namespace": "App\\Http\\Controllers",
     "file": "D:\\www\\bombers\/\\app\\Http\\Controllers\\VehicleController.php",
     "relative_file": null,
-    "hash": "494cdd8f89db522c6c2f69285610f07dde3d2b91",
+    "hash": "4a458385a572cf35e945aa84b1de1eb3a0db31ab",
     "parent": "App\\Http\\Controllers\\Controller",
     "modifiers": 0,
     "is_trait": false,
@@ -34,11 +34,16 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 19,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "line": 26,
+            "short_desc": "Create a new controller instance.",
+            "long_desc": "Only authenticated users will be able to interact with the methods of the\nContainerController.",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -48,7 +53,7 @@
         },
         "index": {
             "name": "index",
-            "line": 28,
+            "line": 36,
             "short_desc": "Display a listing of the resource.",
             "long_desc": "",
             "hint": [
@@ -67,7 +72,7 @@
         },
         "create": {
             "name": "create",
-            "line": 40,
+            "line": 48,
             "short_desc": "Show the form for creating a new resource.",
             "long_desc": "",
             "hint": [
@@ -86,7 +91,7 @@
         },
         "store": {
             "name": "store",
-            "line": 56,
+            "line": 64,
             "short_desc": "Store a newly created resource in storage.",
             "long_desc": "",
             "hint": [
@@ -104,7 +109,7 @@
             "parameters": {
                 "request": {
                     "name": "request",
-                    "line": 56,
+                    "line": 64,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -122,8 +127,8 @@
                             "Request"
                         ],
                         "attributes": {
-                            "startLine": 56,
-                            "endLine": 56
+                            "startLine": 64,
+                            "endLine": 64
                         }
                     },
                     "default": null,
@@ -134,7 +139,7 @@
         },
         "show": {
             "name": "show",
-            "line": 123,
+            "line": 131,
             "short_desc": "Display the specified resource.",
             "long_desc": "",
             "hint": [
@@ -152,7 +157,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 123,
+                    "line": 131,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -171,7 +176,7 @@
         },
         "edit": {
             "name": "edit",
-            "line": 136,
+            "line": 144,
             "short_desc": "Show the form for editing the specified resource.",
             "long_desc": "",
             "hint": [
@@ -189,7 +194,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 136,
+                    "line": 144,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -208,7 +213,7 @@
         },
         "update": {
             "name": "update",
-            "line": 154,
+            "line": 162,
             "short_desc": "Update the specified resource in storage.",
             "long_desc": "",
             "hint": [
@@ -226,7 +231,7 @@
             "parameters": {
                 "request": {
                     "name": "request",
-                    "line": 154,
+                    "line": 162,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -244,8 +249,8 @@
                             "Request"
                         ],
                         "attributes": {
-                            "startLine": 154,
-                            "endLine": 154
+                            "startLine": 162,
+                            "endLine": 162
                         }
                     },
                     "default": null,
@@ -254,7 +259,7 @@
                 },
                 "id": {
                     "name": "id",
-                    "line": 154,
+                    "line": 162,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -273,7 +278,7 @@
         },
         "destroy": {
             "name": "destroy",
-            "line": 233,
+            "line": 241,
             "short_desc": "Remove the specified resource from storage.",
             "long_desc": "",
             "hint": [
@@ -291,7 +296,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 233,
+                    "line": 241,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -310,7 +315,7 @@
         },
         "qr": {
             "name": "qr",
-            "line": 245,
+            "line": 253,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -323,7 +328,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 245,
+                    "line": 253,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -337,7 +342,7 @@
         },
         "material": {
             "name": "material",
-            "line": 255,
+            "line": 263,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -350,7 +355,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 255,
+                    "line": 263,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
