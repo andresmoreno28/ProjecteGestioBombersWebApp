@@ -16,17 +16,24 @@ use dompdf\dompdf\src\Exception;
 
 class PDFController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     * Only authenticated users will be able to interact with the methods of the
+     * ContainerController.
+     *
+     * @return void
+     */
     public function __construct()
     {
       $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
+    /**
+     * Generar el document PDF.
+     *
+     * @param  $id
+     * @return array
+     */
     public function crearPDF($id)
     {     
       $data = $this->getData($id);
@@ -37,6 +44,12 @@ class PDFController extends Controller
       return $pdf->download('informe_'.$data['region']->codi.'-'.$data['user']->codi_parc.'-'.$data['vehicle']->codi.'_'.date('Ymd'));
     }
 
+    /**
+     * Obtenir dades del vehicle.
+     *
+     * @param  $id_vehicle
+     * @return array
+     */
     public function getData($id_vehicle)
     {
         //Agafem el vehicle mitjançant el seu "id"

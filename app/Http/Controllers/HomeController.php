@@ -38,6 +38,12 @@ class HomeController extends Controller
       $users= User::get();
       return view('home', ['vehicles' => $vehicles, 'users'=>$users]);
     }
+
+    /**
+     * Filtre de vehicles AJAX.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function filtre($id)
     {
       if ($id=="a") {

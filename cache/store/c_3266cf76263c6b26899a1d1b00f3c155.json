@@ -1,0 +1,45 @@
+{
+    "name": "Tests\\Browser\\Pages\\Page",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests\\Browser\\Pages",
+    "file": "D:\\www\\bombers\/\\tests\\Browser\\Pages\\Page.php",
+    "relative_file": null,
+    "hash": "1f027c8ef4b11e63673c794067fdcc3853cc0d83",
+    "parent": "Laravel\\Dusk\\Page",
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "BasePage": "Laravel\\Dusk\\Page"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "siteElements": {
+            "name": "siteElements",
+            "line": 14,
+            "short_desc": "Get the global element shortcuts for the site.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

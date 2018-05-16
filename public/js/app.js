@@ -13719,6 +13719,13 @@ jQuery(document).ready(function () {
   });
 });
 
+/**
+ * Bootstrap: Tooltips
+ ******************************************************************************/
+$(function () {
+  $('[tooltip="tooltip"]').tooltip();
+});
+
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {

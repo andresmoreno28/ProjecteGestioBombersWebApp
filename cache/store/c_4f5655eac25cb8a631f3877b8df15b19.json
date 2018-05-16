@@ -1,0 +1,48 @@
+{
+    "name": "ContainerNameSeeder",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\ContainerNameSeeder.php",
+    "relative_file": null,
+    "hash": "440bddf040a8b3c99e58a239508f750b2edceae3",
+    "parent": "Illuminate\\Database\\Seeder",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "StreamHandler": "Monolog\\Handler\\StreamHandler",
+        "Faker": "Faker\\Generator",
+        "ContainerName": "App\\ContainerName",
+        "Seeder": "Illuminate\\Database\\Seeder"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "run": {
+            "name": "run",
+            "line": 13,
+            "short_desc": "Run the database seeds.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

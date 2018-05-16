@@ -10,10 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+    /**
+     * Create a new controller instance.
+     * Only authenticated users will be able to interact with the methods of the
+     * ContainerController.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

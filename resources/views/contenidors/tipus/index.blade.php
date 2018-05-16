@@ -14,7 +14,8 @@
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item" aria-current="page">Home</li>
                     <li class="breadcrumb-item" aria-current="page">Contenidors</li>
-                    <li class="breadcrumb-item active" aria-current="page">Tipus</li>
+                    <li class="breadcrumb-item" aria-current="page">Tipus</li>
+                    <li class="breadcrumb-item active" aria-current="page">Consultar</li>
                 </ol>
             </nav>
         </div><!-- /.row -->
@@ -23,7 +24,7 @@
         <!-- Botó Afegir -->
         <div class="row">
             <div class="col-xs-12 col-2 my-3 clearfix">
-                <a href="{{ action('ContainerNameController@create') }}" class="btn btn-dark">
+                <a href="{{ action('ContainerNameController@create') }}" class="btn btn-danger bg-dark">
                   <p class="my-0 underline-small"><i class="fas fa-archive"></i> Afegir un tipus</p>
                 </a>
             </div><!-- /.col -->
@@ -38,7 +39,7 @@
                 </button>
             </div>
         @endif
-@dd($types)
+
         <!-- Taula de Tipus -->
         <div class="row">
             <div class="col-xs-12 col-12">
@@ -46,13 +47,16 @@
                     <caption><small>Llistat dels tipus de contenidors.</small></caption>
                     <thead class="thead-dark">
                         <tr style="border-bottom:3px solid #dc3545;">
+                            <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Acció</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($types as $type)
+                        @forelse ($types as $key => $type)
+                            @php $count = $key+1; @endphp
                             <tr>
+                                <td>{{ $count }}</td>
                                 <td>{{ $type->nom }}</td>
                                 <td class="text-right">
                                     <!-- Editar -->
@@ -79,6 +83,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                <!-- Paginació -->
+                {{ $types->links() }}
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.col -->

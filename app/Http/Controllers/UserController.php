@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     * Only authenticated users will be able to interact with the methods of the
+     * ContainerController.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
     /**
      * Display a listing of the resource.
      *

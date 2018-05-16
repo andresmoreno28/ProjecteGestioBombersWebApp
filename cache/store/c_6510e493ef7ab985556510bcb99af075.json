@@ -1,0 +1,27 @@
+{
+    "name": "Tests\\TestCase",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Tests",
+    "file": "D:\\www\\bombers\/\\tests\\TestCase.php",
+    "relative_file": null,
+    "hash": "32da8488b540230cd415a6b08c68b59fc59d4bf7",
+    "parent": "Illuminate\\Foundation\\Testing\\TestCase",
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "BaseTestCase": "Illuminate\\Foundation\\Testing\\TestCase"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": {
+        "Tests\\CreatesApplication": "Tests\\CreatesApplication"
+    },
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

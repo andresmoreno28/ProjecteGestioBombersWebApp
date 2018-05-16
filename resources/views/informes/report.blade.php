@@ -120,8 +120,8 @@
 			<div id="regio_parc_vehicle">{{$region->codi}}.{{$user->codi_parc}}.{{$vehicle->codi}}</div>
 
 			@php 
-				$ldate = new DateTime('today');
-				$ldate = date('d-m-Y')
+			$ldate = new DateTime('today');
+			$ldate = date('d-m-Y')
 			@endphp
 
 			<div id="data"> {{ $ldate }}</div>
@@ -131,40 +131,40 @@
 	<div id="eo" class="container-fluid"> 
 
 		@foreach ($contenidors as $contenidor)
-			@if ($contenidor->container_parent_id == null)
-				<div id="contorn_contenidors" class="row"> 
-					{{ $contenidor->nom->nom }}
-				</div>
-			
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>MATERIAL</th>
-								<th class="celles_a_centrar">PREVIST</th>
-								<th class="celles_a_centrar">REAL</th>
-								<th class="celles_a_centrar">REFERENCIA</th>
-								<th class="celles_a_centrar">MATERIAL PARC</th>
-							</tr>
-						</thead>
-						<tbody>
-							@php 
+		@if ($contenidor->container_parent_id == null)
+		<div id="contorn_contenidors" class="row"> 
+			{{ $contenidor->nom->nom }}
+		</div>
+		
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>MATERIAL</th>
+						<th class="celles_a_centrar">PREVIST</th>
+						<th class="celles_a_centrar">REAL</th>
+						<th class="celles_a_centrar">REFERENCIA</th>
+						<th class="celles_a_centrar">MATERIAL PARC</th>
+					</tr>
+				</thead>
+				<tbody>
+					@php 
 
-							$materialsFromContainers = $contenidor->materials;
+					$materialsFromContainers = $contenidor->materials;
 
-							@endphp
-			@endif
-			
+					@endphp
+					@endif
+					
 
 					@foreach ($materialsFromContainers as $material)
 
 					<tr>
 						<td>{{ $material->nom }} </td>
-						<td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
-						<td class="celles_a_centrar">{{$material->quantitat}}</td>
+						<td class="celles_a_centrar">{{$material->pivot->quantitat_prevista}}</td>
+						<td class="celles_a_centrar">{{$material->pivot->quantitat}}</td>
 						<td class="celles_a_centrar">{{$material->referencia}}</td>
 						<td style="text-align:center;" class="celles_a_centrar">				    
-							@if ($material->es_del_parc == 0)
+							@if ($material->pivot->es_del_parc == 0)
 							<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
 							@else
 							<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
@@ -174,40 +174,40 @@
 					@endforeach
 					<!-- Apartat de subcontenidors -->
 					@if ($contenidor->containers()->count() > 0)
-						@foreach ($contenidor->containers as $key => $contenidor_fill)
-							<tr>
+					@foreach ($contenidor->containers as $key => $contenidor_fill)
+					<tr>
 
-								<td id="cont_fill col-12">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
-							</tr>
+						<td id="cont_fill col-12">*  {{ $contenidor_fill->nom->nom }} ({{$contenidor_fill->materials->count()}})</td>
+					</tr>
 
-							@php 
+					@php 
 
-							$materials_subcontenidors = $contenidor_fill->materials;
+					$materials_subcontenidors = $contenidor_fill->materials;
 
-							@endphp
-							<!-- Materials de subcontenidors -->
-							@foreach ($materials_subcontenidors as $material)
+					@endphp
+					<!-- Materials de subcontenidors -->
+					@foreach ($materials_subcontenidors as $material)
 
-							<tr>
-								<td>**    {{ $material->nom }}</td>
-								<td class="celles_a_centrar">{{$material->quantitat_prevista}}</td>
-								<td class="celles_a_centrar">{{$material->quantitat}}</td>
-								<td class="celles_a_centrar">{{$material->referencia}}</td>
-								<td style="text-align:center;" class="celles_a_centrar subcont">				    
-									@if ($material->es_del_parc == 0)
-									<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
-									@else
-									<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
-									@endif
-								</td>					        
-							</tr>
-							@endforeach
-						@endforeach
-					@endif
-							</tbody>
-						</table>
-					</div>
+					<tr>
+						<td>**    {{ $material->nom }}</td>
+						<td class="celles_a_centrar">{{$material->pivot->quantitat_prevista}}</td>
+						<td class="celles_a_centrar">{{$material->pivot->quantitat}}</td>
+						<td class="celles_a_centrar">{{$material->referencia}}</td>
+						<td style="text-align:center;" class="celles_a_centrar subcont">				    
+							@if ($material->es_del_parc == 0)
+							<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1">
+							@else
+							<input style="text-align:center;" class="celles_a_centrar" type="checkbox" name="donat_de_baixa" value="1" checked>
+							@endif
+						</td>					        
+					</tr>
 					@endforeach
-				</div>
-			</body>
-			</html>
+					@endforeach
+					@endif
+				</tbody>
+			</table>
+		</div>
+		@endforeach
+	</div>
+</body>
+</html>

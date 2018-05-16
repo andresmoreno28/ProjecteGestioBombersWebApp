@@ -1,0 +1,51 @@
+{
+    "name": "RegionSeeder",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\RegionSeeder.php",
+    "relative_file": null,
+    "hash": "dfc5fd0f9af29b63f1372a4d92d26dca66241885",
+    "parent": "Illuminate\\Database\\Seeder",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "StreamHandler": "Monolog\\Handler\\StreamHandler",
+        "Faker": "Faker\\Generator",
+        "ContainerName": "App\\ContainerName",
+        "Seeder": "Illuminate\\Database\\Seeder",
+        "Model": "Illuminate\\Database\\Eloquent\\Model",
+        "DB": "Illuminate\\Support\\Facades\\DB",
+        "Region": "App\\Region"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "run": {
+            "name": "run",
+            "line": 13,
+            "short_desc": "Run the database seeds.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,55 @@
+{
+    "name": "VehicleTypeSeeder",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "D:\\www\\bombers\/\\database\\seeds\\VehicleTypeSeeder.php",
+    "relative_file": null,
+    "hash": "87e65f29e1fb3e5b58ec26993ced361e655e6caf",
+    "parent": "Illuminate\\Database\\Seeder",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "StreamHandler": "Monolog\\Handler\\StreamHandler",
+        "Faker": "Faker\\Generator",
+        "ContainerName": "App\\ContainerName",
+        "Seeder": "Illuminate\\Database\\Seeder",
+        "Model": "Illuminate\\Database\\Eloquent\\Model",
+        "DB": "Illuminate\\Support\\Facades\\DB",
+        "Region": "App\\Region",
+        "User": "App\\User",
+        "VehicleInsurer": "App\\VehicleInsurer",
+        "VehicleOwner": "App\\VehicleOwner",
+        "VehicleType": "App\\VehicleType"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "run": {
+            "name": "run",
+            "line": 13,
+            "short_desc": "Run the database seeds.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

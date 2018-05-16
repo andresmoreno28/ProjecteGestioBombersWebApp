@@ -1,0 +1,68 @@
+{
+    "name": "CreateVehicleOwnersTable",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "D:\\www\\bombers\/\\database\\migrations\\2018_05_04_101337_create_vehicle_owners_table.php",
+    "relative_file": null,
+    "hash": "f46f454363734bf7391c7a9442c190868ac8747f",
+    "parent": "Illuminate\\Database\\Migrations\\Migration",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "StreamHandler": "Monolog\\Handler\\StreamHandler",
+        "Faker": "Faker\\Generator",
+        "Schema": "Illuminate\\Support\\Facades\\Schema",
+        "Blueprint": "Illuminate\\Database\\Schema\\Blueprint",
+        "Migration": "Illuminate\\Database\\Migrations\\Migration"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "up": {
+            "name": "up",
+            "line": 14,
+            "short_desc": "Run the migrations.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "down": {
+            "name": "down",
+            "line": 29,
+            "short_desc": "Reverse the migrations.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

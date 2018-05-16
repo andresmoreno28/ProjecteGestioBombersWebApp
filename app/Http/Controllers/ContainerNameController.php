@@ -27,7 +27,7 @@ class ContainerNameController extends Controller
      */
     public function index()
     {
-        $types = ContainerName::all();
+        $types = ContainerName::paginate(8);
         return view('contenidors.tipus.index', compact('types'));
     }
 
