@@ -48,11 +48,9 @@ Route::get('backup', 'BackupController@index')->name('backup');
 Route::get('backup/create', 'BackupController@create')->name('bcreate');
 Route::get('backup/download/{file_name}', 'BackupController@download');
 Route::get('backup/delete/{file_name}', 'BackupController@delete')->name('dbackup');
-// Dompdf route
-/*Route::get('informes', function() {
-	$pdf = PDF::loadView('informes.report');
-	return $pdf->download('informe.pdf');
-})->name('pdf');*/
 
+// Dompdf route
 Route::get('informes/{id}', 'PDFController@crearPDF')->name('report');
+
+// Inventory route from mobile app
 Route::get('inventory', 'InventoryController@update')->name('inventory');
