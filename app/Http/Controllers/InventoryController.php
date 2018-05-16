@@ -31,23 +31,23 @@ class InventoryController extends Controller
      */
   	public function update(Request $request)
   	{
-  		$contMat = ContainerMaterial::findOrFail($request->id_cont_mat[0]);
-
-  		$quantitat = ContainerMaterial::where('quantitat', 2)->first();
-  		//dd($request);
-
+  		/*Se realitza una iteració per a relacionar els arrays d'ids de la taula ContainerMaterial amb el número de quantitat real corresponent*/
   		for ($i = 0; $i < count($request->real); $i++)
   		{
+  			//Es guarden l'ids i les quantitats en variables
   			$id = $request->id_cont_mat[$i];
   			$quantitat = $request->real[$i];
 
+  			//S'agafa el registre corresponent de la taula container_material a través del seu model
   			$contMat = ContainerMaterial::findOrFail($id);
 
+  			//Es fa l'update de la quantitat al lloc corresponent
   			$contMat->update(['quantitat' => $quantitat]);
  					
   		}
-
+  		//Es crea un missatge d'èxit en l'actualització
   		$missatge=session()->flash('success', 'Stock actualitzat');
+  		//Es retorna enrere a la vista del formulari amb el missatge
   		return back()->with($missatge);
   	}
 }
