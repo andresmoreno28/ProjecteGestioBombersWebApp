@@ -2,22 +2,31 @@
 
 **Taula de continguts**
 
-- [Què és?](#què-és)
+- [Què és?](#que-es)
 - [Qui?](#qui)
+- [QR Reader (android)](#qr-reader-android)
 - [Laravel 5.6](#laravel-56)
 	- [Descarregar](#descarregar)
-	- [Instal·lació](#installació)
-	- [Configuració](#configuració)
+	- [Instal·lació](#instal-lacio)
+	- [Configuració](#configuracio)
 		- [.env](#env)
 		- [Key](#key)
 		- [Migracions (DB)](#migracions-db)
-		- [Enviament de correus electrònics](#enviament-de-correus-electrònics)
+		- [Enviament de correus electrònics](#enviament-de-correus-electronics)
 	- [Assets](#assets)
 	- [Servidor](#servidor)
 
 # Què és?
 
 **Bombers** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Web (DAW)_, de l'[Institut Montsià](http://agora.xtec.cat/insmontsia/) (Amposta - Terres de l'Ebre).
+
+Aquest projecte tractarà de solucionar un problema real oferint una solució mitjançant el desenvolupament de programari. El departament de bombers de Les Terres de l’Ebre es van posar en contacte amb l’institut Montsià per a buscar a joves informàtics que volguessin tractar de crear una solució al seu problema a través del desenvolupament d'alguna eina de programari o aplicació que cobrís les seves necessitats. Decidim afrontar el repte i ens reunim amb el cap de bombers perquè ens posés en situació.
+
+A dia d'avui, la gestió dels seus recursos la realitzen de forma manual, generant un informe mitjançant una base de dades simple en Access. La idea seria automatitzar aquesta gestió dels recursos en la mesura del possible per minimitzar el treball manual.
+
+Així doncs, decidim crear una aplicació web perquè poguessin gestionar els seus recursos, generar PDF per controlar a cada moment l'estoc de material del que disposen a cada vehicle i com a eina complementària decidim crear una aplicació mòbil per Android que fos capaç de llegir codis QR que generaríem per a cada vehicle i que permeti als responsables de cada parc poder realitzar inventari i així centralitzar les dades perquè el cap dels bombers pogués a cada moment generar informes i estar al tant de tot.
+
+La nostra motivació a l'hora d'agafar aquest projecte va ser majorment les ganes de poder emprar els coneixements adquirits per realitzar un producte que tingui un ús real i que no solament serveixi com a recurs didàctic.
 
 # Qui?
 
@@ -30,6 +39,8 @@ Professors:
 - Alejandro Milián Sangüesa
 - Carles Anyó Luna
 - Toni Morant Fornés
+
+# QR Reader (android)
 
 # Laravel 5.6
 
