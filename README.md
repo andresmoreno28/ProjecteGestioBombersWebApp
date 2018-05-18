@@ -42,6 +42,10 @@ Professors:
 
 # QR Reader (android)
 
+A través de l'aplicació es genererà un codi QR per a cadascun dels vehicles dels quals en disposi un parc de bombers.
+- [Repositori GitHub](https://github.com/rogerforner/bombers-qrReader) de l'aplicació android que duu endavant la lectura dels codis QR.
+- [Descarregar](https://github.com/rogerforner/bombers-qrReader/blob/master/bombers.apk?raw=true) l'aplicació **.apk**.
+
 # Laravel 5.6
 
 El nostre projecte és duu a terme mitjançant el framework PHP [Laravel](https://laravel.com/).
