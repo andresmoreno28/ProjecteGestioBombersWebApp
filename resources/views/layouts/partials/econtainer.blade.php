@@ -103,7 +103,7 @@
         <div class="btn-group-vertical dropright btn-block">
           <div class="btn-group dropright" role="group">
             <!-- Aplicació -->
-            <a class="btn-group btn btn-secondary btn-lg"href="http://bombers.ooo/app/bombers.apk">
+            <a class="btn-group btn btn-secondary btn-lg"href="https://github.com/rogerforner/bombers-qrReader/blob/master/bombers.apk?raw=true">
               <p class="underline-small text-left"><i class="fab fa-android"></i> Aplicació
               </p>
             </a>
