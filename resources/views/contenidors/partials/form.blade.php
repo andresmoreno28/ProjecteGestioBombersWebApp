@@ -151,8 +151,10 @@
 <!-- MATERIALS -->
 <h6>Materials</h6>
 <div class="row">
-    <div class="col table-responsive">
-      <input class="form-control mb-2" type="text" placeholder="Cercar material" id="myInput" onkeyup="myFunction()">
+    <div class="col-12">
+        <input class="form-control mb-2" type="text" placeholder="Cercar material" id="myInput" onkeyup="myFunction()">
+    </div>
+    <div class="col table-responsive" style="overflow-y:scroll; height:408px;">
         <table class="table table-hover table-sm" id="myTable">
             <thead class="thead-dark">
                 <tr style="border-bottom:3px solid #dc3545;">
@@ -199,12 +201,14 @@
                         <td>
                             <input type="number" name="quantitat_prevista[]"
                                 value="{{ $material->pivot['quantitat_prevista'] or old('quantitat_prevista') }}"
-                                class="form-control qp" id="qPrevista" min="0" required disabled>
+                                class="form-control qp" id="qPrevista" min="0"
+                                placeholder="0">
                         </td>
                         <td>
                             <input type="number" name="quantitat[]"
                                 value="{{ $material->pivot['quantitat'] or old('quantitat') }}"
-                                class="form-control qr" id="qReal" min="0" disabled>
+                                class="form-control qr" id="qReal" min="0"
+                                placeholder="0">
                         </td>
                     </tr>
                 @empty
