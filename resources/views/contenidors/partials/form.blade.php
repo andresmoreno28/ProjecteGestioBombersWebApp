@@ -202,13 +202,13 @@
                             <input type="number" name="quantitat_prevista[]"
                                 value="{{ $material->pivot['quantitat_prevista'] or old('quantitat_prevista') }}"
                                 class="form-control qp" id="qPrevista" min="0"
-                                placeholder="0">
+                                placeholder="0" disabled>
                         </td>
                         <td>
                             <input type="number" name="quantitat[]"
                                 value="{{ $material->pivot['quantitat'] or old('quantitat') }}"
                                 class="form-control qr" id="qReal" min="0"
-                                placeholder="0">
+                                placeholder="0" disabled>
                         </td>
                     </tr>
                 @empty

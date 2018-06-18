@@ -78,6 +78,27 @@ $(document).ready(function(){
         $("#vehicleContenidorSelect").toggle($(this).val() == "1");
         $("#parcContenidorSelect").toggle($(this).val() == "0");
     });
+
+    // QUANTITATS MATERIAL
+    // -----------------------
+    $('.form-check-input').ready(function(){
+        $('.form-check-input').each(function (){
+            var row = $(this).closest('tr');
+            if($(this).is(':checked')) {
+                $(row).find('.qr, .qp').prop("disabled",false);
+            } else {
+                $(row).find('.qr, .qp').prop("disabled",true);
+            }
+        });
+    })
+    $(document).on('change','.form-check-input',function() {
+        var row = $(this).closest('tr');
+        if($(this).is(':checked')) {
+            $(row).find('.qr, .qp').prop("disabled",false);
+        } else {
+            $(row).find('.qr, .qp').prop("disabled",true);
+        }
+    });
 });
 </script>
 @endsection

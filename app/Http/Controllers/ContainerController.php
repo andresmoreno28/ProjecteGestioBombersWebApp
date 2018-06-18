@@ -167,10 +167,7 @@ class ContainerController extends Controller
 
         // Associar els materials amb el contenidors (taula pivot
         // container_material).
-        $contCreat->materials()->sync($materials, [
-            'quantitat_prevista' => $materialsQuantitatP,
-            'quantitat' => $materialsQuantitatR
-        ]);
+        $contCreat->materials()->sync($materials);
 
         // Vista amb el llistat de contenidors.
         return redirect()->action('ContainerController@index');
