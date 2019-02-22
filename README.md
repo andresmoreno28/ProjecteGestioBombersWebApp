@@ -33,7 +33,7 @@ La nostra motivació a l'hora d'agafar aquest projecte va ser majorment les gane
 Equip:
 - [Andrés Moreno Rubio](https://www.linkedin.com/in/andr%C3%A9s-moreno-rubio-49ab1860/)
 - [Enric Beltran Cano](https://www.linkedin.com/in/enric-beltran-cano-400264156/)
-- [Roger Forner Fabre](https://www.linkedin.com/in/rogerforner/)
+- [Roger Forner Fabre](https://www.linkedin.com/in/roger-forner-fabre/)
 
 Professors:
 - Alejandro Milián Sangüesa
@@ -43,8 +43,8 @@ Professors:
 # QR Reader (android)
 
 A través de l'aplicació es genererà un codi QR per a cadascun dels vehicles dels quals en disposi un parc de bombers.
-- [Repositori GitHub](https://github.com/rogerforner/bombers-qrReader) de l'aplicació android que duu endavant la lectura dels codis QR.
-- [Descarregar](https://github.com/rogerforner/bombers-qrReader/blob/master/bombers.apk?raw=true) l'aplicació **.apk**.
+- [Repositori GitHub](https://github.com/rogerforner/CFGS-DAW-Projecte-BombersQR-TerresEbre) de l'aplicació android que duu endavant la lectura dels codis QR.
+- [Descarregar](https://github.com/rogerforner/CFGS-DAW-Projecte-BombersQR-TerresEbre/blob/master/bombers.apk?raw=true) l'aplicació **.apk**.
 
 # Laravel 5.6
 
