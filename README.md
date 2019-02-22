@@ -33,7 +33,7 @@ La nostra motivació a l'hora d'agafar aquest projecte va ser majorment les gane
 Equip:
 - [Andrés Moreno Rubio](https://www.linkedin.com/in/andr%C3%A9s-moreno-rubio-49ab1860/)
 - [Enric Beltran Cano](https://www.linkedin.com/in/enric-beltran-cano-400264156/)
-- [Roger Forner Fabre](https://www.linkedin.com/in/roger-forner-fabre/)
+- [Roger Forner Fabre](https://rogerforner.com)
 
 Professors:
 - Alejandro Milián Sangüesa
