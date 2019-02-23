@@ -15,6 +15,7 @@
 		- [Enviament de correus electrònics](#enviament-de-correus-electronics)
 	- [Assets](#assets)
 	- [Servidor](#servidor)
+	- [Documentació](#documentació)
 
 # Què és?
 
@@ -152,3 +153,7 @@ $ php artisan serve
 ```
 
 _És important no aturar el servidor mentre es treballi amb l'aplicació web ja que, llavors, no visualitzariem els canvis que es realitzin en el front-end._
+
+## Documentació
+
+Veure la [documentació tècnica](https://rogerforner.github.io/CFGS-DAW-Projecte-BombersGestio-TerresEbre/) del projecte.
